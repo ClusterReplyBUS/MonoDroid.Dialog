@@ -171,6 +171,11 @@ namespace MonoDroid.Dialog
 			return count;
 		}
 
+		public int AddAll(Element[] elements)
+		{
+			return Add(elements);
+		}
+
 		/// <summary>
 		/// Use to add a View to a section, it makes the section opaque, to
 		/// get a transparent one, you must manually call ViewElement

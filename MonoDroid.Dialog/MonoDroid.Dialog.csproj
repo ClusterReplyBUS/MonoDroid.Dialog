@@ -68,13 +68,24 @@
     <Compile Include="SectionAdapter.cs" />
     <Compile Include="StringElement.cs" />
     <Compile Include="ViewElement.cs" />
+    <Compile Include="Elements\Custom\ReadonlyElement.cs" />
+    <Compile Include="Elements\Custom\SelectableMultilineEntryElement.cs" />
+    <Compile Include="Elements\Custom\ITaggedNodeElement.cs" />
+    <Compile Include="Elements\Custom\NullableDateElementInline.cs" />
+    <Compile Include="Elements\Custom\ProductOfInterestCheckboxElement.cs" />
+    <Compile Include="Elements\Custom\TaggedCheckboxElement.cs" />
+    <Compile Include="Elements\Custom\ProductOfInterestRadioElement.cs" />
+    <Compile Include="Elements\Custom\TextOnlyElement.cs" />
+    <Compile Include="Elements\Custom\TwoStateElement.cs" />
+    <Compile Include="Elements\Custom\GridElement.cs" />
+    <Compile Include="Elements\Custom\TaggedRadioElement.cs" />
+    <Compile Include="Elements\Custom\TaggedRootElement.cs" />
+    <Compile Include="Elements\Custom\RightAlignEntryElement.cs" />
+    <Compile Include="Elements\Custom\MultilineEntryElement.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Folder Include="Elements\" />
+    <Folder Include="Elements\Custom\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

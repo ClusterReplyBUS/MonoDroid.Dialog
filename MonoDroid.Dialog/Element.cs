@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Android.Content;
 using Android.Views;
+using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
@@ -98,5 +100,10 @@ namespace MonoDroid.Dialog
             RootElement rootElement = element as RootElement;
             return rootElement == null ? null : rootElement.Context;
         }
+
+
+
     }
+
+
 }
