@@ -56,7 +56,8 @@ namespace MonoDroid.Dialog
         public int Lines { get; set; }
 
         protected EditText _entry;
-        private string _val;
+		protected TextView _label;
+		protected string _val;
 		protected Action _entryClicked { get;set; }
 		
 
@@ -66,8 +67,7 @@ namespace MonoDroid.Dialog
                 " Value: " + Value + " Hint: " + Hint + " Password: " + (Password ? "true" : "false"));
 			
 			
-            TextView label;
-            var view = DroidResources.LoadStringEntryLayout(context, convertView, parent, LayoutId, out label, out _entry);
+            var view = DroidResources.LoadStringEntryLayout(context, convertView, parent, LayoutId, out _label, out _entry);
             if (view != null)
             {
                 // Warning! Crazy ass hack ahead!
@@ -90,7 +90,7 @@ namespace MonoDroid.Dialog
                 _entry.Tag = this;
                 _entry.AddTextChangedListener(this);
 
-                label.Text = (label != null) ? Caption: string.Empty;
+                _label.Text = (_label != null) ? Caption: string.Empty;
             }
 			return view;
 		}
@@ -143,5 +143,7 @@ namespace MonoDroid.Dialog
 				entryDialog.Show();
 			}
 		}
-    }
+
+
+	}
 }

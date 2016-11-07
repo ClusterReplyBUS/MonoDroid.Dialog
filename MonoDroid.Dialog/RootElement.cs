@@ -8,11 +8,12 @@ using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-    public class RootElement : Element, IEnumerable<Section>, IDialogInterfaceOnClickListener
+    public class 
+	RootElement : Element, IEnumerable<Section>, IDialogInterfaceOnClickListener
     {
         TextView _caption;
         TextView _value;
-
+	    public ListView TableView;
         int _summarySection, _summaryElement;
         internal Group _group;
         public bool UnevenRows;
@@ -306,20 +307,28 @@ namespace MonoDroid.Dialog
             Context = context;
 
             LayoutInflater inflater = LayoutInflater.FromContext(context);
-            
-            View cell = new TextView(context) {TextSize = 16f, Text = Caption};
+
+
+			View cell = new TextView(context) {TextSize = 16f, Text = Caption};
             var radio = _group as RadioGroup;
+
 
             if (radio != null)
             {
                 string radioValue = GetSelectedValue();
+
+				//Come passo booleano readonly dell'elemento???
+				//cell = DroidResources.LoadReadOnlyStringElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
                 cell = DroidResources.LoadStringElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
                 if (cell != null)
                 {
                     _caption.Text = Caption;
-                    _value.Text = radioValue;
+
+					_value.Text = radioValue;
 //                    this.Click = (o, e) => { SelectRadio(); };
-					this.Click += delegate { SelectRadio(); };
+					this.LongClick+= Handle_LongClick;
+					//this.Click += delegate { SelectRadio(); };
+					this.Click += SelectRadio;
                 }
             }
             else if (_group != null)
@@ -358,6 +367,32 @@ namespace MonoDroid.Dialog
             return cell;
         }
 
+		void Handle_LongClick()
+		{
+			List<string> items = new List<string>();
+			foreach (var s in Sections)
+			{
+				foreach (var e in s.Elements)
+				{
+					if (e is RadioElement)
+					{
+						if (e.Summary() == null)
+						{
+							items.Add(string.Empty);
+						}
+						else
+						{
+							items.Add(e.Summary());
+						}
+					}
+				}
+			}
+			var dialog = new AlertDialog.Builder(Context);
+			dialog.SetSingleChoiceItems(items.ToArray(), this.RadioSelected, this);
+			dialog.SetTitle(this.Caption);
+			dialog.SetNegativeButton("Cancel", this);
+			dialog.Create().Show();
+		}
 
         public void SelectRadio()
         {
@@ -370,7 +405,6 @@ namespace MonoDroid.Dialog
                         items.Add(e.Summary());
                 }
             }
-
             var dialog = new AlertDialog.Builder(Context);
             dialog.SetSingleChoiceItems(items.ToArray(), this.RadioSelected, this);
             dialog.SetTitle(this.Caption);
@@ -386,7 +420,6 @@ namespace MonoDroid.Dialog
                 string radioValue = GetSelectedValue();
                 _value.Text = radioValue;
             }
-
             dialog.Dismiss();
         }
 

@@ -36,7 +36,6 @@ namespace MonoDroid.Dialog
 				position -= size;
 				typeOffset += s.Adapter.ViewTypeCount;
 			}
-
 			return false;
 		}
 
@@ -74,7 +73,6 @@ namespace MonoDroid.Dialog
 				position -= size;
 				sectionIndex++;
 			}
-
 			return null;
 		}
 
@@ -118,6 +116,7 @@ namespace MonoDroid.Dialog
 			int sectionIndex = 0;
 
 			foreach (var s in Root.Sections) {
+				
 				if (s.Adapter.Context == null)
 					s.Adapter.Context = this.context;
 

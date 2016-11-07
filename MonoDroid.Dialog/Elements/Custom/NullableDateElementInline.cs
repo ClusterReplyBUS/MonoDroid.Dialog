@@ -222,11 +222,12 @@ namespace MonoDroid.Dialog
 			return base.GetView(context, convertView, parent);
 		}
 
-		public float GetHeight()
+
+		public float GetHeight(ListView lstv)
 		{
-			throw new NotImplementedException();
+			var width = (lstv.Width - 10) / 2;
+			string reference = (Caption ?? string.Empty).Length > ("c" ?? string.Empty).Length ? Caption : "c";
+			return (float)Math.Max(HeightForWidth(reference, width), 40F);
 		}
-
-
 	}
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using Android.App;
 using Android.Content;
+using Android.Views;
 using Android.Widget;
 
 namespace MonoDroid.Dialog
@@ -35,12 +37,16 @@ namespace MonoDroid.Dialog
 			}
         }
 
-        void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            var elem = this.DialogAdapter.ElementAtIndex(e.Position);
-			if(elem != null)
+		void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			
+			 var elem = this.DialogAdapter.ElementAtIndex(e.Position);
+		
+			if (elem != null)
+			{
 				elem.Selected();
-        }
+			}
+		}
 		
 		public void ReloadData()
 		{

@@ -1,5 +1,6 @@
 using System;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -9,7 +10,7 @@ namespace MonoDroid.Dialog
     {
         private bool _val;
 
-        public bool Value
+        public virtual bool Value
         {
             get { return _val; }
             set
@@ -87,6 +88,80 @@ namespace MonoDroid.Dialog
                 _caption = null;
             }
         }
+
+		//public override ListView GetCell(ListView tv)
+		//{
+		//	return tv;
+			//if (_toggleButton == null)
+			//{
+			//	_toggleButton = new ToggleButton(GetContext());
+
+			//	_toggleButton.SetBackgroundColor(Color.Transparent);
+			//	Tag = 1;
+			//	//On = Value
+			//	_toggleButton.CheckedChange += delegate
+			//	{
+
+			//	};
+			//	//_toggleButton.AddTarget(delegate
+			//	//{
+			//	//Value = sw.On;
+			//	//}, UIControlEvent.ValueChanged);
+			//}
+			//else {
+			//	//sw.On = Value;
+			//}
+
+			//var cell = tv.DequeueReusableCell(CellKey);
+			//if (cell == null)
+			//{
+			//	cell = new UITableViewCell(UITableViewCellStyle.Default, CellKey);
+			//	cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+			//}
+			//else
+			//	RemoveTag(cell, 1);
+
+			//cell.TextLabel.Text = Caption;
+			//cell.AccessoryView = sw;
+
+			//return cell;
+		
+		//public override UITableViewCell GetCell(UITableView tv)
+		//{
+		//	if (sw == null)
+		//	{
+		//		sw = new UISwitch()
+		//		{
+		//			BackgroundColor = UIColor.Clear,
+		//			Tag = 1,
+		//			On = Value
+		//		};
+		//		sw.AddTarget(delegate
+		//		{
+		//			Value = sw.On;
+		//		}, UIControlEvent.ValueChanged);
+		//	}
+		//	else
+		//		sw.On = Value;
+
+		//	var cell = tv.DequeueReusableCell(CellKey);
+		//	if (cell == null)
+		//	{
+		//		cell = new UITableViewCell(UITableViewCellStyle.Default, CellKey);
+		//		cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+		//	}
+		//	else
+		//		RemoveTag(cell, 1);
+
+		//	cell.TextLabel.Text = Caption;
+		//	cell.AccessoryView = sw;
+
+		//	return cell;
+		//}
+
+		//}
+
+
 
         public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
         {

@@ -62,6 +62,7 @@ namespace MonoDroid.Dialog
 
         public override View GetView(Context context, View convertView, ViewGroup parent)
         {
+			//
             View view = DroidResources.LoadStringElementLayout(context, convertView, parent, LayoutId, out _caption, out _text);
             if (view != null)
             {

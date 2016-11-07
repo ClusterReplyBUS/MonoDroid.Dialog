@@ -10,7 +10,7 @@ namespace MonoDroid.Dialog
 	{
 		public bool Mandatory { get; set; }
 
-		public object Value { get; set; }
+		public string Value { get; set; }
 
 		public List<GridHeader> Rows { get; set; }
 		public List<GridHeader> Columns { get; set; }
@@ -44,10 +44,6 @@ namespace MonoDroid.Dialog
 			return base.GetView(context, convertView, parent);
 		}
 
-		public float GetHeight()
-		{
-			throw new NotImplementedException();
-		}
 
 		//class GridViewController : UIViewController
 		//{
@@ -72,6 +68,13 @@ namespace MonoDroid.Dialog
 		public override void Selected()
 		{
 			base.Selected();
+		}
+
+		public float GetHeight(ListView lstv)
+		{
+			var width = (lstv.Width - 10) / 2;
+			string reference = (Caption ?? string.Empty).Length > (Value ?? string.Empty).Length ? Caption : Value;
+			return (float)Java.Lang.Math.Max(HeightForWidth(reference, width), 40F);
 		}
 
 		public class GridHeader
@@ -102,7 +105,7 @@ namespace MonoDroid.Dialog
 			{
 				get
 				{
-					throw new NotImplementedException();
+					return Rows.Count;
 				}
 			}
 

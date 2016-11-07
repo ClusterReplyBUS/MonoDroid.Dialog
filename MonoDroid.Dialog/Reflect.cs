@@ -52,6 +52,7 @@ namespace MonoDroid.Dialog
     {
     }
 
+
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false)]
     public class PasswordAttribute : EntryAttribute
     {

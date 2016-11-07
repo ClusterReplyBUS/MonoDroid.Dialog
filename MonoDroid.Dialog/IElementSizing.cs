@@ -1,7 +1,9 @@
-﻿namespace MonoDroid.Dialog
+﻿using Android.Widget;
+
+namespace MonoDroid.Dialog
 {
-    internal interface IElementSizing
+    public interface IElementSizing
     {
-        float GetHeight();
+        float GetHeight(ListView lstv);
     }
 }

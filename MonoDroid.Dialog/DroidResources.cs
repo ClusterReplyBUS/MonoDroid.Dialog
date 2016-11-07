@@ -9,13 +9,12 @@ namespace MonoDroid.Dialog
 {
     public static class DroidResources
     {
-        public enum ElementLayout: int
+		public enum ElementLayout: int
         {
             dialog_boolfieldleft,
             dialog_boolfieldright,
             dialog_boolfieldsubleft,
             dialog_boolfieldsubright,
-
             dialog_button,
             dialog_datefield,
             dialog_fieldsetlabel,
@@ -27,11 +26,11 @@ namespace MonoDroid.Dialog
             dialog_selectlist,
             dialog_selectlistfield,
             dialog_textarea,
-
             dialog_floatimage,
-
             dialog_textfieldbelow,
             dialog_textfieldright,
+			dialog_labelfieldright_ReadOnly
+
         }
 
         public static View LoadFloatElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out SeekBar slider, out ImageView left, out ImageView right)
@@ -54,16 +53,19 @@ namespace MonoDroid.Dialog
         }
 
 
+
         private static View LoadLayout(Context context, ViewGroup parent, int layoutId)
         {
             try
             {
+				
                 LayoutInflater inflater = LayoutInflater.FromContext(context);
                 if (_resourceMap.ContainsKey((ElementLayout)layoutId))
                 {
                     string layoutName = _resourceMap[(ElementLayout)layoutId];
-                    int layoutIndex = context.Resources.GetIdentifier(layoutName, "layout", context.PackageName);
-                    return inflater.Inflate(layoutIndex, parent, false);
+					int layoutIndex = context.Resources.GetIdentifier(layoutName, "layout", context.PackageName);
+					return inflater.Inflate(layoutIndex,parent,false);
+				
                 }
                 else
                 {
@@ -87,14 +89,17 @@ namespace MonoDroid.Dialog
             View layout = convertView ?? LoadLayout(context, parent, layoutId);
             if (layout != null)
             {
+				
                 label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
                 value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueField", "id", context.PackageName));
+
 				if(label == null || value == null)
 				{
 					layout = LoadLayout(context, parent, layoutId);
 					label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
 					value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueField", "id", context.PackageName));
 				}
+
             }
             else
             {
@@ -104,7 +109,33 @@ namespace MonoDroid.Dialog
             return layout;
         }
 
-        public static View LoadButtonLayout(Context context, View convertView, ViewGroup parent, int layoutId, out Button button)
+		public static View LoadReadOnlyStringElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out TextView value)
+		{
+			View layout = convertView ?? LoadLayout(context, parent, layoutId);
+			if (layout != null)
+			{
+
+				label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+				value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueROField", "id", context.PackageName));
+
+				if (label == null || value == null)
+				{
+					layout = LoadLayout(context, parent, layoutId);
+					label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+					value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueROField", "id", context.PackageName));
+				}
+
+			}
+			else
+			{
+				label = null;
+				value = null;
+			}
+			return layout;
+		}
+
+
+		public static View LoadButtonLayout(Context context, View convertView, ViewGroup parent, int layoutId, out Button button)
         {
             View layout = LoadLayout(context, parent, layoutId);
             if (layout != null)
@@ -171,25 +202,26 @@ namespace MonoDroid.Dialog
 
         static DroidResources()
         {
-            _resourceMap = new Dictionary<ElementLayout, string>()
-            {
+			_resourceMap = new Dictionary<ElementLayout, string>()
+			{
                 // Label templates
                 { ElementLayout.dialog_labelfieldbelow, "dialog_labelfieldbelow"},
-                { ElementLayout.dialog_labelfieldright, "dialog_labelfieldright"},
+				{ ElementLayout.dialog_labelfieldright, "dialog_labelfieldright"},
+				{ElementLayout.dialog_labelfieldright_ReadOnly,"dialog_labelfieldright_ReadOnly"},
 
                 // Boolean and Checkbox templates
                 { ElementLayout.dialog_boolfieldleft, "dialog_boolfieldleft"},
-                { ElementLayout.dialog_boolfieldright, "dialog_boolfieldright"},
-                { ElementLayout.dialog_boolfieldsubleft, "dialog_boolfieldsubleft"},
-                { ElementLayout.dialog_boolfieldsubright, "dialog_boolfieldsubright"},
-                { ElementLayout.dialog_onofffieldright, "dialog_onofffieldright"},
+				{ ElementLayout.dialog_boolfieldright, "dialog_boolfieldright"},
+				{ ElementLayout.dialog_boolfieldsubleft, "dialog_boolfieldsubleft"},
+				{ ElementLayout.dialog_boolfieldsubright, "dialog_boolfieldsubright"},
+				{ ElementLayout.dialog_onofffieldright, "dialog_onofffieldright"},
 
                 // Root templates
                 { ElementLayout.dialog_root, "dialog_root"},
 
                 // Entry templates
                 { ElementLayout.dialog_textfieldbelow, "dialog_textfieldbelow"},
-                { ElementLayout.dialog_textfieldright, "dialog_textfieldright"},
+				{ ElementLayout.dialog_textfieldright, "dialog_textfieldright"},
 
                 // Slider
                 { ElementLayout.dialog_floatimage, "dialog_floatimage"},
@@ -203,13 +235,16 @@ namespace MonoDroid.Dialog
                 //
                 { ElementLayout.dialog_fieldsetlabel, "dialog_fieldsetlabel"},
 
-                { ElementLayout.dialog_panel, "dialog_panel"},
+				{ ElementLayout.dialog_panel, "dialog_panel"},
 
                 //
                 { ElementLayout.dialog_selectlist, "dialog_selectlist"},
-                { ElementLayout.dialog_selectlistfield, "dialog_selectlistfield"},
-                { ElementLayout.dialog_textarea, "dialog_textarea"},
-            };
-        }
+				{ ElementLayout.dialog_selectlistfield, "dialog_selectlistfield"},
+				{ ElementLayout.dialog_textarea, "dialog_textarea"},
+			};
+		}
+
+
+
     }
 }
