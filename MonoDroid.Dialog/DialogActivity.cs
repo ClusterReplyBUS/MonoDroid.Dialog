@@ -18,6 +18,7 @@ namespace MonoDroid.Dialog
 
 	public class DialogActivity : ListActivity
 	{
+
 		public RootElement Root { get; set; }
         private DialogHelper Dialog { get; set; }
 		

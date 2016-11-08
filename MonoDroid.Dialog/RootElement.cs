@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Views;
@@ -328,7 +329,7 @@ namespace MonoDroid.Dialog
 //                    this.Click = (o, e) => { SelectRadio(); };
 					this.LongClick+= Handle_LongClick;
 					//this.Click += delegate { SelectRadio(); };
-					this.Click += SelectRadio;
+					//this.Click += SelectRadio;
                 }
             }
             else if (_group != null)
@@ -354,7 +355,17 @@ namespace MonoDroid.Dialog
                         }
                     }
                 }
-                //cell.DetailTextLabel.Text = count.ToString();
+				cell = DroidResources.LoadStringElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
+				if (cell != null)
+				{
+					_caption.Text = Caption;
+
+					_value.Text = "0";
+					//                    this.Click = (o, e) => { SelectRadio(); };
+					this.LongClick += SelectCheckBox;
+					//this.Click += delegate { SelectRadio(); };
+					//this.Click += SelectRadio;
+				}
             }
             else if (_summarySection != -1 && _summarySection < Sections.Count)
             {
@@ -369,30 +380,32 @@ namespace MonoDroid.Dialog
 
 		void Handle_LongClick()
 		{
-			List<string> items = new List<string>();
+			SelectRadio();
+		}
+
+		public void SelectCheckBox()
+		{
+			var items = new Dictionary<string, bool> ();
 			foreach (var s in Sections)
 			{
 				foreach (var e in s.Elements)
 				{
-					if (e is RadioElement)
-					{
-						if (e.Summary() == null)
-						{
-							items.Add(string.Empty);
-						}
-						else
-						{
-							items.Add(e.Summary());
-						}
-					}
+					if (e is CheckboxElement)
+						items.Add(e.Caption, false);
 				}
 			}
 			var dialog = new AlertDialog.Builder(Context);
-			dialog.SetSingleChoiceItems(items.ToArray(), this.RadioSelected, this);
+			dialog.SetMultiChoiceItems(items.Keys.ToArray(), items.Values.ToArray(), (sender, e) =>
+			{
+				Console.WriteLine("");
+			});
 			dialog.SetTitle(this.Caption);
 			dialog.SetNegativeButton("Cancel", this);
+			dialog.SetPositiveButton("Ok", (sender, e) => {});
 			dialog.Create().Show();
 		}
+
+
 
         public void SelectRadio()
         {

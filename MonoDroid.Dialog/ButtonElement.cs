@@ -12,6 +12,7 @@ namespace MonoDroid.Dialog
             : base(caption, (int)DroidResources.ElementLayout.dialog_button)
 		{
 			this.Click = tapped;
+			this.LongClick= HandleAction;
 		}
 
 		public override View GetView (Context context, View convertView, ViewGroup parent)
@@ -21,7 +22,7 @@ namespace MonoDroid.Dialog
 			if (view != null) {
 				button.Text = Caption;
 				if (Click != null)
-					button.Click += delegate { Click(); };
+					button.Click += delegate {  Click(); };
 			}
 			
 			return view;
@@ -30,6 +31,11 @@ namespace MonoDroid.Dialog
 		public override string Summary ()
 		{
 			return Caption;
+		}
+
+		void HandleAction()
+		{
+			
 		}
 	}
 }

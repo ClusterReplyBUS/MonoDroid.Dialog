@@ -8,6 +8,9 @@
     {
         public string Key;
 
+		public Group() : this(null)
+		{
+		}
         public Group(string key)
         {
             Key = key;
