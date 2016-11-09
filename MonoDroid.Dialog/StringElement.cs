@@ -71,19 +71,23 @@ namespace MonoDroid.Dialog
                 _text.Text = Value;
 				_text.TextSize = FontSize;
 				if (Click != null)
-					view.Click += delegate { this.Click(); };
+				{
+					view.Click += (s, e) => this.Click();
+					_text.Click += (s, e) => this.Click();
+					_caption.Click += (s, e) => this.Click();
+				}
             }
             return view;
         }
 		
-		public override void Selected ()
-		{
-			base.Selected ();
+		//public override void Selected ()
+		//{
+		//	base.Selected ();
 			
-			if(this.Click != null) {
-				Click();
-			}
-		}
+		//	if(this.Click != null) {
+		//		Click();
+		//	}
+		//}
 
         public override string Summary()
         {

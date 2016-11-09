@@ -42,6 +42,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="SignaturePad">
+      <HintPath>..\..\..\TFS_GIT\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Controls.SignaturePad.1.4.0\lib\MonoAndroid\SignaturePad.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingContext.cs" />
@@ -83,10 +86,27 @@
     <Compile Include="Elements\Custom\TaggedRootElement.cs" />
     <Compile Include="Elements\Custom\RightAlignEntryElement.cs" />
     <Compile Include="Elements\Custom\MultilineEntryElement.cs" />
+    <Compile Include="Elements\Custom\SignatureActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Elements\Custom\SignatureElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />
     <Folder Include="Elements\Custom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\signature.axml" />
+    <AndroidResource Include="Resources\layout\Menu.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="signature-pad">
+      <Version>1.4.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

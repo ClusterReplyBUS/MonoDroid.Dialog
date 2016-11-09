@@ -244,7 +244,10 @@ namespace MonoDroid.Dialog
             return view;
         }
 
-        public virtual void Selected() {}
+        public virtual void Selected() {
+			if (this.Click != null)
+				this.Click();
+		}
 				
         
 
