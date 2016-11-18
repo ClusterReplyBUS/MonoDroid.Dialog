@@ -5,7 +5,7 @@ using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-    public class CheckboxElement : Element, CompoundButton.IOnCheckedChangeListener
+    public class CheckboxElement : Element//, CompoundButton.IOnCheckedChangeListener
     {
         public bool Value
         {
@@ -90,12 +90,11 @@ namespace MonoDroid.Dialog
             if (view != null)
             {
                 _caption.Text = Caption;
-				
                 _checkbox = checkboxView as CheckBox;
-                _checkbox.SetOnCheckedChangeListener(null);
+				_checkbox.SetOnCheckedChangeListener(null);
                 _checkbox.Checked = Value;
+				//_checkbox.SetOnCheckedChangeListener(this);
 				_checkbox.Clickable = !ReadOnly;	
-				
 				if (_subCaption != null )
 				{
 					_subCaption.Text = SubCaption;
@@ -104,9 +103,20 @@ namespace MonoDroid.Dialog
             return view;
         }
 
-        public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
-        {
-            this.Value = isChecked;
-        }
+        //public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
+        //{
+        //    this.Value = isChecked;
+        //}
+
+		public void OnChildSelected()
+		{
+			this.Value = !this.Value;
+			if (OnSelected != null)
+			{
+				OnSelected(this, null);
+			}
+		}
+
+		public event EventHandler<EventArgs> OnSelected;
     }
 }

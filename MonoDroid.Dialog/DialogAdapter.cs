@@ -121,7 +121,7 @@ namespace MonoDroid.Dialog
 					s.Adapter.Context = this.context;
 
 				if (position == 0)
-					return s.GetView (context, convertView, parent);
+					return (s.Adapter.GetView(position, convertView, parent));
 
 				int size = s.Adapter.Count + 1;
 

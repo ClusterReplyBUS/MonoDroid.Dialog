@@ -1,11 +1,33 @@
 ﻿using System;
+using System.IO;
 using Android.App;
+using Android.Graphics;
 
 namespace MonoDroid.Dialog
 {
 	public class SignatureElement : ButtonElement
 	{
-		public string SignatureBase64 { get; set; }
+		public string SignatureBase64 { 
+			get
+			{ 
+				Bitmap image = Value;
+				using (var mem = new MemoryStream())
+				{
+					image.Compress(Bitmap.CompressFormat.Jpeg, 20, mem);
+					byte[] byteArray = mem.ToArray();
+				 	return Convert.ToBase64String(byteArray);
+				}
+			}
+			set
+			{ 
+				byte[] encodedDataAsBytes = Convert.FromBase64String(value);
+				Value=BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
+			}
+		}
+
+		public new Bitmap Value { get; set; }
+
+
 		public SignatureElement(string caption, string disclaimer, string saveButtonLabel)
 			: base(caption, null)
 		{
@@ -18,14 +40,13 @@ namespace MonoDroid.Dialog
 				SignatureActivity.Instance.SignatureSaved += (sender, e) =>
 				 {
 					 Console.WriteLine("SignatureSaved");
-					 SignatureBase64 = SignatureActivity.Instance.SignatureBase64;
+					 Value = SignatureActivity.Instance.SignatureImage;
+
 				 };
 				 ((Activity)context).StartActivityForResult(typeof(SignatureActivity), 0);
 				 
 			 };
-			var view = base.GetView(context, convertView, parent);
-
-			return view;
+			return base.GetView(context, convertView, parent);
 		}
 	}
 }

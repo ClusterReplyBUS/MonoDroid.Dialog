@@ -32,5 +32,12 @@ namespace MonoDroid.Dialog
         {
             return Caption;
         }
-    }
+
+		public void OnChildSelected()
+		{
+			if (OnSelected != null)
+				OnSelected(this, null);
+		}
+		public event EventHandler<EventArgs> OnSelected;
+	}
 }

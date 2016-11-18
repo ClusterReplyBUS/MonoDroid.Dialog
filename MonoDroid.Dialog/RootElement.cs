@@ -13,12 +13,14 @@ namespace MonoDroid.Dialog
 	RootElement : Element, IEnumerable<Section>, IDialogInterfaceOnClickListener
 	{
 		TextView _caption;
-		TextView _value;
+		protected TextView _value;
 		public ListView TableView;
 		int _summarySection, _summaryElement;
 		internal Group _group;
 		public bool UnevenRows;
 		public Func<RootElement, View> _createOnSelected;
+		protected string _showValue;
+
 
 		/// <summary>
 		///  Initializes a RootSection with a caption
@@ -326,7 +328,7 @@ namespace MonoDroid.Dialog
 					_caption.Text = Caption;
 
 					_value.Text = radioValue;
-					this.LongClick += SelectRadio;
+					//this.LongClick += SelectRadio;
 					this.Click += SelectRadio;
 				}
 			}
@@ -360,7 +362,7 @@ namespace MonoDroid.Dialog
 
 					_value.Text = "0";
 					this.Click += SelectCheckBox;
-					this.LongClick += SelectCheckBox;
+					//this.LongClick += SelectCheckBox;
 				}
 			}
 			else if (_summarySection != -1 && _summarySection < Sections.Count)
@@ -382,17 +384,22 @@ namespace MonoDroid.Dialog
 				foreach (var e in s.Elements)
 				{
 					if (e is CheckboxElement)
-						items.Add(e.Caption, false);
+						items.Add(e.Caption, ((CheckboxElement)e).Value);
 				}
 			}
 			var dialog = new AlertDialog.Builder(Context);
 			dialog.SetMultiChoiceItems(items.Keys.ToArray(), items.Values.ToArray(), (sender, e) =>
 			{
+				OnChildSelected(e.Which);
 				Console.WriteLine("SetMultiChoiceItems");
 			});
 			dialog.SetTitle(this.Caption);
 			dialog.SetNegativeButton("Cancel", this);
-			dialog.SetPositiveButton("Ok", (sender, e) => { });
+			dialog.SetPositiveButton("OK", (object sender, DialogClickEventArgs e) =>
+			 { 
+			_value.Text = _showValue;
+			});
+
 			dialog.Create().Show();
 		}
 
@@ -404,7 +411,10 @@ namespace MonoDroid.Dialog
 				foreach (var e in s.Elements)
 				{
 					if (e is RadioElement)
-						items.Add(e.Summary());
+						if (e.Summary() != null)
+							items.Add(e.Summary());
+						else
+							items.Add(string.Empty);
 				}
 			}
 			var dialog = new AlertDialog.Builder(Context);
@@ -418,10 +428,15 @@ namespace MonoDroid.Dialog
 			if ((int)which >= 0)
 			{
 				this.RadioSelected = (int)which;
+				OnChildSelected(which);
 				string radioValue = GetSelectedValue();
 				_value.Text = radioValue;
 			}
 			dialog.Dismiss();
+		}
+
+		protected virtual void OnChildSelected(int which)
+		{
 		}
 
 		/// <summary>

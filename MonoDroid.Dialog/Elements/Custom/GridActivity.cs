@@ -1,0 +1,156 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Android.App;
+using Android.Content;
+using Android.Graphics;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Java.Lang;
+
+namespace MonoDroid.Dialog
+{
+	[Activity(Label = "GridActivity")]
+
+	public class GridActivity : Activity
+	{
+		private static volatile GridActivity _instance;
+
+		public GridActivity():base()
+		{
+			if (_instance != null)
+			{
+				this.Rows = _instance.Rows;
+				this.Columns = _instance.Columns;
+				this.GridType = _instance.GridType;
+				this.Title = _instance.Title;
+			}
+			_instance = this;
+		}
+		public static GridActivity Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new GridActivity();
+				return _instance;
+			}
+		}
+
+		public List<GridElement.GridHeader> Rows { get; set; }
+		public List<GridElement.GridHeader> Columns { get; set; }
+		public GridElement.GridAnswerType GridType { get; set; }
+		public string Title { get; set; }
+
+
+		public override void OnAttachedToWindow()
+		{
+			base.OnAttachedToWindow();
+			Window.SetTitle(Title);
+		}
+
+		protected override void OnCreate(Bundle savedInstanceState)
+		{
+			
+			base.OnCreate(savedInstanceState);
+
+
+			Point size = new Point();
+			WindowManager.DefaultDisplay.GetSize(size);
+			int halfScreenWidth = size.X / 2;
+			int quarterScreenWidth = size.X / 4;
+			int quarterScreenHeight = size.Y / 4;
+
+
+			List<GridLayout.Spec> gridRows = new List<GridLayout.Spec>();
+			for (int i = 0; i < Rows.Count + 1; i++)
+				gridRows.Add(GridLayout.InvokeSpec(i));
+			List<GridLayout.Spec> gridCols = new List<GridLayout.Spec>();
+			for (int j = 0; j < Columns.Count + 1; j++)
+				gridCols.Add(GridLayout.InvokeSpec(j));
+
+			GridLayout gridLayout = new GridLayout(this);
+			gridLayout.ColumnCount = Columns.Count + 1;
+			gridLayout.RowCount = Rows.Count + 1;
+
+			for (int i = 0; i < Columns.Count + 1; i++)
+				for (int j = 0; j < Rows.Count + 1; j++)
+				{
+					View intView;
+					GridLayout.LayoutParams elem = new GridLayout.LayoutParams(gridRows[j], gridCols[i]);
+					if (i == 0 && j == 0)
+					{
+						intView = new TextView(this);
+						intView.LayoutParameters = elem;
+						//elem.Width = quarterScreenWidth;
+						//elem.Height = quarterScreenHeight;
+						//intView.SetBackgroundColor(Color.Blue);
+					}
+					else if (i == 0)
+					{
+						intView = new TextView(this);
+						intView.LayoutParameters = elem;
+						//intView.SetBackgroundColor(Color.Blue);
+						//elem.Width = quarterScreenWidth;
+						//elem.Height = quarterScreenHeight;
+						intView.Tag = Rows[j - 1].AnswerId.ToString();
+						((TextView)intView).Text = Rows[j - 1].Text;
+						((TextView)intView).SetTextColor(Color.Black);	
+						intView.TextAlignment = TextAlignment.Center;
+						((TextView)intView).Gravity = GravityFlags.Center;
+					}
+					else if (j == 0)
+					{
+						intView = new TextView(this);
+						intView.LayoutParameters = elem;
+						//elem.Width = quarterScreenWidth/2;
+						//elem.Height = quarterScreenHeight/2;
+						intView.TextAlignment = TextAlignment.Center;
+						((TextView)intView).Gravity = GravityFlags.Center;
+						//intView.SetBackgroundColor(Color.Blue);
+						intView.Tag = Columns[i - 1].AnswerId.ToString();
+						((TextView)intView).Text = Columns[i - 1].Text;
+						((TextView)intView).SetTextColor(Color.Black);
+					}
+					else
+					{
+						intView = new EditText(this);
+						intView.LayoutParameters = elem;
+						elem.Width = quarterScreenWidth;
+						elem.Height = quarterScreenHeight;
+							((EditText)intView).SetTextColor(Color.Black);
+						//intView.SetBackgroundColor(Color.Blue);
+						((EditText)intView).Text = ("Staff Choices");
+					}
+
+					gridLayout.AddView(intView, elem);
+				}
+
+
+			gridLayout.SetBackgroundColor(Color.White);
+			gridLayout.SetMinimumWidth(size.X);
+			gridLayout.SetMinimumHeight(size.Y);
+			var sv = new ScrollView(this);
+			var hscroll = new HorizontalScrollView(this);
+			hscroll.SetMinimumWidth(size.X);
+			hscroll.SetMinimumHeight(size.Y);
+			sv.HorizontalScrollBarEnabled = true;
+			sv.VerticalScrollBarEnabled = true;
+			RelativeLayout relative = new RelativeLayout(this);
+			relative.CanScrollHorizontally(size.X);
+			//relative.SetMinimumWidth(size.X);
+			//linear.SetMinimumHeight(size.Y);
+
+			relative.AddView(gridLayout);
+			hscroll.AddView(relative);
+			sv.AddView(hscroll);
+
+			this.SetContentView(sv);
+		}
+
+	}
+}

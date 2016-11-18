@@ -36,7 +36,11 @@ namespace MonoDroid.Dialog
 				return _instance;
 			}
 		}
-		public string SignatureBase64 { get; set; }
+		public Bitmap SignatureImage { get; set; }
+
+
+
+
 		public event EventHandler SignatureSaved;
 
 		private void OnSignatureSaved()
@@ -54,15 +58,24 @@ namespace MonoDroid.Dialog
 			base.OnCreate(savedInstanceState);
 			 _signature = new SignaturePadView(this)
 			{
-				//SignatureLineColor=Color.Blue,
-				//StrokeColor = Color.Red,
+				SignatureLineColor=Color.Blue,
+				StrokeColor = Color.Red,
 
-				//StrokeWidth = 10f,
-				//BackgroundColor=Color.Yellow,
+				StrokeWidth = 10f,
+				BackgroundColor=Color.Yellow,
 				//LineWidth = 3f
 			};
 			_signature.ClearLabel.SetBackgroundColor(Color.Red);
 			_signature.ClearLabel.SetTextColor(Color.Blue);
+			_signature.ClearLabel.SetWidth(200);
+			_signature.ClearLabel.SetHeight(100);
+
+			//if (SignatureBase64 != null)
+			//{
+
+
+			//}
+
 
 			AddContentView(_signature,
 			               new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent));
@@ -89,14 +102,8 @@ namespace MonoDroid.Dialog
 			switch (item.ItemId)
 			{
 				case Resource.Id.action_done:
-					Bitmap image = _signature.GetImage();
-					using (var mem = new MemoryStream())
-					{
-					 image.Compress(Bitmap.CompressFormat.Png, 20, mem);
-						byte[] byteArray = mem.ToArray();
-						SignatureBase64 = Convert.ToBase64String(byteArray);
-						OnSignatureSaved();
-					}
+					SignatureImage = _signature.GetImage();
+					OnSignatureSaved();
 					Finish();
 					break;
 

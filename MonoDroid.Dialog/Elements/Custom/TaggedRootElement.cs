@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Android.Content;
 using Android.Graphics;
 
 namespace MonoDroid.Dialog
 {
-	public class TaggedRootElement<ElementType> : RootElement
+	public class TaggedRootElement<ElementType> : RootElement, IDialogInterfaceOnClickListener
 		where ElementType : ITaggedNodeElement
 	{
 		private string _backButtonLabel;
 		private Dictionary<object, ElementType> _selectedChilds;
 		private Color _defaultColor;
 
-		public object Tag { get; set; }
 		public bool IsMandatory { get; set; }
 
 		public ElementType SelectedChild
@@ -55,12 +55,72 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			return base.GetView(context, convertView, parent);
+			var view = base.GetView(context, convertView, parent);
+			//if (!(_group is RadioGroup))
+			//{
+			//	_showValue = SelectedChildren.Count.ToString();
+			//}
+			
+			return view;
 		}
 
-		public override void Selected()
+		protected override void OnChildSelected(int which)
 		{
-			base.Selected();
+			var radio = _group as RadioGroup;
+			if (radio != null)
+			{
+				var e = GetSelectedRadioElement(radio);
+				e.OnChildSelected();
+			}
+			else
+			{
+				var e = GetSelectedCheckBoxElement(which);
+				e.OnChildSelected();
+				_showValue = SelectedChildren.Count.ToString();
+			}
+
+
+		}
+		//public override void Selected()
+		//{
+		//	base.Selected();
+		//}
+		private RadioElement GetSelectedRadioElement(RadioGroup radio)
+		{
+			int selected = radio.Selected;
+			int current = 0;
+			foreach (var s in Sections)
+			{
+				foreach (var e in s.Elements)
+				{
+					if (!(e is RadioElement))
+						continue;
+
+					if (current == selected)
+						return e as RadioElement;
+
+					current++;
+				}
+			}
+			return null;
+		}
+
+		private CheckboxElement GetSelectedCheckBoxElement(int which)
+		{
+			int current = 0;
+			foreach (var s in Sections)
+			{
+				foreach (var e in s.Elements)
+				{
+					if (!(e is CheckboxElement))
+						continue;
+
+					if (current == which)
+						return e as CheckboxElement;
+					current++;
+				}
+			}
+			return null;
 		}
 
 	}

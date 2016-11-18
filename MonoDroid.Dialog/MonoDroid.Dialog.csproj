@@ -89,6 +89,9 @@
     <Compile Include="Elements\Custom\SignatureActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Elements\Custom\SignatureElement.cs" />
+    <Compile Include="Elements\Custom\StaticImageElement.cs" />
+    <Compile Include="Elements\Custom\LoadMoreElement.cs" />
+    <Compile Include="Elements\Custom\GridActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />

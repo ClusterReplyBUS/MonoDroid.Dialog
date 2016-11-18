@@ -44,7 +44,7 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f040005
 			public const int abc_shrink_fade_out_from_bottom = 2130968581;
-			
+
 			// aapt resource value: 0x7f040006
 			public const int abc_slide_in_bottom = 2130968582;
 			
@@ -1931,6 +1931,9 @@ namespace MonoDroid.Dialog
 
 			// aapt resource value: 0x7f090082
 			public const int clear_signature = 2131296387;
+
+			// aapt resource value: 0x7f090088
+			public const int grid_view = 2131296388;
 
 			// aapt resource value: 0x7f090004
 			public const int action_menu_divider = 2131296260;
