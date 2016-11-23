@@ -92,6 +92,23 @@ namespace MonoDroid.Dialog
 
                 _label.Text = (_label != null) ? Caption: string.Empty;
             }
+			/*this.Click += () =>
+			{
+				if (_entry != null)
+				{
+					var contex = this.GetContext();
+					var entryDialog = new AlertDialog.Builder(contex)
+						.SetTitle("Enter Text")
+						.SetView(_entry)
+						.SetPositiveButton("OK", (o, e) =>
+						{
+							this.Value = _entry.Text;
+						})
+						.Create();
+
+					entryDialog.Show();
+				}
+			};*/
 			return view;
 		}
 
@@ -125,24 +142,7 @@ namespace MonoDroid.Dialog
 			Console.Write("foo");
             // nothing needed
         }
-		
-		public override void Selected ()
-		{
-			base.Selected ();
-			
-			if(_entry != null) {
-				var context = this.GetContext();
-				var entryDialog = new AlertDialog.Builder(context)
-					.SetTitle("Enter Text")
-					.SetView(_entry)
-					.SetPositiveButton("OK", (o, e) => {
-							this.Value = _entry.Text;
-					})
-					.Create();
-				
-				entryDialog.Show();
-			}
-		}
+
 
 
 	}

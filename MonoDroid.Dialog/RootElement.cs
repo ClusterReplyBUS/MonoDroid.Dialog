@@ -303,7 +303,10 @@ namespace MonoDroid.Dialog
 			}
 
 			return string.Empty;
+
 		}
+
+		bool _clickAssigned = false;
 
 		public override View GetView(Context context, View convertView, ViewGroup parent)
 		{
@@ -329,7 +332,8 @@ namespace MonoDroid.Dialog
 
 					_value.Text = radioValue;
 					//this.LongClick += SelectRadio;
-					this.Click += SelectRadio;
+					if (this.Click == null)
+						this.Click += SelectRadio;
 				}
 			}
 			else if (_group != null)
@@ -361,7 +365,8 @@ namespace MonoDroid.Dialog
 					_caption.Text = Caption;
 
 					_value.Text = "0";
-					this.Click += SelectCheckBox;
+					if (this.Click == null)
+						this.Click += SelectCheckBox;
 					//this.LongClick += SelectCheckBox;
 				}
 			}

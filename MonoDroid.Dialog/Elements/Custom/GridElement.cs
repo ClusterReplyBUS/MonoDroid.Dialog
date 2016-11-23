@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
@@ -11,66 +12,110 @@ namespace MonoDroid.Dialog
 	public class GridElement : RootElement
 	{
 		public bool Mandatory { get; set; }
-
-		public string Value { get; set; }
-
 		public List<GridHeader> Rows { get; set; }
 		public List<GridHeader> Columns { get; set; }
 		public GridAnswerType GridType { get; set; }
-		public UserSource userSource;
-
+		public UserSource Source;
+		//public string Value { get; set; }
+		public object ValueGrid
+		{
+			get { return Value; }
+		}
 		static string hkey = "GridElement";
 
 		private string _saveLabel;
-
-
 
 		public GridElement(string caption, string saveLabel) : this(caption)
 		{
 			_saveLabel = saveLabel;
 		}
 
-		public GridElement(string caption) : base(caption)
+		public GridElement(string caption) : base(caption, "")
 		{
 			
 		}
 
+
+
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			this.Click += () =>
-			  {
-				  GridActivity.Instance.Columns = Columns;
-				  GridActivity.Instance.Rows = Rows;
-				  GridActivity.Instance.Title = Caption;
-				((Activity)context).StartActivity(typeof(GridActivity));
-			  };
-			return base.GetView(context, convertView, parent);
+			var view = base.GetView(context, convertView, parent);
+			if (this.Click == null)
+			{
+				this.Click += () =>
+				   {
+					   if (Source == null)
+					   {
+						   Source = new UserSource()
+						   {
+							   GridType = this.GridType,
+						   };
+						   var lcol = new List<UserElement>();
+						   lcol.Add(new UserElement(""));
+						   foreach (var col in Columns)
+						   {
+							   lcol.Add(new UserElement(col.Text));
+						   }
+						   Source.Rows.Add(lcol);
+						   foreach (var row in Rows)
+						   {
+							   var lrow = new List<UserElement>();
+							   lrow.Add(new UserElement(row.Text));
+							   foreach (var col in Columns)
+							   {
+								   lrow.Add(new UserElement(this.GridType, true, false)
+								   {
+									   AnswerId = row.AnswerId,
+									   ColumnId = col.AnswerId
+								   });
+							   }
+							   Source.Rows.Add(lrow);
+						   }
+					   }
+					   GridActivity.Instance.Columns = Columns;
+					   GridActivity.Instance.Rows = Rows;
+					   GridActivity.Instance.TitleActivity = Caption;
+					   GridActivity.Instance.GridType = GridType;
+					   GridActivity.Instance.Source = Source;
+					   GridActivity.Instance.SaveLabel = _saveLabel;
+					   GridActivity.Instance.Save += (sender, e) =>
+					   {
+						   Source = e.Source;
+						   Value = GenerateText();
+					   };
+
+					   ((Activity)context).StartActivity(typeof(GridActivity));
+				   };
+			}
+
+				//_entry.Text = GenerateText();
+				return view;
 		}
 
-		//class GridViewController : UIViewController
-		//{
-		//	public GridViewController(GridElement container) : base()
-		//	{
-		//		this.View.BackgroundColor = UIColor.White;
-		//	}
-
-		//	public override void ViewWillDisappear(bool animated)
-		//	{
-		//		base.ViewWillDisappear(animated);
-		//	}
-
-		//	public bool Autorotate { get; set; }
-
-		//	//			public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-		//	//			{
-		//	//				return Autorotate;
-		//	//			}
-		//}
-
-		//public override void Selected()
-		//{
-		//	base.Selected();
-		//}
+		public string GenerateText()
+		{
+			string text = "";
+			if (Source == null)
+				return string.Empty;
+			foreach (var row in Source.Rows)
+			{
+				foreach (var el in row)
+				{
+					if (el.Checked == true)
+					{
+						if (text == "")
+							text = this.Rows.SingleOrDefault(r => r.AnswerId == el.AnswerId).Text + "-" +
+								this.Columns.SingleOrDefault(r => r.AnswerId == el.ColumnId).Text +
+								((GridType == GridElement.GridAnswerType.Text || GridType == GridElement.GridAnswerType.Number) ? ":" + el.Caption : "");
+						else
+							text += "\n" + this.Rows.SingleOrDefault(r => r.AnswerId == el.AnswerId).Text + "-" +
+								this.Columns.SingleOrDefault(r => r.AnswerId == el.ColumnId).Text +
+								((GridType == GridElement.GridAnswerType.Text || GridType == GridElement.GridAnswerType.Number) ? ":" + el.Caption : "");
+					}
+				}
+			}
+			return text;
+		}
 
 		public class GridHeader
 		{
@@ -85,39 +130,15 @@ namespace MonoDroid.Dialog
 			Text,
 			Number
 		}
-		public class UserSource : BaseAdapter  /*: UICollectionViewSource*/
+		public class UserSource  /*: UICollectionViewSource*/
 		{
 			public UserSource()
 			{
 				Rows = new List<List<UserElement>>();
 			}
-
 			public List<List<UserElement>> Rows { get; private set; }
 			public GridAnswerType GridType { get; set; }
 			public Single FontSize { get; set; }
-
-			public override int Count
-			{
-				get
-				{
-					return Rows.Count;
-				}
-			}
-
-			public override Java.Lang.Object GetItem(int position)
-			{
-				throw new NotImplementedException();
-			}
-
-			public override long GetItemId(int position)
-			{
-				throw new NotImplementedException();
-			}
-
-			public override View GetView(int position, View convertView, ViewGroup parent)
-			{
-				throw new NotImplementedException();
-			}
 		}
 
 
@@ -183,11 +204,24 @@ namespace MonoDroid.Dialog
 			public bool Checked { get; set; }
 			public bool Tappable { get; set; }
 			public GridAnswerType Type { get; set; }
-
 			public Guid AnswerId { get; set; }
 			public Guid ColumnId { get; set; }
-
 			public Action Tapped { get; set; }
+			public View CellView { get; set; }
+		}
+
+		public class UserSourceEventArgs : EventArgs
+		{
+			public UserSource Source
+			{
+				get;
+				set;
+			}
+			public UserSourceEventArgs(UserSource source)
+			{
+				Source = source;
+			}
 		}
 	}
 }
+

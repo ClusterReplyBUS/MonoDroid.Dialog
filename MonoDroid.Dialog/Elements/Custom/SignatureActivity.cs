@@ -38,9 +38,6 @@ namespace MonoDroid.Dialog
 		}
 		public Bitmap SignatureImage { get; set; }
 
-
-
-
 		public event EventHandler SignatureSaved;
 
 		private void OnSignatureSaved()
@@ -80,6 +77,7 @@ namespace MonoDroid.Dialog
 			AddContentView(_signature,
 			               new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent));
 		}
+
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);

@@ -1926,8 +1926,8 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090086
 			public const int action_divider = 2131296390;
 			
-			// aapt resource value: 0x7f090081
-			public const int action_done = 2131296385;
+			// aapt resource value: 0x7f090082
+			public const int action_done = 2131296386;
 
 			// aapt resource value: 0x7f090082
 			public const int clear_signature = 2131296387;
@@ -2551,12 +2551,12 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f030039
 			public const int dialog_textfieldright = 2130903097;
-			
+
 			// aapt resource value: 0x7f03003a
-			public const int Menu = 2130903098;
-			
+			public const int grid_layout = 2130903098;
+
 			// aapt resource value: 0x7f03003b
-			public const int MenuActivity = 2130903099;
+			public const int Menu = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
 			public const int notification_media_action = 2130903100;

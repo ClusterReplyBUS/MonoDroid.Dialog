@@ -35,17 +35,20 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			this.Click += () =>
-			 {
-				SignatureActivity.Instance.SignatureSaved += (sender, e) =>
+			if (this.Click == null)
+			{
+				this.Click += () =>
 				 {
-					 Console.WriteLine("SignatureSaved");
-					 Value = SignatureActivity.Instance.SignatureImage;
+					 SignatureActivity.Instance.SignatureSaved += (sender, e) =>
+				  {
+						 Console.WriteLine("SignatureSaved");
+						 Value = SignatureActivity.Instance.SignatureImage;
+
+					 };
+					 ((Activity)context).StartActivityForResult(typeof(SignatureActivity), 0);
 
 				 };
-				 ((Activity)context).StartActivityForResult(typeof(SignatureActivity), 0);
-				 
-			 };
+			}
 			return base.GetView(context, convertView, parent);
 		}
 	}

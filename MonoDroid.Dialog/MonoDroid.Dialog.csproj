@@ -99,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\signature.axml" />
-    <AndroidResource Include="Resources\layout\Menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

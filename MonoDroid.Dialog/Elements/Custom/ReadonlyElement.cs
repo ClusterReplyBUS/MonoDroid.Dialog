@@ -31,6 +31,7 @@ namespace MonoDroid.Dialog
 			return view;
 		}
 
+
 		//public override View GetView(Context context, View convertView, ViewGroup parent)
 		//{
 
