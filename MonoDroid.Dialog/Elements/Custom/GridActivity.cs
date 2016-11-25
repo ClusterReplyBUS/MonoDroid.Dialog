@@ -1,17 +1,13 @@
 ﻿
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Android.App;
-using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
+
 
 namespace MonoDroid.Dialog
 {
@@ -235,7 +231,8 @@ namespace MonoDroid.Dialog
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
-			inflater.Inflate(Resource.Layout.Menu, menu);
+			//var LeadCapture = Reply.CNHI.LeadCapture.Mobile;
+			//inflater.Inflate(LeadCapture.Droid.Resource.Layout.Menu, menu);
 			return true;
 		}
 

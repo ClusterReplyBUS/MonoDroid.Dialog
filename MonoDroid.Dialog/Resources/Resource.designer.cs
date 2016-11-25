@@ -1932,6 +1932,8 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090082
 			public const int clear_signature = 2131296387;
 
+
+
 			// aapt resource value: 0x7f090088
 			public const int grid_view = 2131296388;
 
@@ -2377,7 +2379,10 @@ namespace MonoDroid.Dialog
 		
 		public partial class Layout
 		{
-			
+			// aapt resource value: 0x7f03003a
+			public const int FindAccountLayout = 2130903098;
+
+
 			// aapt resource value: 0x7f030000
 			public const int abc_action_bar_title_item = 2130903040;
 			
@@ -2669,7 +2674,8 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f0a0000
 			public const int appbar_scrolling_view_behavior = 2131361792;
-			
+
+
 			// aapt resource value: 0x7f0a0001
 			public const int bottom_sheet_behavior = 2131361793;
 			

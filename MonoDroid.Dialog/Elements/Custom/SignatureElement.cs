@@ -11,11 +11,18 @@ namespace MonoDroid.Dialog
 			get
 			{ 
 				Bitmap image = Value;
-				using (var mem = new MemoryStream())
+				if (Value != null)
 				{
-					image.Compress(Bitmap.CompressFormat.Jpeg, 20, mem);
-					byte[] byteArray = mem.ToArray();
-				 	return Convert.ToBase64String(byteArray);
+					using (var mem = new MemoryStream())
+					{
+						image.Compress(Bitmap.CompressFormat.Jpeg, 20, mem);
+						byte[] byteArray = mem.ToArray();
+						return Convert.ToBase64String(byteArray);
+					}
+				}
+				else
+				{
+					return string.Empty;
 				}
 			}
 			set

@@ -9,7 +9,7 @@ using Java.Lang;
 
 namespace MonoDroid.Dialog
 {
-	public class GridElement : RootElement
+	public class GridElement : ReadonlyElement
 	{
 		public bool Mandatory { get; set; }
 		public List<GridHeader> Rows { get; set; }
