@@ -49,14 +49,14 @@ namespace DialogSampleApp
 					new DateTimeElement("DateTimeElement", DateTime.Now),
 					new DateElement("DateElement", DateTime.Now),
 					new TimeElement("TimeElement", DateTime.Now),
-					new CheckboxElement("CheckboxElement", true),
+					//new CheckboxElement("CheckboxElement", true),
 					new HtmlElement("HtmlElement (Link)","http://www.google.com"),
                     //new ImageElement(bitmap),
                     new MultilineElement("MultiLineElement", "The quick brown fox jumped over the lazy horse, the quick brown fox jumped over the lazy horse"),
 					new FloatElement("Range"),
-				},
-				new Section("Groups")
-				{
+				//},
+				//new Section("Groups")
+				//{
 					new RootElement ("Radio Group",  new MonoDroid.Dialog.RadioGroup ("desert", 2))
 					{
 						new Section ()

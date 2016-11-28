@@ -78,11 +78,11 @@ namespace DialogSampleApp
 			// aapt resource value: 0x7f050003
 			public const int dialog_Button = 2131034115;
 			
-			// aapt resource value: 0x7f05000a
-			public const int dialog_DisclosureField = 2131034122;
+			// aapt resource value: 0x7f050008
+			public const int dialog_DisclosureField = 2131034120;
 			
-			// aapt resource value: 0x7f050009
-			public const int dialog_ImageBtn = 2131034121;
+			// aapt resource value: 0x7f05000a
+			public const int dialog_ImageBtn = 2131034122;
 			
 			// aapt resource value: 0x7f050005
 			public const int dialog_ImageLeft = 2131034117;
@@ -96,8 +96,8 @@ namespace DialogSampleApp
 			// aapt resource value: 0x7f050002
 			public const int dialog_LabelSubtextField = 2131034114;
 			
-			// aapt resource value: 0x7f050008
-			public const int dialog_Panel = 2131034120;
+			// aapt resource value: 0x7f050009
+			public const int dialog_Panel = 2131034121;
 			
 			// aapt resource value: 0x7f05000b
 			public const int dialog_RadioButtonList = 2131034123;
@@ -161,52 +161,55 @@ namespace DialogSampleApp
 			public const int dialog_floatimage = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int dialog_labelfieldbelow = 2130903048;
+			public const int dialog_grid = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int dialog_labelfieldright = 2130903049;
+			public const int dialog_labelfieldbelow = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int dialog_onofffieldright = 2130903050;
+			public const int dialog_labelfieldright = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int dialog_panel = 2130903051;
+			public const int dialog_onofffieldright = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int dialog_photo = 2130903052;
+			public const int dialog_panel = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int dialog_root = 2130903053;
+			public const int dialog_photo = 2130903053;
 			
 			// aapt resource value: 0x7f03000e
-			public const int dialog_selectlist = 2130903054;
+			public const int dialog_root = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int dialog_selectlistfield = 2130903055;
+			public const int dialog_selectlist = 2130903055;
 			
 			// aapt resource value: 0x7f030010
-			public const int dialog_textarea = 2130903056;
+			public const int dialog_selectlistfield = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int dialog_textfieldbelow = 2130903057;
+			public const int dialog_textarea = 2130903057;
 			
 			// aapt resource value: 0x7f030012
-			public const int dialog_textfieldright = 2130903058;
+			public const int dialog_textfieldbelow = 2130903058;
 			
 			// aapt resource value: 0x7f030013
-			public const int dialog_textonly = 2130903059;
+			public const int dialog_textfieldright = 2130903059;
 			
 			// aapt resource value: 0x7f030014
-			public const int main = 2130903060;
+			public const int dialog_textonly = 2130903060;
 			
 			// aapt resource value: 0x7f030015
-			public const int Menu = 2130903061;
+			public const int main = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int Photo = 2130903062;
+			public const int Menu = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int signature = 2130903063;
+			public const int Photo = 2130903063;
+			
+			// aapt resource value: 0x7f030018
+			public const int signature = 2130903064;
 			
 			static Layout()
 			{

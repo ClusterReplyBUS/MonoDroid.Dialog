@@ -9,19 +9,18 @@ using Java.Lang;
 
 namespace MonoDroid.Dialog
 {
-	public class GridElement : ReadonlyElement
+	public class GridElement : Element
 	{
 		public bool Mandatory { get; set; }
 		public List<GridHeader> Rows { get; set; }
 		public List<GridHeader> Columns { get; set; }
 		public GridAnswerType GridType { get; set; }
 		public UserSource Source;
-		//public string Value { get; set; }
+		public string Value { get; set; }
 		public object ValueGrid
 		{
 			get { return Value; }
 		}
-		static string hkey = "GridElement";
 
 		private string _saveLabel;
 
@@ -30,7 +29,7 @@ namespace MonoDroid.Dialog
 			_saveLabel = saveLabel;
 		}
 
-		public GridElement(string caption) : base(caption, "")
+		public GridElement(string caption) : base(caption, (int)DroidResources.ElementLayout.dialog_grid)
 		{
 			
 		}
@@ -39,57 +38,66 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			var view = base.GetView(context, convertView, parent);
-			if (this.Click == null)
+			TextView _caption;
+			TextView _value;
+			var cell = DroidResources.LoadGridElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
+			if (cell != null)
 			{
-				this.Click += () =>
-				   {
-					   if (Source == null)
+				if (Mandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+					Caption += "*";
+				_caption.Text = Caption;
+				if (this.Click == null)
+				{
+					cell.Click += (s, e) => this.Click();
+					this.Click += () =>
 					   {
-						   Source = new UserSource()
+						   if (Source == null)
 						   {
-							   GridType = this.GridType,
-						   };
-						   var lcol = new List<UserElement>();
-						   lcol.Add(new UserElement(""));
-						   foreach (var col in Columns)
-						   {
-							   lcol.Add(new UserElement(col.Text));
-						   }
-						   Source.Rows.Add(lcol);
-						   foreach (var row in Rows)
-						   {
-							   var lrow = new List<UserElement>();
-							   lrow.Add(new UserElement(row.Text));
+							   Source = new UserSource()
+							   {
+								   GridType = this.GridType,
+							   };
+							   var lcol = new List<UserElement>();
+							   lcol.Add(new UserElement(""));
 							   foreach (var col in Columns)
 							   {
-								   lrow.Add(new UserElement(this.GridType, true, false)
-								   {
-									   AnswerId = row.AnswerId,
-									   ColumnId = col.AnswerId
-								   });
+								   lcol.Add(new UserElement(col.Text));
 							   }
-							   Source.Rows.Add(lrow);
+							   Source.Rows.Add(lcol);
+							   foreach (var row in Rows)
+							   {
+								   var lrow = new List<UserElement>();
+								   lrow.Add(new UserElement(row.Text));
+								   foreach (var col in Columns)
+								   {
+									   lrow.Add(new UserElement(this.GridType, true, false)
+									   {
+										   AnswerId = row.AnswerId,
+										   ColumnId = col.AnswerId
+									   });
+								   }
+								   Source.Rows.Add(lrow);
+							   }
 						   }
-					   }
-					   GridActivity.Instance.Columns = Columns;
-					   GridActivity.Instance.Rows = Rows;
-					   GridActivity.Instance.TitleActivity = Caption;
-					   GridActivity.Instance.GridType = GridType;
-					   GridActivity.Instance.Source = Source;
-					   GridActivity.Instance.SaveLabel = _saveLabel;
-					   GridActivity.Instance.Save += (sender, e) =>
-					   {
-						   Source = e.Source;
-						   Value = GenerateText();
+						   GridActivity.Instance.Columns = Columns;
+						   GridActivity.Instance.Rows = Rows;
+						   GridActivity.Instance.TitleActivity = Caption;
+						   GridActivity.Instance.GridType = GridType;
+						   GridActivity.Instance.Source = Source;
+						   GridActivity.Instance.SaveLabel = _saveLabel;
+						   GridActivity.Instance.Save += (sender, e) =>
+						   {
+							   Source = e.Source;
+							   //Value = GenerateText();
+							   _value.Text = GenerateText();
+						   };
+
+						   ((Activity)context).StartActivity(typeof(GridActivity));
 					   };
-
-					   ((Activity)context).StartActivity(typeof(GridActivity));
-				   };
+				}
 			}
-
-				//_entry.Text = GenerateText();
-				return view;
+			_value.Text = GenerateText();
+			return cell;
 		}
 
 		public string GenerateText()

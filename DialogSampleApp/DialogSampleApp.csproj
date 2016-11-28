@@ -64,6 +64,7 @@
     <AndroidResource Include="Resources\drawable\spadeicon.png" />
     <AndroidResource Include="Resources\layout\dialog_photo.xml" />
     <AndroidResource Include="Resources\layout\dialog_textonly.xml" />
+    <AndroidResource Include="Resources\layout\dialog_grid.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
