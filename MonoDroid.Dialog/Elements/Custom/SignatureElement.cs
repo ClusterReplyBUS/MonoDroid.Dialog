@@ -33,11 +33,14 @@ namespace MonoDroid.Dialog
 		}
 
 		public new Bitmap Value { get; set; }
-
+		private string _disclaimer;
+		private string _savebutton;
 
 		public SignatureElement(string caption, string disclaimer, string saveButtonLabel)
 			: base(caption, null)
 		{
+			this._disclaimer = disclaimer;
+			this._savebutton = saveButtonLabel;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
@@ -46,6 +49,8 @@ namespace MonoDroid.Dialog
 			{
 				this.Click += () =>
 				 {
+					 SignatureActivity.Instance.Disclaimer = _disclaimer;
+					 SignatureActivity.Instance.SaveButton = _savebutton;
 					 SignatureActivity.Instance.SignatureSaved += (sender, e) =>
 				  {
 						 Console.WriteLine("SignatureSaved");

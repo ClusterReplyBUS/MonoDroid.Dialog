@@ -232,7 +232,7 @@ namespace MonoDroid.Dialog
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
 			//var LeadCapture = Reply.CNHI.LeadCapture.Mobile;
-			//inflater.Inflate(LeadCapture.Droid.Resource.Layout.Menu, menu);
+			inflater.Inflate(Resource.Layout.Menu, menu);
 			return true;
 		}
 
@@ -246,7 +246,7 @@ namespace MonoDroid.Dialog
 			switch (item.ItemId)
 			{
 				case Resource.Id.action_done:
-					CheckGridForSave();
+				CheckGridForSave();
 					OnSave(Source);
 					Finish();
 					break;
