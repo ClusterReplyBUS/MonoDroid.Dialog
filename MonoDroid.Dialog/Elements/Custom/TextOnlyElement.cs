@@ -1,17 +1,27 @@
 ﻿using System;
+using Android.Views;
+using Android.Widget;
+
 namespace MonoDroid.Dialog
 {
-	public partial class TextOnlyElement : ReadonlyElement
+	public partial class TextOnlyElement : Element
 	{
 		public TextOnlyElement(string caption)
-			: base(caption, string.Empty)
+			: base(caption,(int)DroidResources.ElementLayout.dialog_textonly)
 		{
 
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			return base.GetView(context, convertView, parent);
+			TextView captionView;
+			View view = DroidResources.LoadTextOnly(context, convertView, parent, LayoutId, out captionView);
+
+			if (view != null)
+			{
+				captionView.Text = Caption;
+			}
+			return view;
 		}
 
 		//public override nfloat GetHeight(UITableView tableView, NSIndexPath indexPath)

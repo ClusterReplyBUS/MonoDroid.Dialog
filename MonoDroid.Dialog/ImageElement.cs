@@ -32,10 +32,14 @@ namespace MonoDroid.Dialog
 
         ImageView _imageView;
 
-        public ImageElement(Bitmap image)
-            : base("")
+		public ImageElement(string caption, Bitmap image) : base(caption)
+		{
+			_image = image;
+			
+		}
+
+		public ImageElement(Bitmap image) : this("", image)
         {
-            _image = image;
 		}
 				
 		protected override void Dispose (bool disposing)
@@ -51,7 +55,9 @@ namespace MonoDroid.Dialog
 		{
             this.Click = delegate { SelectImage(); };
 
-            Bitmap scaledBitmap = Bitmap.CreateScaledBitmap(_image, dimx, dimy, true);
+			Bitmap scaledBitmap = null;
+			if (_image != null)
+				scaledBitmap = Bitmap.CreateScaledBitmap(_image, dimx, dimy, true);
 
             var view = convertView as RelativeLayout;
             if (view == null)
@@ -63,6 +69,7 @@ namespace MonoDroid.Dialog
             {
                 _imageView = (ImageView)view.GetChildAt(0);
             }
+			if (scaledBitmap != null) 
             _imageView.SetImageBitmap(scaledBitmap);
             
             var parms = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
@@ -75,7 +82,7 @@ namespace MonoDroid.Dialog
             return view;
 		}
 
-        private void SelectImage()
+		protected virtual void SelectImage()
         {
             Context context = GetContext();
             Activity activity = (Activity)context;

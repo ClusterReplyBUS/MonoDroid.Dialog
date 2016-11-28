@@ -29,8 +29,9 @@ namespace MonoDroid.Dialog
             dialog_floatimage,
             dialog_textfieldbelow,
             dialog_textfieldright,
-			dialog_labelfieldright_ReadOnly
-
+			dialog_labelfieldright_ReadOnly,
+			dialog_photo,
+			dialog_textonly,
         }
 
         public static View LoadFloatElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out SeekBar slider, out ImageView left, out ImageView right)
@@ -51,8 +52,6 @@ namespace MonoDroid.Dialog
             }
             return layout;
         }
-
-
 
         private static View LoadLayout(Context context, ViewGroup parent, int layoutId)
         {
@@ -149,6 +148,20 @@ namespace MonoDroid.Dialog
             return layout;
         }
 
+		public static View LoadTextOnly(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label)
+		{
+			View layout = convertView ?? LoadLayout(context, parent, layoutId);
+			if (layout != null)
+			{
+				label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+			}
+			else
+			{
+				label = null;
+			}
+			return layout;
+		}
+
         public static View LoadMultilineElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out EditText value)
         {
             View layout = convertView ?? LoadLayout(context, parent, layoutId);
@@ -181,7 +194,21 @@ namespace MonoDroid.Dialog
             }
             return layout;
         }
-
+		public static View LoadPhotoElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out ImageButton value)
+		{
+			View layout = convertView ?? LoadLayout(context, parent, layoutId);
+			if (layout != null)
+			{
+				label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+				value = layout.FindViewById<ImageButton>(context.Resources.GetIdentifier("dialog_ImageBtn", "id", context.PackageName));
+			}
+			else
+			{
+				label = null;
+				value = null;
+			}
+			return layout;
+		}
         public static View LoadStringEntryLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out EditText value)
         {
             View layout = LoadLayout(context, parent, layoutId);
@@ -241,6 +268,8 @@ namespace MonoDroid.Dialog
                 { ElementLayout.dialog_selectlist, "dialog_selectlist"},
 				{ ElementLayout.dialog_selectlistfield, "dialog_selectlistfield"},
 				{ ElementLayout.dialog_textarea, "dialog_textarea"},
+				{ ElementLayout.dialog_photo, "dialog_photo"},
+				{ ElementLayout.dialog_textonly, "dialog_textonly"},
 			};
 		}
 

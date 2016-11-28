@@ -12,7 +12,7 @@
     <RootNamespace>MonoDroid.Dialog</RootNamespace>
     <AssemblyName>MonoDroid.Dialog</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -91,7 +91,13 @@
     <Compile Include="Elements\Custom\StaticImageElement.cs" />
     <Compile Include="Elements\Custom\LoadMoreElement.cs" />
     <Compile Include="Elements\Custom\GridActivity.cs" />
+<<<<<<< Updated upstream
     <Compile Include="Resources\Resource.designer.cs" />
+=======
+    <Compile Include="Elements\Custom\BitmapHelpers.cs" />
+    <Compile Include="Elements\Custom\PhotoActivity.cs" />
+    <Compile Include="Elements\Custom\PhotoElement.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />
@@ -99,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\signature.axml" />
+    <AndroidResource Include="Resources\layout\Photo.axml" />
+    <AndroidResource Include="Resources\layout\Menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

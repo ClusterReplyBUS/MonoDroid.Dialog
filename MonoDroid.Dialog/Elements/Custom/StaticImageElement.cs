@@ -13,7 +13,6 @@ namespace MonoDroid.Dialog
 
 		public static Bitmap MakeTransparent(int width, int height)
 		{
-
 			return BitmapFactory.DecodeByteArray(new byte[] { },0,0);
 		}
 	}

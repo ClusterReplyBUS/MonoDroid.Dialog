@@ -6,6 +6,7 @@
   android:layout_height="wrap_content"
   android:minHeight="?android:attr/listPreferredItemHeight"
   >
+	
   <TextView android:id="@+id/dialog_LabelField"
     android:layout_width="150dp"
     android:layout_height="fill_parent"

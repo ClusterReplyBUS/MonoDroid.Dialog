@@ -1,0 +1,199 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Media;
+using Android.OS;
+using Android.Provider;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Java.IO;
+
+using Environment = Android.OS.Environment;
+using Uri = Android.Net.Uri;
+
+namespace MonoDroid.Dialog
+{
+	[Activity(Label = "PhotoActivity")]
+	public class PhotoActivity : Activity
+	{
+		private static volatile PhotoActivity _instance;
+
+		public PhotoActivity() : base()
+		{
+			if (_instance != null)
+			{
+				this.Save = _instance.Save;
+				this._dir = _instance._dir;
+				this._file = _instance._file;
+				this._image = _instance._image;
+			}
+			_instance = this;
+		}
+		public static PhotoActivity Instance
+		{
+			get
+			{
+				if (_instance == null)
+					_instance = new PhotoActivity();
+				return _instance;
+			}
+		}
+
+		private enum RequestType
+		{
+			TakePhoto,
+			PickImage,
+		}
+
+		protected File _file;
+		protected File _dir;
+		protected Bitmap _image;
+
+		protected override void OnCreate(Bundle savedInstanceState)
+		{
+			base.OnCreate(savedInstanceState);
+			SetContentView(Resource.Layout.Photo);
+			if (_image != null)
+			{
+				var imageView = FindViewById<ImageView>(BaseContext.Resources.GetIdentifier("selectedImage", "id", BaseContext.PackageName));
+				int height = Resources.DisplayMetrics.HeightPixels;
+				int width = imageView.Height;
+				imageView.SetImageBitmap(_image);
+			}
+			Button pickImageBtn = FindViewById<Button>(BaseContext.Resources.GetIdentifier("pickImage", "id", BaseContext.PackageName));
+			pickImageBtn.Click += delegate
+			{
+				var imageIntent = new Intent();
+				imageIntent.SetType("image/*");
+				imageIntent.SetAction(Intent.ActionGetContent);
+				StartActivityForResult(Intent.CreateChooser(imageIntent, "Select photo"), (int)RequestType.PickImage);
+			};
+			if (IsThereAnAppToTakePictures())
+			{
+				CreateDirectoryForPictures();
+
+				Button takePhotoBtn = FindViewById<Button>(BaseContext.Resources.GetIdentifier("takePhoto", "id", BaseContext.PackageName));
+				takePhotoBtn.Click += (s, e) =>
+				{
+					Intent intent = new Intent(MediaStore.ActionImageCapture);
+
+					_file = new File(_dir, String.Format("dialogPhoto_{0}.jpg", Guid.NewGuid()));
+
+					intent.PutExtra(MediaStore.ExtraOutput, Uri.FromFile(_file));
+
+					StartActivityForResult(intent, (int)RequestType.TakePhoto);
+				};
+			}
+		}
+		private bool IsThereAnAppToTakePictures()
+		{
+			Intent intent = new Intent(MediaStore.ActionImageCapture);
+			IList<ResolveInfo> availableActivities =
+				PackageManager.QueryIntentActivities(intent, PackageInfoFlags.MatchDefaultOnly);
+			return availableActivities != null && availableActivities.Count > 0;
+		}
+
+		private void CreateDirectoryForPictures()
+		{
+			_dir = new File(
+				Environment.GetExternalStoragePublicDirectory(
+					Environment.DirectoryPictures), "MonoDroid.Dialog");
+			if (!_dir.Exists())
+			{
+				_dir.Mkdirs();
+			}
+		}
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			var imageView = FindViewById<ImageView>(BaseContext.Resources.GetIdentifier("selectedImage", "id", BaseContext.PackageName));
+			int height = Resources.DisplayMetrics.HeightPixels;
+			int width = imageView.Height;
+
+			// Make it available in the gallery
+			if (requestCode == (int)RequestType.TakePhoto)
+			{
+				Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
+				Uri picturePath = Uri.FromFile(_file);
+				mediaScanIntent.SetData(picturePath);
+				SendBroadcast(mediaScanIntent);
+
+				// Display in ImageView. We will resize the bitmap to fit the display
+				// Loading the full sized image will consume to much memory 
+				// and cause the application to crash.
+
+				_image = _file.Path.LoadAndResizeBitmap(width, height);
+				if (_image != null)
+				{
+					imageView.SetImageBitmap(_image);
+				}
+			}
+			else if (requestCode == (int)RequestType.PickImage)
+			{
+				if (resultCode == Result.Ok)
+				{
+					imageView.SetImageURI(data.Data);
+					_image = ((BitmapDrawable)imageView.Drawable).Bitmap;
+				}
+			}
+			// Dispose of the Java side bitmap.
+			GC.Collect();
+		}
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			MenuInflater inflater = MenuInflater;
+			inflater.Inflate(Resource.Layout.Menu, menu);
+			return true;
+		}
+
+		public override bool OnPrepareOptionsMenu(IMenu menu)
+		{
+			return true;
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			switch (item.ItemId)
+			{
+				case Resource.Id.action_done:
+					OnSave(_image);
+					Finish();
+					break;
+
+				case Android.Resource.Id.Home: //Tasto Back con Freccia laterale a sinistra
+					Finish();
+					break;
+			}
+			return base.OnOptionsItemSelected(item);
+		}
+		public event EventHandler<BitmapEventArgs> Save;
+
+		private void OnSave(Bitmap source)
+		{
+			if (Save != null)
+			{
+				Save(this, new BitmapEventArgs(source));
+			}
+		}
+
+	}
+
+	public class BitmapEventArgs:EventArgs
+	{
+		public Bitmap Value { get; private set;}
+		public BitmapEventArgs(Bitmap arg)
+		{
+			Value = arg;
+		}
+	}
+}
