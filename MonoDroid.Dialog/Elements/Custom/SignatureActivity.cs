@@ -3,6 +3,7 @@ using Android.App;
 using Android.Graphics;
 using Android.OS;
 using Android.Text;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using SignaturePad;
@@ -12,6 +13,7 @@ namespace MonoDroid.Dialog
 	[Activity(Label = "SignatureActivity")]
 	public class SignatureActivity : Activity
 	{
+		private const float SIGNATURE_PROPORTION = 0.5f;
 		private static volatile SignatureActivity _instance;
 
 		public SignatureActivity() : base()
@@ -21,6 +23,7 @@ namespace MonoDroid.Dialog
 				this.SignatureSaved = _instance.SignatureSaved;
 				this.Disclaimer = _instance.Disclaimer;
 				this.SaveButton = _instance.SaveButton;
+				this.TitleActivity = _instance.TitleActivity;
 			}
 			_instance = this;
 		}
@@ -36,6 +39,7 @@ namespace MonoDroid.Dialog
 		public Bitmap SignatureImage { get; set; }
 
 		public event EventHandler SignatureSaved;
+		public string TitleActivity { get; set; }
 
 		private void OnSignatureSaved()
 		{
@@ -51,29 +55,35 @@ namespace MonoDroid.Dialog
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			int heightStatusBar = getStatusBarHeight();
 			Display display = WindowManager.DefaultDisplay;
 			Point size = new Point();
 			display.GetSize(size);
 			int width = size.X;
-			int height = size.Y;
-		
+			int height = (size.Y)-(int)(heightStatusBar*1.1);
+
+
+
 			_signature = new SignaturePadView(this)
 			{
-				SignatureLineColor = Color.Blue,
-				StrokeColor = Color.Red,
+				SignatureLineColor = Color.Black,
+				StrokeColor = Color.White,
 				StrokeWidth = 10f,
-				BackgroundColor = Color.Yellow,
+				BackgroundColor = Color.DarkGray,
 				//LineWidth = 3f
 			};
-			_signature.ClearLabel.SetBackgroundColor(Color.Red);
-			_signature.ClearLabel.SetTextColor(Color.Blue);
+			_signature.ClearLabelText = "X";
+			_signature.ClearLabel.SetBackgroundColor(Color.Transparent);
+			_signature.ClearLabel.SetTextColor(Color.Red);
 			_signature.ClearLabel.SetWidth(100);
 			_signature.ClearLabel.SetHeight(100);
 
 			var _disclaimer = new TextView(this);
 
 			_disclaimer.Text =Disclaimer;
-			_disclaimer.SetTextColor(Color.White);
+			_disclaimer.SetTextColor(Color.Black);
+			_disclaimer.SetBackgroundColor(Color.LightGray);
 			_disclaimer.AutoLinkMask = Android.Text.Util.MatchOptions.All;
 			_disclaimer.Clickable = true;
 			_disclaimer.SetLinkTextColor(Color.Blue);
@@ -84,10 +94,12 @@ namespace MonoDroid.Dialog
 
 			//}
 
-			AddContentView(_disclaimer, new ViewGroup.LayoutParams((width),(height/2)));
-			_signature.SetY((height / 2) + 1);
+		
+			AddContentView(_disclaimer, new ViewGroup.LayoutParams(width,(int)(height*(1f-SIGNATURE_PROPORTION))));
+			_signature.SetY((int)(height * (1f - SIGNATURE_PROPORTION)) + 1);
+	
 			AddContentView(_signature,
-			               new ViewGroup.LayoutParams((width), ((height/2)+1)));
+			               new ViewGroup.LayoutParams((width), (int)(height *(SIGNATURE_PROPORTION))-1));
 			//   new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent));
 		}
 
@@ -128,8 +140,20 @@ namespace MonoDroid.Dialog
 		public override void OnAttachedToWindow()
 		{
 			base.OnAttachedToWindow();
-			Window.SetTitle("Signature");
+			Window.SetTitle(TitleActivity);
+
 		}
 
+		public int getStatusBarHeight()
+		{
+			int result = 0;
+			int resourceId = Resources.GetIdentifier("navigation_bar_height", "dimen", "android");
+			int resourceIdStasusBar = Resources.GetIdentifier("status_bar_height", "dimen", "android");
+			if (resourceId > 0 || resourceIdStasusBar>0 )
+			{
+				result = Resources.GetDimensionPixelSize(resourceId) + Resources.GetDimensionPixelSize(resourceIdStasusBar) ;
+			}
+			return result;
+		}
 	}
 }

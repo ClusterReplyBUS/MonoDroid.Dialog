@@ -69,6 +69,7 @@ namespace MonoDroid.Dialog
 
 			//}
 			base.OnCreate(savedInstanceState);
+
 			Point size = new Point();
 			WindowManager.DefaultDisplay.GetSize(size);
 			int halfScreenWidth = size.X / 2;
@@ -86,7 +87,7 @@ namespace MonoDroid.Dialog
 			gridLayout.ColumnCount = Columns.Count + 1;
 			gridLayout.RowCount = Rows.Count + 1;
 
-			for (int i = 0; i < Columns.Count +1 ; i++)
+			for (int i = 0; i < Columns.Count + 1; i++)
 				for (int j = 0; j < Rows.Count + 1; j++)
 				{
 					View intView = null;
@@ -246,7 +247,7 @@ namespace MonoDroid.Dialog
 			switch (item.ItemId)
 			{
 				case Resource.Id.action_done:
-				CheckGridForSave();
+					CheckGridForSave();
 					OnSave(Source);
 
 					Finish();
@@ -267,6 +268,12 @@ namespace MonoDroid.Dialog
 			{
 				Save(this, new GridElement.UserSourceEventArgs(source));
 			}
+		}
+
+		protected override void OnDestroy()
+		{
+			_instance = null;
+			base.OnDestroy();
 		}
 	}
 

@@ -1,34 +1,55 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
+using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	public class SelectableMultilineEntryElement : ButtonElement //ReadonlyElement
+	public class SelectableMultilineEntryElement : Element
 	{
 		public bool IsMandatory { get; set; }
-		private string _textNote { get; set; }
+		private TextView _caption;
+		private TextView _value;
+		public string Value { get; set; }
+		private Context _context { get; set; }
+
 		public SelectableMultilineEntryElement(string caption, string value, string saveLabel)
-			: base(caption, null)
+			: base(caption, (int)DroidResources.ElementLayout.dialog_note)
 		{
 
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			if (this.Click == null)
+			_context = context;
+			var view = DroidResources.LoadNoteElementLayout(context, convertView, parent,LayoutId,out _caption, out _value);
+			if (view != null)
 			{
-				this.Click += () =>
-				  {
-					  NoteActivity.Instance.TextNote = _textNote;
-					  NoteActivity.Instance.NoteSaved += (sender, e) =>
-					   {
-						   _textNote = ((NoteActivity)sender).TextNote;
-					   };
-					  ((Activity)context).StartActivity(typeof(NoteActivity));
-				  };
+				_caption.Text = Caption;
+				if (string.IsNullOrEmpty(Value))
+				{
+					_value.Text = string.Empty;
+				}
+
+				if (_caption != null)
+				{
+					view.Click-= HandleEventHandler;
+					view.Click += HandleEventHandler;
+				}
 			}
-			var view = base.GetView(context, convertView, parent);
 			return view;
+		}
+
+		void HandleEventHandler(object sender, EventArgs e)
+		{
+			NoteActivity.Instance.TextNote = Value;
+			NoteActivity.Instance.NoteSaved += (s, ev) =>
+			 {
+				Value = ((NoteActivity)s).TextNote;
+				 _value.Text = Value;
+				 _value.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FAFAD2"));
+			 };
+			((Activity)_context).StartActivity(typeof(NoteActivity));
 		}
 
 		public override void Selected()

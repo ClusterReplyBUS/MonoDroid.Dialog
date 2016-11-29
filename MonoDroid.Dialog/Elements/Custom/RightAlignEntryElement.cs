@@ -27,7 +27,6 @@ namespace MonoDroid.Dialog
 			{
 				_entry.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 			}
-			_entry.Gravity = Android.Views.GravityFlags.Right;
 			return view;
 		}
 

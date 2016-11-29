@@ -35,9 +35,17 @@ namespace MonoDroid.Dialog
 				this._dir = _instance._dir;
 				this._file = _instance._file;
 				this._image = _instance._image;
+				this.TitleActivity = _instance.TitleActivity;
 			}
 			_instance = this;
 		}
+
+		public override void OnAttachedToWindow()
+		{
+			base.OnAttachedToWindow();
+			Window.SetTitle(TitleActivity);
+		}
+
 		public static PhotoActivity Instance
 		{
 			get
@@ -57,6 +65,7 @@ namespace MonoDroid.Dialog
 		protected File _file;
 		protected File _dir;
 		protected Bitmap _image;
+		public string TitleActivity { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -94,6 +103,7 @@ namespace MonoDroid.Dialog
 				};
 			}
 		}
+
 		private bool IsThereAnAppToTakePictures()
 		{
 			Intent intent = new Intent(MediaStore.ActionImageCapture);
@@ -185,8 +195,14 @@ namespace MonoDroid.Dialog
 				Save(this, new BitmapEventArgs(source));
 			}
 		}
+		protected override void OnDestroy()
+		{
+			_instance = null;
+			base.OnDestroy();
+		}
 
 	}
+
 
 	public class BitmapEventArgs:EventArgs
 	{
@@ -196,4 +212,5 @@ namespace MonoDroid.Dialog
 			Value = arg;
 		}
 	}
+
 }

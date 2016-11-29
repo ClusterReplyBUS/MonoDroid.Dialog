@@ -8,6 +8,7 @@ namespace MonoDroid.Dialog
 	public class SignatureElement : ButtonElement
 	{
 		public bool IsMandatory { get; set; }
+		private string _title { get; set; }
 		public string SignatureBase64 { 
 			get
 			{ 
@@ -42,6 +43,7 @@ namespace MonoDroid.Dialog
 		{
 			this._disclaimer = disclaimer;
 			this._savebutton = saveButtonLabel;
+			this._title = caption;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
@@ -56,6 +58,7 @@ namespace MonoDroid.Dialog
 				 {
 					 SignatureActivity.Instance.Disclaimer = _disclaimer;
 					 SignatureActivity.Instance.SaveButton = _savebutton;
+					SignatureActivity.Instance.TitleActivity = _title;
 					 SignatureActivity.Instance.SignatureSaved += (sender, e) =>
 				  {
 						 Console.WriteLine("SignatureSaved");

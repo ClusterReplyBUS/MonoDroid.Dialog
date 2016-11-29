@@ -45,19 +45,21 @@ namespace MonoDroid.Dialog
 		public string TextNote { get; set; }
 		public string SaveButton { get; set; }
 		public string TitleActivity { get; set; }
+		private EditText _multiline { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			EditText multiline = new EditText(this);
-			multiline.SetMinWidth(100);
-			multiline.SetBackgroundColor(Android.Graphics.Color.White);
+			_multiline= new EditText(this);
+			_multiline.SetMinWidth(100);
+			_multiline.SetBackgroundColor(Android.Graphics.Color.White);
+			_multiline.SetTextColor(Android.Graphics.Color.Black);
 			if (!string.IsNullOrEmpty(TextNote))
 			{
-				multiline.Text = TextNote;
+			_multiline.Text = TextNote;
 			}
-			SetContentView(multiline);
+			SetContentView(_multiline);
 			// Create your application here
 		}
 
@@ -90,6 +92,7 @@ namespace MonoDroid.Dialog
 			switch (item.ItemId)
 			{
 				case Resource.Id.action_done:
+					TextNote = _multiline.Text;
 					OnNoteSaved();
 					Finish();
 					break;
@@ -107,6 +110,11 @@ namespace MonoDroid.Dialog
 		{
 			base.OnAttachedToWindow();
 			Window.SetTitle(TitleActivity);
+		}
+		protected override void OnDestroy()
+		{
+			_instance = null;
+			base.OnDestroy();
 		}
 	}
 }

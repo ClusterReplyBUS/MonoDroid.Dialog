@@ -12,7 +12,9 @@ namespace MonoDroid.Dialog
 		private TextView _caption;
 		private ImageButton _imageBtn;
 
+		private string _title { get; set; }
 		public Bitmap Value { get; set;}
+
 		public string Base64Value
 		{
 			get
@@ -43,6 +45,7 @@ namespace MonoDroid.Dialog
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			Value = value;
+			_title = caption;
 		}
 
 		private Context _context;
@@ -79,6 +82,7 @@ namespace MonoDroid.Dialog
 
 		void _imageBtn_Click(object sender, EventArgs e)
 		{
+			PhotoActivity.Instance.TitleActivity = _title;
 			PhotoActivity.Instance.Save += (s, ea) =>
 			{
 				Value = ea.Value;
