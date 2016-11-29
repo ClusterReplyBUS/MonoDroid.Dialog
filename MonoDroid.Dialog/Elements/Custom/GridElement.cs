@@ -21,11 +21,7 @@ namespace MonoDroid.Dialog
 		{
 			get { return Value; }
 		}
-<<<<<<< Updated upstream
 
-=======
-	
->>>>>>> Stashed changes
 		private string _saveLabel;
 
 		public GridElement(string caption, string saveLabel) : this(caption)
@@ -35,7 +31,7 @@ namespace MonoDroid.Dialog
 
 		public GridElement(string caption) : base(caption, (int)DroidResources.ElementLayout.dialog_grid)
 		{
-			
+
 		}
 
 
@@ -83,7 +79,7 @@ namespace MonoDroid.Dialog
 								   Source.Rows.Add(lrow);
 							   }
 						   }
-<<<<<<< Updated upstream
+
 						   GridActivity.Instance.Columns = Columns;
 						   GridActivity.Instance.Rows = Rows;
 						   GridActivity.Instance.TitleActivity = Caption;
@@ -93,24 +89,10 @@ namespace MonoDroid.Dialog
 						   GridActivity.Instance.Save += (sender, e) =>
 						   {
 							   Source = e.Source;
-							   //Value = GenerateText();
 							   _value.Text = GenerateText();
+							   _caption.SetBackgroundColor(Android.Graphics.Color.ParseColor("#ffded5d5"));
 						   };
-=======
-					   }
-					   GridActivity.Instance.Columns = Columns;
-					   GridActivity.Instance.Rows = Rows;
-					   GridActivity.Instance.TitleActivity = Caption;
-					   GridActivity.Instance.GridType = GridType;
-					   GridActivity.Instance.Source = Source;
-					   GridActivity.Instance.SaveLabel = _saveLabel;
-					   GridActivity.Instance.Save += (sender, e) =>
-					   {
-						   Source = e.Source;
-						   Value = GenerateText();
-						this._entry.SetBackgroundColor(Android.Graphics.Color.Yellow);
-					   };
->>>>>>> Stashed changes
+
 
 						   ((Activity)context).StartActivity(typeof(GridActivity));
 					   };
@@ -133,8 +115,9 @@ namespace MonoDroid.Dialog
 					{
 						if (text == "")
 							text = this.Rows.SingleOrDefault(r => r.AnswerId == el.AnswerId).Text + "-" +
-								this.Columns.SingleOrDefault(r => r.AnswerId == el.ColumnId).Text +
-								((GridType == GridElement.GridAnswerType.Text || GridType == GridElement.GridAnswerType.Number) ? ":" + el.Caption : "");
+							 this.Columns.SingleOrDefault(r => r.AnswerId == el.ColumnId).Text +
+						((GridType == GridElement.GridAnswerType.Text || GridType == GridElement.GridAnswerType.Number) ? ":" + el.Caption : "");
+
 						else
 							text += "\n" + this.Rows.SingleOrDefault(r => r.AnswerId == el.AnswerId).Text + "-" +
 								this.Columns.SingleOrDefault(r => r.AnswerId == el.ColumnId).Text +

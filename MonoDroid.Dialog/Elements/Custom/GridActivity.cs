@@ -148,7 +148,7 @@ namespace MonoDroid.Dialog
 							elem.Width = quarterScreenWidth;
 							elem.Height = quarterScreenHeight;
 							((EditText)intView).SetTextColor(Color.Black);
-							((EditText)intView).SetBackgroundColor(Color.Yellow);
+							((EditText)intView).SetBackgroundColor(Color.White);
 							//if (Source != null && Source.Rows != null && Source.Rows[i - 1] != null && Source.Rows[j - 1][i - 1] != null && !string.IsNullOrEmpty(Source.Rows[i - 1][j - 1].Caption))
 							if (Source != null && Source.Rows != null && Source.Rows[j] != null && Source.Rows[j][i] != null)
 							{

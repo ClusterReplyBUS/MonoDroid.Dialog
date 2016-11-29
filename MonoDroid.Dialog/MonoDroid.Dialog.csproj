@@ -91,13 +91,13 @@
     <Compile Include="Elements\Custom\LoadMoreElement.cs" />
     <Compile Include="Elements\Custom\GridActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
-<<<<<<< Updated upstream
+
     <Compile Include="Elements\Custom\BitmapHelpers.cs" />
     <Compile Include="Elements\Custom\PhotoActivity.cs" />
     <Compile Include="Elements\Custom\PhotoElement.cs" />
-=======
+
     <Compile Include="Elements\Custom\NoteActivity.cs" />
->>>>>>> Stashed changes
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />
