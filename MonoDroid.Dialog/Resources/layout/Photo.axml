@@ -7,7 +7,7 @@
         android:id="@+id/pickImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick an image from the galler" />
+        android:text="Pick an image from the gallery" />
     <Button
         android:id="@+id/takePhoto"
         android:layout_width="match_parent"

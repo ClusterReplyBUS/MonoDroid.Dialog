@@ -2331,14 +2331,14 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f09002d
 			public const int wrap_content = 2131296301;
 
-			// aapt resource value: 0x7f0c005e
-			public const int pickImage = 2131492958;
+			// aapt resource value: 0x7f05000f
+			public const int pickImages = 2131034127;
 
-			// aapt resource value: 0x7f0c0060
-			public const int selectedImage = 2131492960;
+			// aapt resource value: 0x7f050011
+			public const int selectedImage = 2131034129;
 
-			// aapt resource value: 0x7f0c005f
-			public const int takePhoto = 2131492959;
+			// aapt resource value: 0x7f050010
+			public const int takePhoto = 2131034128;
 
 			static Id()
 			{
