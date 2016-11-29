@@ -7,6 +7,7 @@ namespace MonoDroid.Dialog
 {
 	public class SignatureElement : ButtonElement
 	{
+		public bool IsMandatory { get; set; }
 		public string SignatureBase64 { 
 			get
 			{ 
@@ -45,6 +46,10 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
+			if (this.IsMandatory && this._caption != null)
+			{
+				this._caption.Text += "*";
+			}
 			if (this.Click == null)
 			{
 				this.Click += () =>
@@ -61,7 +66,8 @@ namespace MonoDroid.Dialog
 
 				 };
 			}
-			return base.GetView(context, convertView, parent);
+			var view = base.GetView(context, convertView, parent);
+			return view;
 		}
 	}
 }

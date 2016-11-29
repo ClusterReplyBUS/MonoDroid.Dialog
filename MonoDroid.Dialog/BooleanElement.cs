@@ -48,8 +48,8 @@ namespace MonoDroid.Dialog
     /// </summary>
     public class BooleanElement : BoolElement, CompoundButton.IOnCheckedChangeListener
     {
-        private ToggleButton _toggleButton;
-        private TextView _caption;
+		protected ToggleButton _toggleButton;
+		protected TextView _caption;
         private TextView _subCaption;
 
         public BooleanElement(string caption, bool value)
@@ -166,6 +166,7 @@ namespace MonoDroid.Dialog
         public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
         {
             this.Value = isChecked;
+			_subCaption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
         }
     }
 }

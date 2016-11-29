@@ -1,17 +1,29 @@
 ﻿using System;
+using Android.App;
+
 namespace MonoDroid.Dialog
 {
-	public class SelectableMultilineEntryElement : ReadonlyElement
+	public class SelectableMultilineEntryElement :ButtonElement //ReadonlyElement
 	{
+		public bool IsMandatory { get; set; }
 		public SelectableMultilineEntryElement(string caption, string value, string saveLabel)
-		   : base(caption, value)
+			: base(caption, null)
 		{
 			
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			return base.GetView(context, convertView, parent);
+			this.Click+=()=>
+			{
+
+				((Activity)context).StartActivity(typeof(NoteActivity));
+			
+			
+			};
+
+			var view=base.GetView(context, convertView, parent);
+			return view;
 		}
 
 		public override void Selected()

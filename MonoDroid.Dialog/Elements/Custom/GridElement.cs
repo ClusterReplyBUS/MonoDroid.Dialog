@@ -21,7 +21,11 @@ namespace MonoDroid.Dialog
 		{
 			get { return Value; }
 		}
+<<<<<<< Updated upstream
 
+=======
+	
+>>>>>>> Stashed changes
 		private string _saveLabel;
 
 		public GridElement(string caption, string saveLabel) : this(caption)
@@ -79,6 +83,7 @@ namespace MonoDroid.Dialog
 								   Source.Rows.Add(lrow);
 							   }
 						   }
+<<<<<<< Updated upstream
 						   GridActivity.Instance.Columns = Columns;
 						   GridActivity.Instance.Rows = Rows;
 						   GridActivity.Instance.TitleActivity = Caption;
@@ -91,6 +96,21 @@ namespace MonoDroid.Dialog
 							   //Value = GenerateText();
 							   _value.Text = GenerateText();
 						   };
+=======
+					   }
+					   GridActivity.Instance.Columns = Columns;
+					   GridActivity.Instance.Rows = Rows;
+					   GridActivity.Instance.TitleActivity = Caption;
+					   GridActivity.Instance.GridType = GridType;
+					   GridActivity.Instance.Source = Source;
+					   GridActivity.Instance.SaveLabel = _saveLabel;
+					   GridActivity.Instance.Save += (sender, e) =>
+					   {
+						   Source = e.Source;
+						   Value = GenerateText();
+						this._entry.SetBackgroundColor(Android.Graphics.Color.Yellow);
+					   };
+>>>>>>> Stashed changes
 
 						   ((Activity)context).StartActivity(typeof(GridActivity));
 					   };

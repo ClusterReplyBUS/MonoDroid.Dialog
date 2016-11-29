@@ -248,6 +248,7 @@ namespace MonoDroid.Dialog
 				case Resource.Id.action_done:
 				CheckGridForSave();
 					OnSave(Source);
+
 					Finish();
 					break;
 

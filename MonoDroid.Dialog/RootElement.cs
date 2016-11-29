@@ -364,7 +364,14 @@ namespace MonoDroid.Dialog
 				{
 					_caption.Text = Caption;
 
-					_value.Text = "0";
+					if (_showValue != "0")
+					{
+						_value.Text = _showValue;
+					}
+					else
+					{
+						_value.Text = "0";
+					}
 					if (this.Click == null)
 						this.Click += SelectCheckBox;
 					//this.LongClick += SelectCheckBox;

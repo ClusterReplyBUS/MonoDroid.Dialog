@@ -13,17 +13,31 @@
 
 namespace MonoDroid.Dialog
 {
+<<<<<<< Updated upstream
 	
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
+=======
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	public partial class Resource
+	{
+>>>>>>> Stashed changes
 		static Resource()
 		{
 			global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 		}
 		
+<<<<<<< Updated upstream
 
+=======
+		//public static void UpdateIdValues()
+		//{
+		//	global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Reply.CNHI.LeadCapture.Mobile.Droid.Resource.Attribute.actionBarSize;
+		//}
+		
+>>>>>>> Stashed changes
 		public partial class Animation
 		{
 			
@@ -44,7 +58,11 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f040005
 			public const int abc_shrink_fade_out_from_bottom = 2130968581;
+<<<<<<< Updated upstream
 
+=======
+			
+>>>>>>> Stashed changes
 			// aapt resource value: 0x7f040006
 			public const int abc_slide_in_bottom = 2130968582;
 			
@@ -1897,7 +1915,38 @@ namespace MonoDroid.Dialog
 		{
 			
 			// aapt resource value: 0x7f090082
+<<<<<<< Updated upstream
 			public const int action0 = 2131296386;
+=======
+			public const int City = 2131296386;
+			
+			// aapt resource value: 0x7f090083
+			public const int Country = 2131296387;
+			
+			// aapt resource value: 0x7f090084
+			public const int Email = 2131296388;
+			
+			// aapt resource value: 0x7f09008a
+			public const int FindAccountListView = 2131296394;
+			
+			// aapt resource value: 0x7f090085
+			public const int MainPhone = 2131296389;
+			
+			// aapt resource value: 0x7f090086
+			public const int MobilePhone = 2131296390;
+			
+			// aapt resource value: 0x7f090081
+			public const int Name = 2131296385;
+			
+			// aapt resource value: 0x7f090087
+			public const int PostalCode = 2131296391;
+			
+			// aapt resource value: 0x7f090088
+			public const int Street = 2131296392;
+			
+			// aapt resource value: 0x7f09008c
+			public const int action0 = 2131296396;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f09005a
 			public const int action_bar = 2131296346;
@@ -1923,6 +1972,7 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f09005b
 			public const int action_context_bar = 2131296347;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090086
 			public const int action_divider = 2131296390;
 			
@@ -1935,6 +1985,14 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090088
 			public const int grid_view = 2131296388;
 
+=======
+			// aapt resource value: 0x7f090090
+			public const int action_divider = 2131296400;
+			
+			// aapt resource value: 0x7f09008b
+			public const int action_done = 2131296395;
+			
+>>>>>>> Stashed changes
 			// aapt resource value: 0x7f090004
 			public const int action_menu_divider = 2131296260;
 			
@@ -1968,8 +2026,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090044
 			public const int buttonPanel = 2131296324;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090083
 			public const int cancel_action = 2131296387;
+=======
+			// aapt resource value: 0x7f09008d
+			public const int cancel_action = 2131296397;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090014
 			public const int center = 2131296276;
@@ -1983,8 +2046,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090052
 			public const int checkbox = 2131296338;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090089
 			public const int chronometer = 2131296393;
+=======
+			// aapt resource value: 0x7f090093
+			public const int chronometer = 2131296403;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f09001d
 			public const int clip_horizontal = 2131296285;
@@ -2076,8 +2144,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090017
 			public const int end = 2131296279;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f09008e
 			public const int end_padder = 2131296398;
+=======
+			// aapt resource value: 0x7f090098
+			public const int end_padder = 2131296408;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f09000b
 			public const int enterAlways = 2131296267;
@@ -2106,6 +2179,12 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090023
 			public const int @fixed = 2131296291;
 			
+<<<<<<< Updated upstream
+=======
+			// aapt resource value: 0x7f090089
+			public const int grid_view = 2131296393;
+			
+>>>>>>> Stashed changes
 			// aapt resource value: 0x7f090006
 			public const int home = 2131296262;
 			
@@ -2124,8 +2203,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f09003f
 			public const int image = 2131296319;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f09008d
 			public const int info = 2131296397;
+=======
+			// aapt resource value: 0x7f090097
+			public const int info = 2131296407;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090001
 			public const int item_touch_helper_previous_elevation = 2131296257;
@@ -2133,11 +2217,19 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090019
 			public const int left = 2131296281;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090087
 			public const int line1 = 2131296391;
 			
 			// aapt resource value: 0x7f09008b
 			public const int line3 = 2131296395;
+=======
+			// aapt resource value: 0x7f090091
+			public const int line1 = 2131296401;
+			
+			// aapt resource value: 0x7f090095
+			public const int line3 = 2131296405;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090025
 			public const int listMode = 2131296293;
@@ -2145,8 +2237,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090041
 			public const int list_item = 2131296321;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090085
 			public const int media_actions = 2131296389;
+=======
+			// aapt resource value: 0x7f09008f
+			public const int media_actions = 2131296399;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090034
 			public const int middle = 2131296308;
@@ -2280,8 +2377,13 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f09001b
 			public const int start = 2131296283;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090084
 			public const int status_bar_latest_event_content = 2131296388;
+=======
+			// aapt resource value: 0x7f09008e
+			public const int status_bar_latest_event_content = 2131296398;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090065
 			public const int submit_area = 2131296357;
@@ -2289,17 +2391,30 @@ namespace MonoDroid.Dialog
 			// aapt resource value: 0x7f090026
 			public const int tabMode = 2131296294;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f09008c
 			public const int text = 2131296396;
 			
 			// aapt resource value: 0x7f09008a
 			public const int text2 = 2131296394;
+=======
+			// aapt resource value: 0x7f090096
+			public const int text = 2131296406;
+			
+			// aapt resource value: 0x7f090094
+			public const int text2 = 2131296404;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f09004d
 			public const int textSpacerNoButtons = 2131296333;
 			
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f090088
 			public const int time = 2131296392;
+=======
+			// aapt resource value: 0x7f090092
+			public const int time = 2131296402;
+>>>>>>> Stashed changes
 			
 			// aapt resource value: 0x7f090043
 			public const int title = 2131296323;
@@ -2330,6 +2445,7 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f09002d
 			public const int wrap_content = 2131296301;
+<<<<<<< Updated upstream
 
 			// aapt resource value: 0x7f0c005e
 			public const int pickImage = 2131492958;
@@ -2339,6 +2455,8 @@ namespace MonoDroid.Dialog
 
 			// aapt resource value: 0x7f0c005f
 			public const int takePhoto = 2131492959;
+=======
+>>>>>>> Stashed changes
 			
 			static Id()
 			{
@@ -2348,7 +2466,10 @@ namespace MonoDroid.Dialog
 			private Id()
 			{
 			}
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 		}
 		
 		public partial class Integer
@@ -2387,10 +2508,14 @@ namespace MonoDroid.Dialog
 		
 		public partial class Layout
 		{
+<<<<<<< Updated upstream
 			// aapt resource value: 0x7f03003a
 			public const int FindAccountLayout = 2130903098;
 
 
+=======
+			
+>>>>>>> Stashed changes
 			// aapt resource value: 0x7f030000
 			public const int abc_action_bar_title_item = 2130903040;
 			
@@ -2564,6 +2689,7 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f030039
 			public const int dialog_textfieldright = 2130903097;
+<<<<<<< Updated upstream
 
 			// aapt resource value: 0x7f03003a
 			public const int grid_layout = 2130903098;
@@ -2612,6 +2738,60 @@ namespace MonoDroid.Dialog
 
 			// aapt resource value: 0x7f030016
 			public const int signature = 2130903062;
+=======
+			
+			// aapt resource value: 0x7f03003a
+			public const int FindAccountLayout = 2130903098;
+			
+			// aapt resource value: 0x7f03003b
+			public const int grid_layout = 2130903099;
+			
+			// aapt resource value: 0x7f03003c
+			public const int ListViewLayout = 2130903100;
+			
+			// aapt resource value: 0x7f03003d
+			public const int Menu = 2130903101;
+			
+			// aapt resource value: 0x7f03003e
+			public const int notification_media_action = 2130903102;
+			
+			// aapt resource value: 0x7f03003f
+			public const int notification_media_cancel_action = 2130903103;
+			
+			// aapt resource value: 0x7f030040
+			public const int notification_template_big_media = 2130903104;
+			
+			// aapt resource value: 0x7f030041
+			public const int notification_template_big_media_narrow = 2130903105;
+			
+			// aapt resource value: 0x7f030042
+			public const int notification_template_lines = 2130903106;
+			
+			// aapt resource value: 0x7f030043
+			public const int notification_template_media = 2130903107;
+			
+			// aapt resource value: 0x7f030044
+			public const int notification_template_part_chronometer = 2130903108;
+			
+			// aapt resource value: 0x7f030045
+			public const int notification_template_part_time = 2130903109;
+			
+			// aapt resource value: 0x7f030046
+			public const int select_dialog_item_material = 2130903110;
+			
+			// aapt resource value: 0x7f030047
+			public const int select_dialog_multichoice_material = 2130903111;
+			
+			// aapt resource value: 0x7f030048
+			public const int select_dialog_singlechoice_material = 2130903112;
+			
+			// aapt resource value: 0x7f030049
+			public const int signature = 2130903113;
+			
+			// aapt resource value: 0x7f03004a
+			public const int support_simple_spinner_dropdown_item = 2130903114;
+			
+>>>>>>> Stashed changes
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -2684,8 +2864,12 @@ namespace MonoDroid.Dialog
 			
 			// aapt resource value: 0x7f0a0000
 			public const int appbar_scrolling_view_behavior = 2131361792;
+<<<<<<< Updated upstream
 
 
+=======
+			
+>>>>>>> Stashed changes
 			// aapt resource value: 0x7f0a0001
 			public const int bottom_sheet_behavior = 2131361793;
 			

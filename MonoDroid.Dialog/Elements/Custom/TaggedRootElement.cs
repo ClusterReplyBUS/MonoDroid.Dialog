@@ -55,12 +55,16 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
+			if (this.IsMandatory && this.Caption != null && !this.Caption.EndsWith("*", StringComparison.InvariantCulture))
+			{
+				this.Caption += "*";
+			}
+			if (!(_group is RadioGroup))
+			{
+			_showValue = SelectedChildren.Count.ToString();
+			}
+
 			var view = base.GetView(context, convertView, parent);
-			//if (!(_group is RadioGroup))
-			//{
-			//	_showValue = SelectedChildren.Count.ToString();
-			//}
-			
 			return view;
 		}
 
@@ -78,8 +82,7 @@ namespace MonoDroid.Dialog
 				e.OnChildSelected();
 				_showValue = SelectedChildren.Count.ToString();
 			}
-
-
+			this._value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 		}
 		//public override void Selected()
 		//{
@@ -102,6 +105,7 @@ namespace MonoDroid.Dialog
 					current++;
 				}
 			}
+
 			return null;
 		}
 
