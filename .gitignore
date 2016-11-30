@@ -23,6 +23,3 @@ Thumbs.db
 *.zip
 **/*.pidb
 .DS_Store
-MonoDroid.Dialog/Elements/Custom/CapturePhotoActivity.cs
-
-MonoDroid.Dialog/Elements/Custom/CapturePhotoElement.cs
