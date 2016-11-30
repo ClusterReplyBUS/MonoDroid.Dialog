@@ -35,12 +35,12 @@ namespace DialogSampleApp
 					new Section("Test Header", "Test Footer")
 						{
 					//		new ButtonElement("DialogActivity", () => StartNew()),
-					//new PhotoElement("Photo", null),
+							new PhotoElement("Photo", null),
 							//new StringElement("Do Something", "Foo", () => {
 							//	Console.WriteLine("Did Something");
 							//}),
 							new BooleanElement("Push my button1", true),
-					new GridElement("DialogActivity","save"){Mandatory = true},
+							new GridElement("DialogActivity","save"){Mandatory = true},
 							new ButtonElement("DialogActivity", () => StartNew()),
 							new BooleanElement("Push my button2", true),
 							new TextOnlyElement("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis justo orci, porttitor eget malesuada a, elementum vitae mauris. Pellentesque et rhoncus nunc, a condimentum sapien. Sed sed elit justo. Praesent ligula enim, tincidunt non pulvinar vel, vulputate ut risus. Suspendisse varius nunc id vehicula pellentesque. Praesent finibus a leo et imperdiet. Maecenas id augue ac dolor consequat bibendum. Vestibulum cursus tellus eu libero molestie accumsan. Cras vestibulum facilisis commodo. Nunc consequat neque ac augue imperdiet, in facilisis urna ornare. Morbi metus quam, tincidunt ac porttitor sit amet, iaculis nec risus. Vivamus consequat tincidunt condimentum. Aliquam sed nunc eu urna consequat feugiat. Nulla magna felis, molestie nec augue gravida, ornare placerat tortor."),

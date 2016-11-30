@@ -115,13 +115,14 @@ namespace MonoDroid.Dialog
 		{
 			int sectionIndex = 0;
 
-			foreach (var s in Root.Sections) {
+			foreach (var s in Root.Sections) 
+			{
 				
 				if (s.Adapter.Context == null)
 					s.Adapter.Context = this.context;
 
 				if (position == 0)
-					return (s.Adapter.GetView(position, convertView, parent));
+					return (s.GetView(context, convertView, parent));
 
 				int size = s.Adapter.Count + 1;
 

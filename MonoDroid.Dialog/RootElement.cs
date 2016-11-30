@@ -313,8 +313,6 @@ namespace MonoDroid.Dialog
 			Context = context;
 
 			//LayoutInflater inflater = LayoutInflater.FromContext(context);
-
-
 			View cell = new TextView(context) { TextSize = 16f, Text = Caption };
 			var radio = _group as RadioGroup;
 

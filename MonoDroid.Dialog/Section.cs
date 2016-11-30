@@ -160,6 +160,7 @@ namespace MonoDroid.Dialog
 		/// An enumerable list that can be produced by something like:
 		///    from x in ... select (Element) new MyElement (...)
 		/// </param>
+	
 		private int Add(IEnumerable<Element> elements)
 		{
 			int count = 0;
@@ -173,6 +174,7 @@ namespace MonoDroid.Dialog
 
 		public int AddAll(Element[] elements)
 		{
+			
 			return Add(elements);
 		}
 

@@ -52,6 +52,7 @@ namespace MonoDroid.Dialog
 			base.OnCreate(savedInstanceState);
 
 			_multiline= new EditText(this);
+			_multiline.Gravity = GravityFlags.Start;
 			_multiline.SetMinWidth(100);
 			_multiline.SetBackgroundColor(Android.Graphics.Color.White);
 			_multiline.SetTextColor(Android.Graphics.Color.Black);

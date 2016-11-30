@@ -57,17 +57,7 @@ namespace MonoDroid.Dialog
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			int cols = Columns.Count();
-			int rows = Rows.Count();
-			//GridValue = new string[cols, rows];
-			//for (int t = 0; t < cols; t++)
-			//{
-			//	for (int z = 0; z < rows; z++)
-			//	{
-			//		GridValue[t,z] = "";
-			//	}
-
-			//}
+			
 			base.OnCreate(savedInstanceState);
 
 			Point size = new Point();

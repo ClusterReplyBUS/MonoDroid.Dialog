@@ -4,8 +4,9 @@ using Android.Content;
 
 namespace MonoDroid.Dialog
 {
-    public class DateTimeElement : StringElement
+    public class DateTimeElement :StringElement
     {
+		
         public DateTime DateValue
         {
             get { return DateTime.Parse(Value); }
@@ -23,18 +24,28 @@ namespace MonoDroid.Dialog
         {
             DateValue = date;
         }
+		public override Android.Views.View GetView(Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
+		{
+			var view=base.GetView(context, convertView, parent);
+			_caption.Text = "CI";
+			_text.Text = "VI";
+			return view;
+		}
         
         public virtual string Format(DateTime dt)
         {
             return dt.ToShortDateString() + " " + dt.ToShortTimeString();
         }
+
     }
 
     public class DateElement : DateTimeElement
     {
+		
         public DateElement(string caption, DateTime date)
             : base(caption, date)
         {
+			
             this.Click = delegate { EditDate(); };
         }
 
@@ -43,6 +54,7 @@ namespace MonoDroid.Dialog
         {
             this.Click = delegate { EditDate(); };
         }
+
 
         public override string Format(DateTime dt)
         {

@@ -166,7 +166,9 @@ namespace MonoDroid.Dialog
         public void OnCheckedChanged(CompoundButton buttonView, bool isChecked)
         {
             this.Value = isChecked;
-			_subCaption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+			this._caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+	
+			//_subCaption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
         }
     }
 }
