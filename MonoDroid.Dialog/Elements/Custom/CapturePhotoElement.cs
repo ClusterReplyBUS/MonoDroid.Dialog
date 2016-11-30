@@ -7,12 +7,15 @@ using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	public class PhotoElement : Element
+	public class CapturePhotoElement : Element
 	{
 		private TextView _caption;
 		private ImageButton _imageBtn;
 
+		public bool Mandatory { get; set; }
+		public bool IsReadOnly { get; set; }
 		public Bitmap Value { get; set;}
+
 		public string Base64Value
 		{
 			get
@@ -39,12 +42,26 @@ namespace MonoDroid.Dialog
 			}
 		}
 
-		public PhotoElement(string caption, Bitmap value)
-			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
-		{
-			Value = value;
-		}
+		protected bool _showSelector = false;
+		protected string _selectorTakePhotoLabel = "Take photo";
+		protected string _selectorPickImageLabel = "Pick image";
 
+		public CapturePhotoElement(string caption):this(caption, null)
+		{
+		}
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null)
+		{
+		}
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel) : base(caption, (int)DroidResources.ElementLayout.dialog_photo)
+		{
+			this.Base64Value = base64value;
+			this._showSelector = showSelector;
+			if (!string.IsNullOrWhiteSpace(selectorPickImageLabel))
+				this._selectorPickImageLabel = selectorPickImageLabel;
+			if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
+				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
+		}
+		
 		private Context _context;
 		public override View GetView(Context context, View convertView, ViewGroup parent)
 		{
@@ -79,7 +96,7 @@ namespace MonoDroid.Dialog
 
 		void _imageBtn_Click(object sender, EventArgs e)
 		{
-			PhotoActivity.Instance.Save += (s, ea) =>
+			CapturePhotoActivity.Instance.Save += (s, ea) =>
 			{
 				Value = ea.Value;
 				if (Value != null && _imageBtn != null)
@@ -87,8 +104,11 @@ namespace MonoDroid.Dialog
 					_imageBtn.SetImageBitmap(Value);
 				}
 			};
+			CapturePhotoActivity.Instance.ShowSelector = _showSelector;
+			CapturePhotoActivity.Instance.TakePhotoLabelText = _selectorTakePhotoLabel;
+			CapturePhotoActivity.Instance.PickImageLabelText = _selectorPickImageLabel;
 
-			((Android.App.Activity)_context).StartActivity(typeof(PhotoActivity));
+			((Android.App.Activity)_context).StartActivity(typeof(CapturePhotoActivity));
 		}
 	}
 }

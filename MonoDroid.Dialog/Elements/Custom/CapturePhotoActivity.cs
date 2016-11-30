@@ -23,27 +23,25 @@ using Uri = Android.Net.Uri;
 namespace MonoDroid.Dialog
 {
 	[Activity(Label = "PhotoActivity")]
-	public class PhotoActivity : Activity
+	public class CapturePhotoActivity : Activity
 	{
-		private static volatile PhotoActivity _instance;
+		private static volatile CapturePhotoActivity _instance;
 
-		public PhotoActivity() : base()
+		public CapturePhotoActivity() : base()
 		{
 			if (_instance != null)
 			{
 				this.Save = _instance.Save;
-				this._dir = _instance._dir;
-				this._file = _instance._file;
-				this._image = _instance._image;
+
 			}
 			_instance = this;
 		}
-		public static PhotoActivity Instance
+		public static CapturePhotoActivity Instance
 		{
 			get
 			{
 				if (_instance == null)
-					_instance = new PhotoActivity();
+					_instance = new CapturePhotoActivity();
 				return _instance;
 			}
 		}
@@ -58,6 +56,10 @@ namespace MonoDroid.Dialog
 		protected File _dir;
 		protected Bitmap _image;
 
+		public bool ShowSelector { get; set; }
+		public string TakePhotoLabelText { get; set; }
+		public string PickImageLabelText { get; set; }
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -69,7 +71,11 @@ namespace MonoDroid.Dialog
 				int width = imageView.Height;
 				imageView.SetImageBitmap(_image);
 			}
+
 			Button pickImageBtn = FindViewById<Button>(BaseContext.Resources.GetIdentifier("pickImage", "id", BaseContext.PackageName));
+			pickImageBtn.Text = PickImageLabelText;
+			if (!ShowSelector)
+				pickImageBtn.Visibility = ViewStates.Invisible;
 			pickImageBtn.Click += delegate
 			{
 				var imageIntent = new Intent();
@@ -77,11 +83,13 @@ namespace MonoDroid.Dialog
 				imageIntent.SetAction(Intent.ActionGetContent);
 				StartActivityForResult(Intent.CreateChooser(imageIntent, "Select photo"), (int)RequestType.PickImage);
 			};
+
+			Button takePhotoBtn = FindViewById<Button>(BaseContext.Resources.GetIdentifier("takePhoto", "id", BaseContext.PackageName));
+			pickImageBtn.Text = PickImageLabelText;
 			if (IsThereAnAppToTakePictures())
 			{
 				CreateDirectoryForPictures();
 
-				Button takePhotoBtn = FindViewById<Button>(BaseContext.Resources.GetIdentifier("takePhoto", "id", BaseContext.PackageName));
 				takePhotoBtn.Click += (s, e) =>
 				{
 					Intent intent = new Intent(MediaStore.ActionImageCapture);
@@ -93,6 +101,8 @@ namespace MonoDroid.Dialog
 					StartActivityForResult(intent, (int)RequestType.TakePhoto);
 				};
 			}
+			else
+				pickImageBtn.Visibility = ViewStates.Invisible;
 		}
 		private bool IsThereAnAppToTakePictures()
 		{

@@ -35,7 +35,7 @@ namespace DialogSampleApp
 					new Section("Test Header", "Test Footer")
 						{
 					//		new ButtonElement("DialogActivity", () => StartNew()),
-							new PhotoElement("Photo", null),
+							new CapturePhotoElement("Photo", null),
 							//new StringElement("Do Something", "Foo", () => {
 							//	Console.WriteLine("Did Something");
 							//}),

@@ -91,8 +91,8 @@
     <Compile Include="Elements\Custom\LoadMoreElement.cs" />
     <Compile Include="Elements\Custom\GridActivity.cs" />
     <Compile Include="Elements\Custom\BitmapHelpers.cs" />
-    <Compile Include="Elements\Custom\PhotoActivity.cs" />
-    <Compile Include="Elements\Custom\PhotoElement.cs" />
+    <Compile Include="Elements\Custom\CapturePhotoActivity.cs" />
+    <Compile Include="Elements\Custom\CapturePhotoElement.cs" />
 
     <Compile Include="Elements\Custom\NoteActivity.cs" />
 
