@@ -12,11 +12,12 @@ namespace MonoDroid.Dialog
 		private TextView _value;
 		public string Value { get; set; }
 		private Context _context { get; set; }
+		private string _saveButton { get; set; }
 
 		public SelectableMultilineEntryElement(string caption, string value, string saveLabel)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_note)
 		{
-
+			_saveButton = saveLabel;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
@@ -43,6 +44,7 @@ namespace MonoDroid.Dialog
 		void HandleEventHandler(object sender, EventArgs e)
 		{
 			NoteActivity.Instance.TextNote = Value;
+			NoteActivity.Instance.SaveButton = _saveButton;
 			NoteActivity.Instance.NoteSaved += (s, ev) =>
 			 {
 				Value = ((NoteActivity)s).TextNote;
