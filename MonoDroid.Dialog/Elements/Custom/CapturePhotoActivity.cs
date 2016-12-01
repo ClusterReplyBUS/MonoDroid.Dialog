@@ -23,11 +23,11 @@ using Uri = Android.Net.Uri;
 namespace MonoDroid.Dialog
 {
 	[Activity(Label = "PhotoActivity")]
-	public class PhotoActivity : Activity
+	public class CapturePhotoActivity : Activity
 	{
-		private static volatile PhotoActivity _instance;
+		private static volatile CapturePhotoActivity _instance;
 
-		public PhotoActivity() : base()
+		public CapturePhotoActivity() : base()
 		{
 			if (_instance != null)
 			{
@@ -46,12 +46,12 @@ namespace MonoDroid.Dialog
 			Window.SetTitle(TitleActivity);
 		}
 
-		public static PhotoActivity Instance
+		public static CapturePhotoActivity Instance
 		{
 			get
 			{
 				if (_instance == null)
-					_instance = new PhotoActivity();
+					_instance = new CapturePhotoActivity();
 				return _instance;
 			}
 		}

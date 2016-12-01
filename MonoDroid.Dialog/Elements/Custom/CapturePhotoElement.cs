@@ -7,7 +7,7 @@ using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	public class PhotoElement : Element
+	public class CapturePhotoElement : Element
 	{
 		private TextView _caption;
 		private ImageButton _imageBtn;
@@ -41,7 +41,7 @@ namespace MonoDroid.Dialog
 			}
 		}
 
-		public PhotoElement(string caption, Bitmap value)
+		public CapturePhotoElement(string caption, Bitmap value)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			Value = value;
@@ -82,8 +82,8 @@ namespace MonoDroid.Dialog
 
 		void _imageBtn_Click(object sender, EventArgs e)
 		{
-			PhotoActivity.Instance.TitleActivity = _title;
-			PhotoActivity.Instance.Save += (s, ea) =>
+			CapturePhotoActivity.Instance.TitleActivity = _title;
+			CapturePhotoActivity.Instance.Save += (s, ea) =>
 			{
 				Value = ea.Value;
 				if (Value != null && _imageBtn != null)
@@ -92,7 +92,7 @@ namespace MonoDroid.Dialog
 				}
 			};
 
-			((Android.App.Activity)_context).StartActivity(typeof(PhotoActivity));
+			((Android.App.Activity)_context).StartActivity(typeof(CapturePhotoActivity));
 		}
 	}
 }
