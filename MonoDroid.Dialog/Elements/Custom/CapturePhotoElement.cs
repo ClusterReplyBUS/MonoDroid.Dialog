@@ -14,7 +14,8 @@ namespace MonoDroid.Dialog
 
 		private string _title { get; set; }
 		public Bitmap Value { get; set;}
-
+		public bool Mandatory { get; set; }
+		
 		public string Base64Value
 		{
 			get
@@ -41,11 +42,23 @@ namespace MonoDroid.Dialog
 			}
 		}
 
-		public CapturePhotoElement(string caption, Bitmap value)
+		protected bool _showSelector = false;
+		protected string _selectorDoneLabel = "Done";
+		protected string _selectorTakePhotoLabel = "Take photo";
+		protected string _selectorPickImageLabel = "Pick image";
+
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
-			Value = value;
-			_title = caption;
+			this.Base64Value = base64value;
+			this._showSelector = showSelector;
+			if (!string.IsNullOrWhiteSpace(selectorPickImageLabel))
+				this._selectorPickImageLabel = selectorPickImageLabel;
+			if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
+				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
+		}
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null)
+		{
 		}
 
 		private Context _context;
@@ -91,7 +104,10 @@ namespace MonoDroid.Dialog
 					_imageBtn.SetImageBitmap(Value);
 				}
 			};
-
+			CapturePhotoActivity.Instance.PickImageLabel = _selectorPickImageLabel;
+			CapturePhotoActivity.Instance.TakePhotoLabel = _selectorTakePhotoLabel;
+			CapturePhotoActivity.Instance.ShowSelector = _showSelector;
+			
 			((Android.App.Activity)_context).StartActivity(typeof(CapturePhotoActivity));
 		}
 	}
