@@ -33,7 +33,8 @@ namespace MonoDroid.Dialog
 			dialog_photo,
 			dialog_textonly,
 			dialog_grid,
-			dialog_note
+			dialog_note,
+			dialog_date,
         }
 
         public static View LoadFloatElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out SeekBar slider, out ImageView left, out ImageView right)
@@ -110,6 +111,30 @@ namespace MonoDroid.Dialog
             return layout;
         }
 		public static View LoadNoteElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out TextView value)
+		{
+			View layout = convertView ?? LoadLayout(context, parent, layoutId);
+			if (layout != null)
+			{
+
+				label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+				value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueField", "id", context.PackageName));
+
+				if (label == null || value == null)
+				{
+					layout = LoadLayout(context, parent, layoutId);
+					label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+					value = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_ValueField", "id", context.PackageName));
+				}
+
+			}
+			else
+			{
+				label = null;
+				value = null;
+			}
+			return layout;
+		}
+		public static View LoadDateElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out TextView value)
 		{
 			View layout = convertView ?? LoadLayout(context, parent, layoutId);
 			if (layout != null)
@@ -322,7 +347,8 @@ namespace MonoDroid.Dialog
 				{ ElementLayout.dialog_photo, "dialog_photo"},
 				{ ElementLayout.dialog_textonly, "dialog_textonly"},
 				{ ElementLayout.dialog_grid, "dialog_grid"},
-				{ ElementLayout.dialog_note, "dialog_note"}
+				{ ElementLayout.dialog_note, "dialog_note"},
+				{ ElementLayout.dialog_date, "dialog_date"}
 			};
 		}
 

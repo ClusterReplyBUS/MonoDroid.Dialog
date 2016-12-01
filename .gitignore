@@ -23,3 +23,5 @@ Thumbs.db
 *.zip
 **/*.pidb
 .DS_Store
+
+MonoDroid.Dialog/Resources/Resource.designer.cs

@@ -15,15 +15,17 @@ namespace MonoDroid.Dialog
 			Value = FormatDate(date);
 		}
 
-		protected internal DateFormat fmt = DateFormat.GetDateInstance(DateFormat.Medium);
+		public static  DateFormat fmt = DateFormat.GetDateInstance(DateFormat.Medium);
 		public virtual string FormatDate(DateTime? dt)
 		{
 			if (!dt.HasValue)
 				return " ";
 
 			dt = GetDateWithKind(dt);
-			Java.Util.Date d = new Java.Util.Date(dt.Value.Millisecond);
+
+			Java.Util.Date d = new Java.Util.Date(DateTimeToUnixeTimeStamp(dt.Value));
 			return fmt.Format(d);
+
 		}
 
 
@@ -37,5 +39,12 @@ namespace MonoDroid.Dialog
 
 			return dt;
 		}
+
+		public static long DateTimeToUnixeTimeStamp(DateTime dateTime)
+		{
+			return (long)(TimeZoneInfo.ConvertTimeToUtc(dateTime) -
+					new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)).TotalMilliseconds;
+		}
+
 	}
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-    public class DateTimeElement :StringElement
+    public class DateTimeElement : Element
     {
-		
+		public string Value { get; set; }
+		protected TextView label, value;
         public DateTime DateValue
         {
             get { return DateTime.Parse(Value); }
@@ -14,7 +16,7 @@ namespace MonoDroid.Dialog
         }
 
         public DateTimeElement(string caption, DateTime date)
-            : base(caption)
+			: base(caption, (int)DroidResources.ElementLayout.dialog_date)
         {
             DateValue = date;
         }
@@ -26,9 +28,17 @@ namespace MonoDroid.Dialog
         }
 		public override Android.Views.View GetView(Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			var view=base.GetView(context, convertView, parent);
-			_caption.Text = "CI";
-			_text.Text = "VI";
+			//var view=base.GetView(context, convertView, parent);
+			//_caption.Text = "CI";
+			//_text.Text = "VI";
+			//return view
+
+			var view = DroidResources.LoadDateElementLayout(context, convertView, parent, LayoutId, out label, out value);
+			if (view != null)
+			{
+				label.Text = Caption;
+				value.Text = Value;
+			}
 			return view;
 		}
         
@@ -36,6 +46,8 @@ namespace MonoDroid.Dialog
         {
             return dt.ToShortDateString() + " " + dt.ToShortTimeString();
         }
+
+
 
     }
 
@@ -66,7 +78,8 @@ namespace MonoDroid.Dialog
         {
             DateTime current = DateValue;
             DateValue = new DateTime(e.Date.Year, e.Date.Month, e.Date.Day, current.Hour, current.Minute, 0);
-        }
+			value.Text = NullableDateElementInline.fmt.Format(new Java.Util.Date(NullableDateElementInline.DateTimeToUnixeTimeStamp(DateValue)));
+		}
 
         private void EditDate()
         {
@@ -77,8 +90,9 @@ namespace MonoDroid.Dialog
                 return;
             }
             DateTime val = DateValue;
-            new DatePickerDialog(context, OnDateSet, val.Year, val.Month - 1, val.Day).Show();
-        }
+			new DatePickerDialog(context, OnDateSet, val.Year, val.Month - 1, val.Day).Show();	
+
+		}
     }
 
     public class TimeElement : DateTimeElement
