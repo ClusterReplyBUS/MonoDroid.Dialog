@@ -57,8 +57,8 @@ namespace MonoDroid.Dialog
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			
 			base.OnCreate(savedInstanceState);
+
 
 			Point size = new Point();
 			WindowManager.DefaultDisplay.GetSize(size);

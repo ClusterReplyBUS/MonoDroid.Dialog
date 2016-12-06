@@ -55,7 +55,6 @@ namespace MonoDroid.Dialog
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
 			int heightStatusBar = getStatusBarHeight();
 			Display display = WindowManager.DefaultDisplay;
 			Point size = new Point();

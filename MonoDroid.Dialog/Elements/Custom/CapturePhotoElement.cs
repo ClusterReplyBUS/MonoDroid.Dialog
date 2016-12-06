@@ -37,9 +37,12 @@ namespace MonoDroid.Dialog
 			}
 			set
 			{
-				byte[] encodedDataAsBytes = Convert.FromBase64String(value);
-				Value = BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
-			}
+				if (value != null)
+				{
+					byte[] encodedDataAsBytes = Convert.FromBase64String(value);
+					Value = BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
+				}
+				}
 		}
 
 		protected bool _showSelector = false;

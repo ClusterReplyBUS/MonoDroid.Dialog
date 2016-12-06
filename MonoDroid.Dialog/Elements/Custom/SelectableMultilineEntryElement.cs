@@ -23,7 +23,7 @@ namespace MonoDroid.Dialog
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
 			_context = context;
-			var view = DroidResources.LoadNoteElementLayout(context, convertView, parent,LayoutId,out _caption, out _value);
+			var view = DroidResources.LoadNoteElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
 			if (view != null)
 			{
 				_caption.Text = Caption;
@@ -34,7 +34,7 @@ namespace MonoDroid.Dialog
 
 				if (_caption != null)
 				{
-					view.Click-= HandleEventHandler;
+					view.Click -= HandleEventHandler;
 					view.Click += HandleEventHandler;
 				}
 			}
@@ -45,9 +45,10 @@ namespace MonoDroid.Dialog
 		{
 			NoteActivity.Instance.TextNote = Value;
 			NoteActivity.Instance.SaveButton = _saveButton;
+			NoteActivity.Instance.TitleActivity = _caption.Text;
 			NoteActivity.Instance.NoteSaved += (s, ev) =>
 			 {
-				Value = ((NoteActivity)s).TextNote;
+				 Value = ((NoteActivity)s).TextNote;
 				 _value.Text = Value;
 				 _value.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FAFAD2"));
 			 };
@@ -68,5 +69,7 @@ namespace MonoDroid.Dialog
 				NoteSaved(this, null);
 			}
 		}
+
+
 	}
 }

@@ -47,7 +47,7 @@ namespace MonoDroid.Dialog
 	{
 		protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            
 			
 			Intent i = this.Intent;
 			string url = i.GetStringExtra("URL");

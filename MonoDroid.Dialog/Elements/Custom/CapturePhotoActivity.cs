@@ -33,6 +33,9 @@ namespace MonoDroid.Dialog
 			{
 				this.Save = _instance.Save;
 				this.TitleActivity = _instance.TitleActivity;
+				this.ShowSelector = _instance.ShowSelector;
+				this.TakePhotoLabel = _instance.TakePhotoLabel;
+				this.PickImageLabel = _instance.PickImageLabel;
 			}
 			_instance = this;
 		}
