@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Graphics.Drawables.Shapes;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-
 
 namespace MonoDroid.Dialog
 {
@@ -59,13 +60,11 @@ namespace MonoDroid.Dialog
 		{
 			base.OnCreate(savedInstanceState);
 
-
 			Point size = new Point();
 			WindowManager.DefaultDisplay.GetSize(size);
 			int halfScreenWidth = size.X / 2;
 			int quarterScreenWidth = size.X / 4;
-			int quarterScreenHeight = size.Y / 4;
-
+			int quarterScreenHeight = size.Y / 6;
 			List<GridLayout.Spec> gridRows = new List<GridLayout.Spec>();
 			for (int i = 0; i < Rows.Count + 1; i++)
 				gridRows.Add(GridLayout.InvokeSpec(i));
@@ -82,6 +81,7 @@ namespace MonoDroid.Dialog
 				{
 					View intView = null;
 					GridLayout.LayoutParams elem = new GridLayout.LayoutParams(gridRows[j], gridCols[i]);
+					elem.SetMargins(0, 0, 10, 0);
 					if (i == 0 && j == 0)
 					{
 						intView = new TextView(this);
@@ -110,7 +110,7 @@ namespace MonoDroid.Dialog
 						//elem.Width = quarterScreenWidth/2;
 						//elem.Height = quarterScreenHeight/2;
 						intView.TextAlignment = TextAlignment.Center;
-						((TextView)intView).Gravity = GravityFlags.Center;
+						((TextView)intView).Gravity = GravityFlags.CenterHorizontal;
 						//intView.SetBackgroundColor(Color.Blue);
 						intView.Tag = Columns[i - 1].AnswerId.ToString();
 						((TextView)intView).Text = Columns[i - 1].Text;
@@ -136,10 +136,20 @@ namespace MonoDroid.Dialog
 						{
 							intView = new EditText(this);
 							intView.LayoutParameters = elem;
+							LayerDrawable bottomBorder = getBorders(
+							Color.White, // Background color
+							Color.ParseColor("#C3231E"), // Border color
+							0, // Left border in pixels
+							0, // Top border in pixels
+							0, // Right border in pixels
+							1 // Bottom border in pixels
+							);
+
 							elem.Width = quarterScreenWidth;
 							elem.Height = quarterScreenHeight;
 							((EditText)intView).SetTextColor(Color.Black);
-							((EditText)intView).SetBackgroundColor(Color.White);
+							//((EditText)intView).SetBackgroundColor(Color.White);
+
 							//if (Source != null && Source.Rows != null && Source.Rows[i - 1] != null && Source.Rows[j - 1][i - 1] != null && !string.IsNullOrEmpty(Source.Rows[i - 1][j - 1].Caption))
 							if (Source != null && Source.Rows != null && Source.Rows[j] != null && Source.Rows[j][i] != null)
 							{
@@ -151,8 +161,15 @@ namespace MonoDroid.Dialog
 							}
 							if (GridType == GridElement.GridAnswerType.Number)
 								((EditText)intView).InputType = Android.Text.InputTypes.ClassPhone;
+
+							intView.Background = bottomBorder;
+
+							//((EditText)intView).SetBackgroundDrawable(drawable);
 						}
+
+
 						Source.Rows[j][i].CellView = intView;
+
 					}
 					gridLayout.AddView(intView, elem);
 				}
@@ -265,6 +282,34 @@ namespace MonoDroid.Dialog
 			_instance = null;
 			base.OnDestroy();
 		}
-	}
 
+		protected LayerDrawable getBorders(Color bgColor, Color borderColor,
+								  int left, int top, int right, int bottom)
+		{
+			// Initialize new color drawables
+			ColorDrawable borderColorDrawable = new ColorDrawable(borderColor);
+			ColorDrawable backgroundColorDrawable = new ColorDrawable(bgColor);
+
+			// Initialize a new array of drawable objects
+			Drawable[] drawables = new Drawable[]{
+				borderColorDrawable,
+				backgroundColorDrawable
+		};
+
+			// Initialize a new layer drawable instance from drawables array
+			LayerDrawable layerDrawable = new LayerDrawable(drawables);
+
+			// Set padding for background color layer
+			layerDrawable.SetLayerInset(
+					1, // Index of the drawable to adjust [background color layer]
+					left, // Number of pixels to add to the left bound [left border]
+					top, // Number of pixels to add to the top bound [top border]
+					right, // Number of pixels to add to the right bound [right border]
+					bottom // Number of pixels to add to the bottom bound [bottom border]
+			);
+
+			// Finally, return the one or more sided bordered background drawable
+			return layerDrawable;
+		}
+	}
 }
