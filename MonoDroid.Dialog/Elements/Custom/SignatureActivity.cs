@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Text;
 using Android.Util;
@@ -52,9 +53,12 @@ namespace MonoDroid.Dialog
 		public string Disclaimer;
 		public string SaveButton;
 		private SignaturePadView _signature;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			ActionBar actionBar = ActionBar;
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.Red)); // set your desired color
 			int heightStatusBar = getStatusBarHeight();
 			Display display = WindowManager.DefaultDisplay;
 			Point size = new Point();

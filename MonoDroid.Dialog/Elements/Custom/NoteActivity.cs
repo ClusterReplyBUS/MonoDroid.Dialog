@@ -6,6 +6,8 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -50,6 +52,8 @@ namespace MonoDroid.Dialog
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			ActionBar actionBar = ActionBar;
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#C3231E"))); // set your desired color
 
 			_multiline= new EditText(this);
 			_multiline.Gravity = GravityFlags.Start;

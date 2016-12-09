@@ -59,6 +59,8 @@ namespace MonoDroid.Dialog
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			ActionBar actionBar = ActionBar;
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#C3231E"))); // set your desired color
 
 			Point size = new Point();
 			WindowManager.DefaultDisplay.GetSize(size);
@@ -92,6 +94,7 @@ namespace MonoDroid.Dialog
 					}
 					else if (i == 0)
 					{
+						
 						intView = new TextView(this);
 						intView.LayoutParameters = elem;
 						//intView.SetBackgroundColor(Color.Blue);
@@ -107,11 +110,12 @@ namespace MonoDroid.Dialog
 					{
 						intView = new TextView(this);
 						intView.LayoutParameters = elem;
+						intView.SetMinimumWidth(quarterScreenWidth);
 						//elem.Width = quarterScreenWidth/2;
 						//elem.Height = quarterScreenHeight/2;
 						intView.TextAlignment = TextAlignment.Center;
-						((TextView)intView).Gravity = GravityFlags.CenterHorizontal;
-						//intView.SetBackgroundColor(Color.Blue);
+						((TextView)intView).Gravity = GravityFlags.Center;
+						//intView.SetBackgroundColor(Color.Yellow);
 						intView.Tag = Columns[i - 1].AnswerId.ToString();
 						((TextView)intView).Text = Columns[i - 1].Text;
 						((TextView)intView).SetTextColor(Color.Black);
@@ -144,7 +148,6 @@ namespace MonoDroid.Dialog
 							0, // Right border in pixels
 							1 // Bottom border in pixels
 							);
-
 							elem.Width = quarterScreenWidth;
 							elem.Height = quarterScreenHeight;
 							((EditText)intView).SetTextColor(Color.Black);
@@ -166,8 +169,6 @@ namespace MonoDroid.Dialog
 
 							//((EditText)intView).SetBackgroundDrawable(drawable);
 						}
-
-
 						Source.Rows[j][i].CellView = intView;
 
 					}
