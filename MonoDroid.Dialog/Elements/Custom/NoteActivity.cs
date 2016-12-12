@@ -53,9 +53,9 @@ namespace MonoDroid.Dialog
 		{
 			base.OnCreate(savedInstanceState);
 			ActionBar actionBar = ActionBar;
-			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#C3231E"))); // set your desired color
-
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor(Colors.PrimaryColor))); // set your desired color
 			_multiline= new EditText(this);
+			_multiline.SetPadding(20, 0, 0, 0);
 			_multiline.Gravity = GravityFlags.Start;
 			_multiline.SetMinWidth(100);
 			_multiline.SetBackgroundColor(Android.Graphics.Color.White);

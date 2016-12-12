@@ -60,13 +60,13 @@ namespace MonoDroid.Dialog
 		{
 			base.OnCreate(savedInstanceState);
 			ActionBar actionBar = ActionBar;
-			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#C3231E"))); // set your desired color
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor(Colors.PrimaryColor))); // set your desired color
 
 			Point size = new Point();
 			WindowManager.DefaultDisplay.GetSize(size);
 			int halfScreenWidth = size.X / 2;
 			int quarterScreenWidth = size.X / 4;
-			int quarterScreenHeight = size.Y / 6;
+			int quarterScreenHeight = size.Y / 8;
 			List<GridLayout.Spec> gridRows = new List<GridLayout.Spec>();
 			for (int i = 0; i < Rows.Count + 1; i++)
 				gridRows.Add(GridLayout.InvokeSpec(i));
@@ -94,7 +94,7 @@ namespace MonoDroid.Dialog
 					}
 					else if (i == 0)
 					{
-						
+						elem.SetMargins(5, 0, 0, 0);
 						intView = new TextView(this);
 						intView.LayoutParameters = elem;
 						//intView.SetBackgroundColor(Color.Blue);
@@ -122,6 +122,7 @@ namespace MonoDroid.Dialog
 					}
 					else
 					{
+						elem.SetMargins(10, 0, 0, 0);
 						if (GridType == GridElement.GridAnswerType.Checkbox)
 						{
 							intView = new CheckBox(this);
@@ -142,7 +143,7 @@ namespace MonoDroid.Dialog
 							intView.LayoutParameters = elem;
 							LayerDrawable bottomBorder = getBorders(
 							Color.White, // Background color
-							Color.ParseColor("#C3231E"), // Border color
+							Color.ParseColor(Colors.PrimaryColor), // Border color
 							0, // Left border in pixels
 							0, // Top border in pixels
 							0, // Right border in pixels

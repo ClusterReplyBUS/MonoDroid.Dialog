@@ -83,8 +83,8 @@ namespace MonoDroid.Dialog
 			_signature.ClearLabel.SetHeight(100);
 
 			var _disclaimer = new TextView(this);
-
 			_disclaimer.Text =Disclaimer;
+			_disclaimer.SetPadding(10, 0, 0, 0);
 			_disclaimer.SetTextColor(Color.Black);
 			_disclaimer.SetBackgroundColor(Color.LightGray);
 			_disclaimer.AutoLinkMask = Android.Text.Util.MatchOptions.All;

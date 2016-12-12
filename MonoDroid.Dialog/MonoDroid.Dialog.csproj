@@ -97,6 +97,7 @@
     <Compile Include="Elements\Custom\NoteActivity.cs" />
 
     <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Colors.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />

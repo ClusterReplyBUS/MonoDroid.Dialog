@@ -44,7 +44,8 @@ namespace MonoDroid.Dialog
         
         public virtual string Format(DateTime dt)
         {
-            return dt.ToShortDateString() + " " + dt.ToShortTimeString();
+            //return dt.ToShortDateString() + " " + dt.ToShortTimeString();
+			return NullableDateElementInline.fmt.Format(new Java.Util.Date(NullableDateElementInline.DateTimeToUnixeTimeStamp(dt))) + dt.ToString(" HH:mm");
         }
 
 
@@ -67,18 +68,13 @@ namespace MonoDroid.Dialog
             this.Click = delegate { EditDate(); };
         }
 
-
-        public override string Format(DateTime dt)
-        {
-            return dt.ToShortDateString();
-        }
-
         // the event received when the user "sets" the date in the dialog
         void OnDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
         {
             DateTime current = DateValue;
             DateValue = new DateTime(e.Date.Year, e.Date.Month, e.Date.Day, current.Hour, current.Minute, 0);
-			value.Text = NullableDateElementInline.fmt.Format(new Java.Util.Date(NullableDateElementInline.DateTimeToUnixeTimeStamp(DateValue)));
+			//value.Text = NullableDateElementInline.fmt.Format(new Java.Util.Date(NullableDateElementInline.DateTimeToUnixeTimeStamp(DateValue)));
+			EditTime();
 		}
 
         private void EditDate()
@@ -91,6 +87,26 @@ namespace MonoDroid.Dialog
             }
             DateTime val = DateValue;
 			new DatePickerDialog(context, OnDateSet, val.Year, val.Month - 1, val.Day).Show();	
+		}
+		void OnTimeSet(object sender, TimePickerDialog.TimeSetEventArgs e)
+		{
+			DateTime time = DateValue;
+			DateValue = new DateTime(time.Year, time.Month, time.Day, e.HourOfDay, e.Minute, 0);
+			value.Text = Format(DateValue);
+		
+		}
+
+		private void EditTime()
+		{
+			Context context = GetContext();
+			if (context == null)
+			{
+				Android.Util.Log.Warn("TimeElement", "No Context for Edit");
+				return;
+			}
+			DateTime val = DateValue;
+			// TODO: get the current time setting for thge 24 hour clock
+			new TimePickerDialog(context, OnTimeSet, val.Hour, val.Minute, true).Show();
 
 		}
     }
@@ -119,7 +135,8 @@ namespace MonoDroid.Dialog
         {
             DateTime current = DateValue;
             DateValue = new DateTime(current.Year, current.Month, current.Day, e.HourOfDay, e.Minute, 0);
-        }
+
+		}
 
         private void EditDate()
         {
@@ -133,5 +150,7 @@ namespace MonoDroid.Dialog
             // TODO: get the current time setting for thge 24 hour clock
             new TimePickerDialog(context, OnDateSet, val.Hour, val.Minute, false).Show();
         }
+
+
     }
 }
