@@ -65,8 +65,12 @@ namespace MonoDroid.Dialog
 				Caption += "*";
 			}
 			var view = base.GetView(context, convertView, parent);
+			_toggleButton.SetHighlightColor(Android.Graphics.Color.ParseColor(Colors.PrimaryColor));
+			Console.WriteLine(_toggleButton.HighlightColor); 
 			_toggleButton.TextOn = choices[0].Text;
 			_toggleButton.TextOff = choices[1].Text;
+			_toggleButton.Text = val.Text;
+			_toggleButton.Selected = false;
 			return view;
 		}
 	}

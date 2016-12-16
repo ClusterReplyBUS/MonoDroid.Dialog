@@ -11,7 +11,12 @@ namespace MonoDroid.Dialog
 		protected TextView label, value;
         public DateTime DateValue
         {
-            get { return DateTime.Parse(Value); }
+			get {
+				if (Value.Equals(" ") || Value==null)
+					return DateTime.Now;
+				return DateTime.Parse(Value);
+						
+			}
             set { Value = Format(value); }
         }
 
