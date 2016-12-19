@@ -49,8 +49,9 @@ namespace MonoDroid.Dialog
 		protected string _selectorDoneLabel = "Done";
 		protected string _selectorTakePhotoLabel = "Take photo";
 		protected string _selectorPickImageLabel = "Pick image";
+		protected bool _isReadonly = false;
 
-		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel)
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,bool isReadonly)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this.Base64Value = base64value;
@@ -59,8 +60,9 @@ namespace MonoDroid.Dialog
 				this._selectorPickImageLabel = selectorPickImageLabel;
 			if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
 				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
+			this._isReadonly = isReadonly;
 		}
-		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null)
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,false)
 		{
 		}
 
@@ -72,6 +74,7 @@ namespace MonoDroid.Dialog
 
 			if (view != null)
 			{
+				
 				_caption.Text = Caption;
 				if (Value != null && _imageBtn != null)
 				{
@@ -80,17 +83,31 @@ namespace MonoDroid.Dialog
 
 					int ivWidth = _imageBtn.Width;
 					int ivHeight = _imageBtn.Height;
+					if (ivWidth == 0 && ivHeight == 0)
+					{
+						ivWidth = 100;
+						ivHeight = 100;
+					}
 					int newWidth = ivWidth;
-
 					var newHeight = (int)Math.Floor((double)currentBitmapHeight * ((double)newWidth / (double)currentBitmapWidth));
 
 					Bitmap newbitMap = Bitmap.CreateScaledBitmap(Value, newWidth, newHeight, true);
 					_imageBtn.SetImageBitmap(newbitMap);
+					_caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+
 				}
+
 				if (_imageBtn != null)
 				{
-					_imageBtn.Click -= _imageBtn_Click;
-					_imageBtn.Click += _imageBtn_Click; 
+					if (_isReadonly)
+					{
+						_imageBtn.Enabled = false;
+					}
+					else
+					{
+						_imageBtn.Click -= _imageBtn_Click;
+						_imageBtn.Click += _imageBtn_Click;
+					}
 				}
 			}
 			return view;
@@ -105,6 +122,7 @@ namespace MonoDroid.Dialog
 				if (Value != null && _imageBtn != null)
 				{
 					_imageBtn.SetImageBitmap(Value);
+					_caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 				}
 			};
 			CapturePhotoActivity.Instance.PickImageLabel = _selectorPickImageLabel;

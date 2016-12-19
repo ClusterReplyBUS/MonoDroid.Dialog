@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Widget;
 
 namespace MonoDroid.Dialog
@@ -43,6 +44,11 @@ namespace MonoDroid.Dialog
 			{
 				label.Text = Caption;
 				value.Text = Value;
+				if (!string.IsNullOrWhiteSpace(value.Text) )
+				{
+					value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+					
+				}
 			}
 			return view;
 		}

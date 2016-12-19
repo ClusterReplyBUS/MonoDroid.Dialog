@@ -17,10 +17,13 @@ namespace MonoDroid.Dialog
 		public GridAnswerType GridType { get; set; }
 		public UserSource Source;
 		public string Value { get; set; }
-		public object ValueGrid
-		{
-			get { return Value; }
-		}
+
+		public object ValueGrid { get; set; }
+		//public object ValueGrid
+		//{
+		//	get { return Value; }
+
+		//}
 
 		private string _saveLabel;
 
@@ -99,6 +102,11 @@ namespace MonoDroid.Dialog
 				}
 			}
 			_value.Text = GenerateText();
+			if (!string.IsNullOrEmpty(_value.Text))
+			{
+				_value.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FAFAD2"));
+				
+			}
 			return cell;
 		}
 

@@ -62,7 +62,9 @@ namespace MonoDroid.Dialog
 			if (!(_group is RadioGroup))
 			{
 			_showValue = SelectedChildren.Count.ToString();
+
 			}
+
 
 			var view = base.GetView(context, convertView, parent);
 			return view;

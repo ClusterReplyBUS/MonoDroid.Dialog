@@ -58,7 +58,7 @@ namespace MonoDroid.Dialog
 		{
 			base.OnCreate(savedInstanceState);
 			ActionBar actionBar = ActionBar;
-			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.Red)); // set your desired color
+			actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor(Colors.PrimaryColor))); // set your desired color
 			int heightStatusBar = getStatusBarHeight();
 			Display display = WindowManager.DefaultDisplay;
 			Point size = new Point();

@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Widget;
 
 namespace MonoDroid.Dialog
@@ -18,6 +19,7 @@ namespace MonoDroid.Dialog
 			: base(caption, (int)DroidResources.ElementLayout.dialog_note)
 		{
 			_saveButton = saveLabel;
+			Value = value;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
@@ -30,6 +32,10 @@ namespace MonoDroid.Dialog
 				if (string.IsNullOrEmpty(Value))
 				{
 					_value.Text = string.Empty;
+				}
+				else {
+					_value.Text = Value;
+					_value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 				}
 
 				if (_caption != null)

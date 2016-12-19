@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -329,6 +330,10 @@ namespace MonoDroid.Dialog
 					_caption.Text = Caption;
 
 					_value.Text = radioValue;
+					if (!string.IsNullOrEmpty(radioValue))
+					{ 
+						_value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+					}
 					//this.LongClick += SelectRadio;
 					if (this.Click == null)
 						this.Click += SelectRadio;
@@ -356,6 +361,7 @@ namespace MonoDroid.Dialog
 							continue;
 						}
 					}
+
 				}
 				cell = DroidResources.LoadStringElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
 				if (cell != null)
@@ -369,6 +375,11 @@ namespace MonoDroid.Dialog
 					else
 					{
 						_value.Text = "0";
+					}
+					int cont = int.Parse(_showValue);
+					if (cont >= 1)
+					{ 
+						_value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 					}
 					if (this.Click == null)
 						this.Click += SelectCheckBox;

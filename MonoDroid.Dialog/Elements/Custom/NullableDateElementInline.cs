@@ -12,7 +12,6 @@ namespace MonoDroid.Dialog
 		public NullableDateElementInline(string caption, DateTime? date)
 			: base(caption, date.HasValue ? date.Value : DateTime.Now)
 		{
-			Value = FormatDate(date);
 		}
 
 		public static  DateFormat fmt = DateFormat.GetDateInstance(DateFormat.Medium);
