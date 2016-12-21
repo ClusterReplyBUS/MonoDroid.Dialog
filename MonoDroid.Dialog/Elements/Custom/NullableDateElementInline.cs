@@ -10,14 +10,14 @@ namespace MonoDroid.Dialog
 		public bool IsMandatory { get; set; }
 
 		public NullableDateElementInline(string caption, DateTime? date)
-			: base(caption, date.HasValue ? date.Value : DateTime.Now)
+			: base(caption, date)
 		{
 		}
 
 		public static  DateFormat fmt = DateFormat.GetDateInstance(DateFormat.Medium);
 		public virtual string FormatDate(DateTime? dt)
 		{
-			if (!dt.HasValue)
+			if (!dt.HasValue ||  string.IsNullOrWhiteSpace(dt.Value.ToString()))
 				return " ";
 
 			dt = GetDateWithKind(dt);

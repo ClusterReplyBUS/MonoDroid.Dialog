@@ -15,7 +15,6 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-
 			var view = base.GetView(context, convertView, parent);
 
 			if (this.IsMandatory && _label != null && !_label.Text.EndsWith("*", StringComparison.InvariantCulture))
@@ -23,13 +22,11 @@ namespace MonoDroid.Dialog
 				_label.Text += "*";
 			}
 
-			if (!string.IsNullOrEmpty(this.Value))
+			if (!string.IsNullOrWhiteSpace(Value))
 			{
 				_entry.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 			}
 			return view;
 		}
-
-
 	}
 }
