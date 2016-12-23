@@ -71,9 +71,9 @@ namespace MonoDroid.Dialog
 			_signature = new SignaturePadView(this)
 			{
 				SignatureLineColor = Color.Black,
-				StrokeColor = Color.White,
+				StrokeColor = Color.Black,
 				StrokeWidth = 10f,
-				BackgroundColor = Color.DarkGray,
+				BackgroundColor = Color.White,
 				//LineWidth = 3f
 			};
 			_signature.ClearLabelText = "X";
