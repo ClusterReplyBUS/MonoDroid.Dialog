@@ -8,10 +8,10 @@ namespace MonoDroid.Dialog
 	public class SignatureElement : ButtonElement
 	{
 		public bool IsMandatory { get; set; }
-		private string _title { get; set; }
-		public string SignatureBase64 { 
+		public string SignatureBase64
+		{
 			get
-			{ 
+			{
 				Bitmap image = Value;
 				if (Value != null)
 				{
@@ -28,9 +28,9 @@ namespace MonoDroid.Dialog
 				}
 			}
 			set
-			{ 
+			{
 				byte[] encodedDataAsBytes = Convert.FromBase64String(value);
-				Value=BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
+				Value = BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
 			}
 		}
 
@@ -43,30 +43,27 @@ namespace MonoDroid.Dialog
 		{
 			this._disclaimer = disclaimer;
 			this._savebutton = saveButtonLabel;
-			this._title = caption;
+			Caption = caption;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			if (this.IsMandatory && this._caption != null)
-			{
-				this._caption.Text += "*";
-			}
+			if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+				this.Caption += "*";
+
 			if (this.Click == null)
 			{
 				this.Click += () =>
 				 {
 					 SignatureActivity.Instance.Disclaimer = _disclaimer;
 					 SignatureActivity.Instance.SaveButton = _savebutton;
-					SignatureActivity.Instance.TitleActivity = _title;
+					 SignatureActivity.Instance.TitleActivity = Caption;
 					 SignatureActivity.Instance.SignatureSaved += (sender, e) =>
-				  {
-						 Console.WriteLine("SignatureSaved");
-						 Value = SignatureActivity.Instance.SignatureImage;
-
-					 };
+					  {
+						  Console.WriteLine("Signature has been saved");
+						  Value = SignatureActivity.Instance.SignatureImage;
+					  };
 					 ((Activity)context).StartActivityForResult(typeof(SignatureActivity), 0);
-
 				 };
 			}
 			var view = base.GetView(context, convertView, parent);

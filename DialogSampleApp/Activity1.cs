@@ -35,7 +35,7 @@ namespace DialogSampleApp
 					new Section("Test Header", "Test Footer")
 						{
 					//		new ButtonElement("DialogActivity", () => StartNew()),
-							new PhotoElement("Photo", null),
+							//new PhotoElement("Photo", null),
 							//new StringElement("Do Something", "Foo", () => {
 							//	Console.WriteLine("Did Something");
 							//}),
@@ -50,18 +50,18 @@ namespace DialogSampleApp
 							//new BooleanElement("Push my button", true),
 							//new BooleanElement("Push this too", false),
 						},
-					//new Section("Part II")
-					//	{
-					//		new StringElement("This is the String Element", "The Value"),
-					//		//new CheckboxElement("Check this out", true),
-					//		new EntryElement("Username",""){
-					//			Hint = "Enter Login"
-					//		},
-					//		new EntryElement("Password", "") {
-					//			Hint = "Enter Password",
-					//			Password = true,
-					//		},
-					//	}
+					new Section("Part II")
+						{
+							new StringElement("This is the String Element", "The Value"),
+							//new CheckboxElement("Check this out", true),
+							new EntryElement("Username",""){
+								Hint = "Enter Login"
+							},
+							new EntryElement("Password", "") {
+								Hint = "Enter Password",
+								Password = true,
+							},
+						}
 
 				};
 

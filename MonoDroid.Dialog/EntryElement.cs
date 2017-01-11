@@ -76,7 +76,7 @@ namespace MonoDroid.Dialog
                 if (_entry.Tag != null)
                     _entry.RemoveTextChangedListener((ITextWatcher)_entry.Tag);
 
-                _entry.Text = this.Value;
+				_entry.Text = this.Value ?? String.Empty;
                 _entry.Hint = this.Hint;
 
                 if (this.Password)

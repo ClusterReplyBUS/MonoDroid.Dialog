@@ -33,6 +33,7 @@ namespace MonoDroid.Dialog
 		}
 
 		public GridElement(string caption) : base(caption, (int)DroidResources.ElementLayout.dialog_grid)
+		//public GridElement(string caption) : base(caption, (int)DroidResources.ElementLayout.dialog_root)
 		{
 
 		}
@@ -93,9 +94,11 @@ namespace MonoDroid.Dialog
 						   {
 							   Source = e.Source;
 							   _value.Text = GenerateText();
-							   _caption.SetBackgroundColor(Android.Graphics.Color.ParseColor("#ffded5d5"));
+							   if (!string.IsNullOrEmpty(_value.Text))
+							   {
+								   _value.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FAFAD2"));
+							   }
 						   };
-
 
 						   ((Activity)context).StartActivity(typeof(GridActivity));
 					   };
@@ -105,7 +108,7 @@ namespace MonoDroid.Dialog
 			if (!string.IsNullOrEmpty(_value.Text))
 			{
 				_value.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FAFAD2"));
-				
+
 			}
 			return cell;
 		}

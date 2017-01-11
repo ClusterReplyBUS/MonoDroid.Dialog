@@ -69,7 +69,7 @@ namespace MonoDroid.Dialog
 			int quarterScreenHeight = size.Y / 8;
 			List<GridLayout.Spec> gridRows = new List<GridLayout.Spec>();
 			for (int i = 0; i < Rows.Count + 1; i++)
-				gridRows.Add(GridLayout.InvokeSpec(i));
+				gridRows.Add(GridLayout.InvokeSpec(i,  GridLayout.Center));
 			List<GridLayout.Spec> gridCols = new List<GridLayout.Spec>();
 			for (int j = 0; j < Columns.Count + 1; j++)
 				gridCols.Add(GridLayout.InvokeSpec(j));
@@ -82,8 +82,10 @@ namespace MonoDroid.Dialog
 				for (int j = 0; j < Rows.Count + 1; j++)
 				{
 					View intView = null;
+					//GridLayout.LayoutParams elem = new GridLayout.LayoutParams(gridRows[j], gridCols[i]);
 					GridLayout.LayoutParams elem = new GridLayout.LayoutParams(gridRows[j], gridCols[i]);
 					elem.SetMargins(0, 0, 10, 0);
+					elem.SetGravity(GravityFlags.CenterHorizontal);
 					if (i == 0 && j == 0)
 					{
 						intView = new TextView(this);
@@ -126,6 +128,8 @@ namespace MonoDroid.Dialog
 						if (GridType == GridElement.GridAnswerType.Checkbox)
 						{
 							intView = new CheckBox(this);
+							intView.TextAlignment = TextAlignment.Center;
+							((CheckBox)intView).Gravity = GravityFlags.Center;
 							intView.LayoutParameters = elem;
 							elem.Width = quarterScreenWidth;
 							elem.Height = quarterScreenHeight;
@@ -140,6 +144,7 @@ namespace MonoDroid.Dialog
 						else if (GridType == GridElement.GridAnswerType.Text || GridType == GridElement.GridAnswerType.Number)
 						{
 							intView = new EditText(this);
+							((EditText)intView).Gravity = GravityFlags.Center;
 							intView.LayoutParameters = elem;
 							LayerDrawable bottomBorder = getBorders(
 							Color.White, // Background color
@@ -227,7 +232,7 @@ namespace MonoDroid.Dialog
 						if (row.CellView is EditText)
 						{
 							row.Caption = ((EditText)row.CellView).Text;
-							row.Checked = true;
+							row.Checked = !string.IsNullOrWhiteSpace(((EditText)row.CellView).Text);
 						}
 						else
 						{
