@@ -5,6 +5,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.App;
+using Android.Views.InputMethods;
 
 namespace MonoDroid.Dialog
 {
@@ -59,7 +60,6 @@ namespace MonoDroid.Dialog
 		protected TextView _label;
 		protected string _val;
 		protected Action _entryClicked { get;set; }
-		
 
         public override View GetView(Context context, View convertView, ViewGroup parent)
 		{
@@ -89,8 +89,8 @@ namespace MonoDroid.Dialog
                 // continuation of crazy ass hack, stash away the listener value so we can look it up later
                 _entry.Tag = this;
                 _entry.AddTextChangedListener(this);
-
-                _label.Text = (_label != null) ? Caption: string.Empty;
+				_label.Text = (_label != null) ? Caption: string.Empty;
+				_entry.FocusChange += _entry_FocusChange;
             }
 			/*this.Click += () =>
 			{
@@ -109,6 +109,7 @@ namespace MonoDroid.Dialog
 					entryDialog.Show();
 				}
 			};*/
+			
 			return view;
 		}
 
@@ -133,17 +134,24 @@ namespace MonoDroid.Dialog
 
         public void AfterTextChanged(IEditable s)
         {
-			Console.Write("foo");
+			//Console.Write("foo");
             // nothing needed
         }
 
         public void BeforeTextChanged(Java.Lang.ICharSequence s, int start, int count, int after)
         {
-			Console.Write("foo");
+			//Console.Write("foo");
             // nothing needed
         }
 
-
-
+		void _entry_FocusChange(object sender, Android.Views.View.FocusChangeEventArgs e)
+		{
+			var view = sender as Android.Views.View;
+			if (!e.HasFocus)
+			{
+				Android.Views.InputMethods.InputMethodManager imm = (Android.Views.InputMethods.InputMethodManager)view.Context.GetSystemService(Android.Content.Context.InputMethodService);
+				imm.HideSoftInputFromWindow(view.WindowToken, 0);
+			}
+		}
 	}
 }

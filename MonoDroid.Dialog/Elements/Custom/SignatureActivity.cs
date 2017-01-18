@@ -25,6 +25,7 @@ namespace MonoDroid.Dialog
 				this.Disclaimer = _instance.Disclaimer;
 				this.SaveButton = _instance.SaveButton;
 				this.TitleActivity = _instance.TitleActivity;
+				this.SignatureImage = _instance.SignatureImage;
 			}
 			_instance = this;
 		}
@@ -39,14 +40,14 @@ namespace MonoDroid.Dialog
 		}
 		public Bitmap SignatureImage { get; set; }
 
-		public event EventHandler SignatureSaved;
+		public event EventHandler<BitmapEventArgs> SignatureSaved;
 		public string TitleActivity { get; set; }
 
-		private void OnSignatureSaved()
+		private void OnSignatureSaved(Bitmap signature)
 		{
 			if (SignatureSaved != null)
 			{
-				SignatureSaved(this, null);
+				SignatureSaved(this, new BitmapEventArgs(signature));
 			}
 		}
 
@@ -72,7 +73,7 @@ namespace MonoDroid.Dialog
 			{
 				SignatureLineColor = Color.Black,
 				StrokeColor = Color.Black,
-				StrokeWidth = 10f,
+				StrokeWidth = 5f,
 				BackgroundColor = Color.White,
 				//LineWidth = 3f
 			};
@@ -126,8 +127,19 @@ namespace MonoDroid.Dialog
 			switch (item.ItemId)
 			{
 				case Resource.Id.action_done:
-					SignatureImage = _signature.GetImage();
-					OnSignatureSaved();
+					if (!_signature.IsBlank)
+					{
+						var img=_signature.GetImage();
+						
+						Bitmap.Config conf = Bitmap.Config.Argb8888; // see other conf types
+						Bitmap bmp = Bitmap.CreateBitmap(img.Width, img.Height, conf); // this creates a MUTABLE bitmap
+						bmp.EraseColor(Color.White);
+						Canvas canvas = new Canvas(bmp);
+						canvas.DrawBitmap(img, 0, 0, null);
+						//SignatureImage.EraseColor(Color.Green);
+						SignatureImage = bmp;
+						OnSignatureSaved(SignatureImage);
+					}
 					Finish();
 					break;
 
@@ -136,7 +148,6 @@ namespace MonoDroid.Dialog
 					Finish();
 					break;
 			}
-
 			return base.OnOptionsItemSelected(item);
 		}
 
@@ -158,5 +169,7 @@ namespace MonoDroid.Dialog
 			}
 			return result;
 		}
+
+
 	}
 }

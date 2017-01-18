@@ -15,7 +15,7 @@ namespace MonoDroid.Dialog
 		private string _title { get; set; }
 		public Bitmap Value { get; set;}
 		public bool Mandatory { get; set; }
-		
+
 		public string Base64Value
 		{
 			get
@@ -74,7 +74,9 @@ namespace MonoDroid.Dialog
 
 			if (view != null)
 			{
-				
+				if (this.Mandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+					this.Caption += "*";
+
 				_caption.Text = Caption;
 				if (Value != null && _imageBtn != null)
 				{
@@ -128,7 +130,7 @@ namespace MonoDroid.Dialog
 			CapturePhotoActivity.Instance.PickImageLabel = _selectorPickImageLabel;
 			CapturePhotoActivity.Instance.TakePhotoLabel = _selectorTakePhotoLabel;
 			CapturePhotoActivity.Instance.ShowSelector = _showSelector;
-			
+
 			((Android.App.Activity)_context).StartActivity(typeof(CapturePhotoActivity));
 		}
 	}

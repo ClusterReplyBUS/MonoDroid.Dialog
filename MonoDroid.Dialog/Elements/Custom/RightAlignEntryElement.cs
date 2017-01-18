@@ -28,5 +28,7 @@ namespace MonoDroid.Dialog
 			}
 			return view;
 		}
+
+
 	}
 }

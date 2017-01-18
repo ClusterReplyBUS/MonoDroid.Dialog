@@ -1,13 +1,22 @@
 ﻿using System;
 using System.IO;
 using Android.App;
+using Android.Content;
 using Android.Graphics;
+using Android.Views;
+using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	public class SignatureElement : ButtonElement
+	public class SignatureElement : Element
 	{
-		public bool IsMandatory { get; set; }
+		private TextView _caption;
+		private ImageButton _imageBtn;
+		private string _disclaimer;
+		private string _savebutton;
+		protected bool _isReadonly = false;
+
+		public bool Mandatory { get; set; }
 		public string SignatureBase64
 		{
 			get
@@ -17,7 +26,8 @@ namespace MonoDroid.Dialog
 				{
 					using (var mem = new MemoryStream())
 					{
-						image.Compress(Bitmap.CompressFormat.Jpeg, 20, mem);
+						image.Compress(Bitmap.CompressFormat.Jpeg, 100, mem);
+
 						byte[] byteArray = mem.ToArray();
 						return Convert.ToBase64String(byteArray);
 					}
@@ -35,39 +45,82 @@ namespace MonoDroid.Dialog
 		}
 
 		public new Bitmap Value { get; set; }
-		private string _disclaimer;
-		private string _savebutton;
 
 		public SignatureElement(string caption, string disclaimer, string saveButtonLabel)
-			: base(caption, null)
+			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this._disclaimer = disclaimer;
 			this._savebutton = saveButtonLabel;
 			Caption = caption;
 		}
 
-		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
+		private Context _context;
+		public override View GetView(Context context, View convertView, ViewGroup parent)
 		{
-			if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
-				this.Caption += "*";
+			_context = context;
+			View view = DroidResources.LoadPhotoElementLayout(context, convertView, parent, LayoutId, out _caption, out _imageBtn);
 
-			if (this.Click == null)
+			if (view != null)
 			{
-				this.Click += () =>
-				 {
-					 SignatureActivity.Instance.Disclaimer = _disclaimer;
-					 SignatureActivity.Instance.SaveButton = _savebutton;
-					 SignatureActivity.Instance.TitleActivity = Caption;
-					 SignatureActivity.Instance.SignatureSaved += (sender, e) =>
-					  {
-						  Console.WriteLine("Signature has been saved");
-						  Value = SignatureActivity.Instance.SignatureImage;
-					  };
-					 ((Activity)context).StartActivityForResult(typeof(SignatureActivity), 0);
-				 };
+				if (this.Mandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+					this.Caption += "*";
+
+				_caption.Text = Caption;
+				if (Value != null && _imageBtn != null)
+				{
+					int currentBitmapWidth = Value.Width;
+					int currentBitmapHeight = Value.Height;
+
+					int ivWidth = _imageBtn.Width;
+					int ivHeight = _imageBtn.Height;
+					if (ivWidth == 0 && ivHeight == 0)
+					{
+						ivWidth = 100;
+						ivHeight = 100;
+					}
+					int newWidth = ivWidth;
+					var newHeight = (int)Math.Floor((double)currentBitmapHeight * ((double)newWidth / (double)currentBitmapWidth));
+
+					Bitmap newbitMap = Bitmap.CreateScaledBitmap(Value, newWidth, newHeight, true);
+					_imageBtn.SetImageBitmap(newbitMap);
+					_caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+				}
+
+				if (_imageBtn != null)
+				{
+					if (_isReadonly)
+					{
+						_imageBtn.Enabled = false;
+					}
+					else
+					{
+						_imageBtn.Click -= _imageBtn_Click;
+						_imageBtn.Click += _imageBtn_Click;
+					}
+				}
 			}
-			var view = base.GetView(context, convertView, parent);
 			return view;
+		}
+
+		void _imageBtn_Click(object s, EventArgs ea)
+		{
+			SignatureActivity.Instance.Disclaimer = _disclaimer;
+			SignatureActivity.Instance.SaveButton = _savebutton;
+			SignatureActivity.Instance.TitleActivity = Caption;
+			SignatureActivity.Instance.SignatureSaved += (sender, e) =>
+			 {
+				 Console.WriteLine("Signature has been saved");
+				 //Value = SignatureActivity.Instance.SignatureImage;
+				 Value = e.Value;
+				 if (Value != null && _imageBtn != null)
+				 {
+					// _imageBtn.SetBackgroundColor(Color.White);
+					 _imageBtn.SetImageBitmap(Value);
+					
+					 _caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+				 }
+			 };
+			((Activity)_context).StartActivityForResult(typeof(SignatureActivity), 0);
 		}
 	}
 }
