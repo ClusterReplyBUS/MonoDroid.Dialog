@@ -32,7 +32,8 @@ namespace MonoDroid.Dialog
 				}
 				else
 				{
-					return string.Empty;
+					return null;	
+				//	return string.Empty;
 				}
 			}
 			set
@@ -42,6 +43,7 @@ namespace MonoDroid.Dialog
 					byte[] encodedDataAsBytes = Convert.FromBase64String(value);
 					Value = BitmapFactory.DecodeByteArray(encodedDataAsBytes, 0, encodedDataAsBytes.Length);
 				}
+
 				}
 		}
 
@@ -125,6 +127,10 @@ namespace MonoDroid.Dialog
 				{
 					_imageBtn.SetImageBitmap(Value);
 					_caption.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
+				}
+				else if (Value == null)
+				{
+					_imageBtn.SetImageBitmap(Value);
 				}
 			};
 			CapturePhotoActivity.Instance.PickImageLabel = _selectorPickImageLabel;

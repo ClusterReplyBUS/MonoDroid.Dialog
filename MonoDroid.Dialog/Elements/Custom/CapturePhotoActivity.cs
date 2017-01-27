@@ -175,6 +175,11 @@ namespace MonoDroid.Dialog
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Layout.Menu, menu);
+			var cle=menu.Add(Menu.None,200,0,"Clear");
+			cle.SetShowAsActionFlags(ShowAsAction.WithText| ShowAsAction.Always);
+				
+	
+			//System.Console.WriteLine("CLEAR ID:   " + cle.ItemId);
 			return true;
 		}
 
@@ -195,6 +200,12 @@ namespace MonoDroid.Dialog
 				case Android.Resource.Id.Home: //Tasto Back con Freccia laterale a sinistra
 					Finish();
 					break;
+					
+				case 200:
+					_image = null;
+					OnSave(_image);
+					Finish();
+					break;
 			}
 			return base.OnOptionsItemSelected(item);
 		}
@@ -202,16 +213,17 @@ namespace MonoDroid.Dialog
 
 		private void OnSave(Bitmap source)
 		{
-			if (Save != null)
-			{
+			//if (Save != null)
+			//{
 				Save(this, new BitmapEventArgs(source));
-			}
+			//}
 		}
 		protected override void OnDestroy()
 		{
 			_instance = null;
 			base.OnDestroy();
 		}
+
 
 	}
 
