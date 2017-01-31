@@ -52,8 +52,9 @@ namespace MonoDroid.Dialog
 		protected string _selectorTakePhotoLabel = "Take photo";
 		protected string _selectorPickImageLabel = "Pick image";
 		protected bool _isReadonly = false;
+		protected string _deleteButton = "";
 
-		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,bool isReadonly)
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,string deletebutton,bool isReadonly)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this.Base64Value = base64value;
@@ -62,9 +63,11 @@ namespace MonoDroid.Dialog
 				this._selectorPickImageLabel = selectorPickImageLabel;
 			if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
 				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
+			if (!string.IsNullOrWhiteSpace(deletebutton))
+				this._deleteButton = deletebutton;
 			this._isReadonly = isReadonly;
 		}
-		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,false)
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,null,false)
 		{
 		}
 
@@ -136,7 +139,7 @@ namespace MonoDroid.Dialog
 			CapturePhotoActivity.Instance.PickImageLabel = _selectorPickImageLabel;
 			CapturePhotoActivity.Instance.TakePhotoLabel = _selectorTakePhotoLabel;
 			CapturePhotoActivity.Instance.ShowSelector = _showSelector;
-
+			CapturePhotoActivity.Instance.DeleteButtonLabel = _deleteButton;
 			((Android.App.Activity)_context).StartActivity(typeof(CapturePhotoActivity));
 		}
 	}

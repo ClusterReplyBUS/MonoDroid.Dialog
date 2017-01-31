@@ -36,6 +36,7 @@ namespace MonoDroid.Dialog
 				this.ShowSelector = _instance.ShowSelector;
 				this.TakePhotoLabel = _instance.TakePhotoLabel;
 				this.PickImageLabel = _instance.PickImageLabel;
+				this.DeleteButtonLabel = _instance.DeleteButtonLabel;
 			}
 			_instance = this;
 		}
@@ -70,7 +71,9 @@ namespace MonoDroid.Dialog
 		public string TitleActivity { get; set; }
 		public string TakePhotoLabel { get; set; }
 		public string PickImageLabel { get; set; }
-		
+		public string DeleteButtonLabel { get; set; }
+
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -175,7 +178,7 @@ namespace MonoDroid.Dialog
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
 			inflater.Inflate(Resource.Layout.Menu, menu);
-			var cle=menu.Add(Menu.None,200,0,"Clear");
+			var cle=menu.Add(Menu.None,200,0,DeleteButtonLabel);
 			cle.SetShowAsActionFlags(ShowAsAction.WithText| ShowAsAction.Always);
 				
 	
