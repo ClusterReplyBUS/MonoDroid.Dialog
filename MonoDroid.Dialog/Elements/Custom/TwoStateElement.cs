@@ -9,7 +9,7 @@ namespace MonoDroid.Dialog
 	{
 		//public object Tag { get; set; }
 
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 
 		TwoStateChoice val;
 		List<TwoStateChoice> choices;

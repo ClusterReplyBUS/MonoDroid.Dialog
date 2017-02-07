@@ -6,7 +6,7 @@ namespace MonoDroid.Dialog
 {
 	public class RightAlignEntryElement : EntryElement
 	{
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 		public RightAlignEntryElement(string caption, string placeholder, string value)
 			: base(caption, placeholder, value)
 		{

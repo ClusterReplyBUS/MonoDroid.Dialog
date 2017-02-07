@@ -12,7 +12,7 @@ namespace MonoDroid.Dialog
 		private Dictionary<object, ElementType> _selectedChilds;
 		private Color _defaultColor;
 
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 
 		public ElementType SelectedChild
 		{

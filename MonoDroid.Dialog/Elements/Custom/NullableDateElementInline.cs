@@ -7,7 +7,7 @@ namespace MonoDroid.Dialog
 {
 	public class NullableDateElementInline : DateElement
 	{
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 
 		public NullableDateElementInline(string caption, DateTime? date)
 			: base(caption, date)

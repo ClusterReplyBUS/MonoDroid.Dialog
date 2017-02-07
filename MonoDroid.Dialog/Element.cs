@@ -24,7 +24,9 @@ namespace MonoDroid.Dialog
 			Caption = caption;
 			LayoutId = layoutId;
 		}
-
+		///s.agostini
+		public bool IsMandatory { get; set; }
+		
 		/// <summary>
 		///  The caption to display for this given element
 		/// </summary>

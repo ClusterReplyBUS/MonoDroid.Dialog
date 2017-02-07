@@ -14,7 +14,7 @@ namespace MonoDroid.Dialog
 
 		private string _title { get; set; }
 		public Bitmap Value { get; set;}
-		public bool Mandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 
 		public string Base64Value
 		{
@@ -79,7 +79,7 @@ namespace MonoDroid.Dialog
 
 			if (view != null)
 			{
-				if (this.Mandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+				if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					this.Caption += "*";
 
 				_caption.Text = Caption;

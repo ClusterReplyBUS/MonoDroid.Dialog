@@ -8,7 +8,7 @@ namespace MonoDroid.Dialog
 {
 	public class SelectableMultilineEntryElement : Element
 	{
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 		private TextView _caption;
 		private TextView _value;
 		public string Value { get; set; }

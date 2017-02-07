@@ -6,7 +6,7 @@ namespace MonoDroid.Dialog
 		public string Placeholder { get; set; }
 
 		protected string val;
-		public bool IsMandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 
 		public MultilineEntryElement(string caption, string value) : this(caption, "", value)
 		{

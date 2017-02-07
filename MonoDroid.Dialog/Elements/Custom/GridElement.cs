@@ -11,7 +11,7 @@ namespace MonoDroid.Dialog
 {
 	public class GridElement : Element
 	{
-		public bool Mandatory { get; set; }
+		//public bool IsMandatory { get; set; }
 		public List<GridHeader> Rows { get; set; }
 		public List<GridHeader> Columns { get; set; }
 		public GridAnswerType GridType { get; set; }
@@ -47,7 +47,7 @@ namespace MonoDroid.Dialog
 			var cell = DroidResources.LoadGridElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
 			if (cell != null)
 			{
-				if (Mandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+				if (IsMandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					Caption += "*";
 				_caption.Text = Caption;
 				if (this.Click == null)
