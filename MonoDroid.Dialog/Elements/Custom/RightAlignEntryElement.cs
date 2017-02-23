@@ -1,5 +1,8 @@
 ﻿using System;
+using Android.Content;
 using Android.Graphics;
+using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 
 namespace MonoDroid.Dialog
@@ -26,9 +29,38 @@ namespace MonoDroid.Dialog
 			{
 				_entry.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 			}
+
+
+
+				
+
 			return view;
 		}
 
+		//protected override void changeStatusItem(View item)
+		//{
+		//	//var p = ((ViewGroup)view).FocusedChild;
+		//	if (item != null)
+		//	{
+		//		item.FocusChange += View_FocusChange;
+		//	}
 
+		//	//item.SetBackgroundColor(Color.Green);
+		//}
+
+		//void View_FocusChange(object sender, View.FocusChangeEventArgs e)
+		//{
+		//	var view = sender as Android.Views.View;
+		//	if (e.HasFocus)
+		//	{
+		//		var inputMethodManager = view.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+		//		inputMethodManager.ShowSoftInput(view,ShowFlags.Forced);
+		//	}
+		//	if(!e.HasFocus)
+		//	{
+		//		var inputMethodManager = view.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+		//		inputMethodManager.HideSoftInputFromWindow(view.WindowToken, 0);
+		//	}
+		//}
 	}
 }
