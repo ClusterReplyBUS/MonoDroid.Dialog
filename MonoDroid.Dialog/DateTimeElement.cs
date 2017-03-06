@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -16,7 +17,11 @@ namespace MonoDroid.Dialog
 			{
 				if (Value.Equals(" ") || Value == null)
 					return null;
-				return DateTime.Parse(Value);
+				string format = "dd MMM yyyy HH:mm";
+				DateTime res;
+				DateTime.TryParseExact(Value, format,
+									   CultureInfo.InvariantCulture, DateTimeStyles.None, out res);
+				return res;
 			}
 			set { Value = Format(value); }
 		}
