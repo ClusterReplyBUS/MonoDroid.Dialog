@@ -96,7 +96,6 @@
 
     <Compile Include="Elements\Custom\NoteActivity.cs" />
 
-    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Colors.cs" />
     <Compile Include="Elements\Custom\SignatureElement %28old%29.cs" />
   </ItemGroup>
