@@ -18,9 +18,10 @@ namespace MonoDroid.Dialog
 				if (Value.Equals(" ") || Value == null)
 					return null;
 				string format = "dd MMM yyyy HH:mm";
-				DateTime res;
-				DateTime.TryParseExact(Value, format,
-									   CultureInfo.InvariantCulture, DateTimeStyles.None, out res);
+                DateTime res;
+                ParseDate(Value, out res);
+				//DateTime.TryParseExact(Value, format,
+                                       //CultureInfo.InvariantCulture, DateTimeStyles.None, out res);
 				return res;
 			}
 			set { Value = Format(value); }
@@ -29,7 +30,7 @@ namespace MonoDroid.Dialog
 		public DateTimeElement(string caption, DateTime? date)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_date)
 		{
-			DateValue = date;
+            DateValue = date;
 		}
 
 		public DateTimeElement(string caption, DateTime date, int layoutId)
@@ -71,7 +72,18 @@ namespace MonoDroid.Dialog
 			return " ";
 		}
 
-
+        private DateTime? ParseDate(string date, out DateTime newDate)
+        {
+            newDate = DateTime.MinValue;
+            foreach (CultureInfo cultureInfo in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            {
+                if (DateTime.TryParse(date, cultureInfo, DateTimeStyles.None, out newDate))
+                {
+                    return newDate;
+                }
+            }
+            return null;
+        }
 
 	}
 
@@ -187,6 +199,6 @@ namespace MonoDroid.Dialog
 				new TimePickerDialog(context, OnDateSet, val.Value.Hour, val.Value.Minute, false).Show();
 		}
 
-
+       
 	}
 }

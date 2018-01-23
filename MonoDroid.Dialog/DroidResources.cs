@@ -35,6 +35,7 @@ namespace MonoDroid.Dialog
 			dialog_grid,
 			dialog_note,
 			dialog_date,
+
         }
 
         public static View LoadFloatElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out SeekBar slider, out ImageView left, out ImageView right)

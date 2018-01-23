@@ -44,6 +44,21 @@
     <Reference Include="SignaturePad">
       <HintPath>..\..\..\TFS_GIT\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Controls.SignaturePad.1.4.0\lib\MonoAndroid\SignaturePad.dll</HintPath>
     </Reference>
+    <Reference Include="FastAndroidCamera">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\FastAndroidCamera.2.0.0\lib\MonoAndroid403\FastAndroidCamera.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXing.Net.Mobile.Core">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\ZXing.Net.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\ZXingNetMobile.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingContext.cs" />
@@ -98,6 +113,9 @@
 
     <Compile Include="Colors.cs" />
     <Compile Include="Elements\Custom\SignatureElement %28old%29.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Elements\Custom\ScanCodeElement.cs" />
+    <Compile Include="Elements\Custom\ScanCodeActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />

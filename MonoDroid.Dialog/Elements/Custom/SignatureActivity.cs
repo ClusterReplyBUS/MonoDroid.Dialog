@@ -170,6 +170,6 @@ namespace MonoDroid.Dialog
 			return result;
 		}
 
-
+       
 	}
 }
