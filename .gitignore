@@ -16,7 +16,6 @@ Thumbs.db
 *.7z
 *.dmg
 *.gz
-*.iso
 *.jar
 *.rar
 *.tar
@@ -24,4 +23,3 @@ Thumbs.db
 **/*.pidb
 .DS_Store
 
-MonoDroid.Dialog/Resources/Resource.designer.cs
