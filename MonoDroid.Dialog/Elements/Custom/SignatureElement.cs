@@ -109,7 +109,6 @@ namespace MonoDroid.Dialog
 			SignatureActivity.Instance.TitleActivity = Caption;
 			SignatureActivity.Instance.SignatureSaved += (sender, e) =>
 			 {
-				 Console.WriteLine("Signature has been saved");
 				 //Value = SignatureActivity.Instance.SignatureImage;
 				 Value = e.Value;
 				 if (Value != null && _imageBtn != null)

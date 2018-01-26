@@ -412,7 +412,6 @@ namespace MonoDroid.Dialog
 			dialog.SetMultiChoiceItems(items.Keys.ToArray(), items.Values.ToArray(), (sender, e) =>
 			{
 				OnChildSelected(e.Which);
-				Console.WriteLine("SetMultiChoiceItems");
 			});
 			dialog.SetTitle(this.Caption);
 			dialog.SetNegativeButton("Cancel", this);

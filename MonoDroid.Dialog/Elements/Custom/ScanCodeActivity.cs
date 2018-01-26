@@ -1,7 +1,12 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
+using Android.Graphics;
 using Android.OS;
+using Android.Views;
+using Android.Widget;
 using ZXing.Mobile;
+using static Android.Support.V4.Widget.DrawerLayout;
 
 namespace MonoDroid.Dialog
 {
@@ -49,12 +54,41 @@ namespace MonoDroid.Dialog
             base.OnCreate(savedInstanceState);
 
             _scanner = new MobileBarcodeScanner();
+            _scanner.UseCustomOverlay = true;
 
+          
+            _scanner.AutoFocus();
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Context.LayoutInflaterService);
+            var layout = inflater.Inflate(Resource.Layout.custom_scanner,null);
+
+            Button flash = ((Button)layout.FindViewById(Resource.Id.buttonZxingFlash));
+            flash.Click+= (sender, e) => {
+                
+                _scanner.ToggleTorch();
+                if (_scanner.IsTorchOn)
+                {
+                    flash.SetText("Flash Off",TextView.BufferType.Normal);
+                }
+                else
+                {
+                    flash.SetText("Flash On", TextView.BufferType.Normal);
+                }
+            };
+
+            var cancel = layout.FindViewById(Resource.Id.buttonZxingCancel);
+            cancel.Click += (sender, e) => {
+
+                _scanner.Cancel();
+            };
+         
+            _scanner.CustomOverlay = layout;
             var result = await _scanner.Scan();
-
             if (result != null)
             {
+                
                 OnScannerSaved(result.Text);
+                _instance = null;
                 Finish();
             }
         }
@@ -73,10 +107,6 @@ namespace MonoDroid.Dialog
             return base.OnKeyDown(keyCode, e);
         }
 
-
-
-
-
         public override void OnAttachedToWindow()
         {
             base.OnAttachedToWindow();
@@ -84,7 +114,13 @@ namespace MonoDroid.Dialog
 
         }
 
-
+     
+      
+        private int ConvertPixelsToDp(float pixelValue)
+        {
+            var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
+            return dp;
+        }
 
         public class ScannerEventArgs : EventArgs
         {

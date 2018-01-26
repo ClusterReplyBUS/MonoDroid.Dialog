@@ -116,6 +116,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Elements\Custom\ScanCodeElement.cs" />
     <Compile Include="Elements\Custom\ScanCodeActivity.cs" />
+    <Compile Include="CustomOverlay.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />
@@ -125,6 +126,7 @@
     <AndroidResource Include="Resources\layout\signature.axml" />
     <AndroidResource Include="Resources\layout\Photo.axml" />
     <AndroidResource Include="Resources\layout\Menu.xml" />
+    <AndroidResource Include="Resources\layout\custom_scanner.axml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
