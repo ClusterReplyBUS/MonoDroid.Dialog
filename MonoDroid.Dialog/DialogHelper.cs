@@ -7,7 +7,7 @@ using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	public class DialogHelper
+    public class DialogHelper
 	{
 		private Context context;
 		private RootElement formLayer;
@@ -29,7 +29,16 @@ namespace MonoDroid.Dialog
 			dialogView.ItemLongClick += ListView_ItemLongClick; ;
 			dialogView.Tag = root;
 			dialogView.Recycler += DialogView_Recycler;
-
+      
+            dialogView.ScrollStateChanged += (sender, e) => {
+                if(e.ScrollState==0){
+                    InputMethodManager imm = (InputMethodManager)e.View.Context.GetSystemService(Android.Content.Context.InputMethodService);
+                    imm.HideSoftInputFromWindow(e.View.WindowToken, 0);
+                }
+            };
+            //InputMethodManager inputMethodManager = context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+            //inputMethodManager.ShowSoftInput(dialogView, ShowFlags.Forced);
+            //inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
 		}
 
 		void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
@@ -50,9 +59,13 @@ namespace MonoDroid.Dialog
 			{
 				elem.Selected();
 			}
+            //InputMethodManager inputMethodManager = e.View.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+            //inputMethodManager.ShowSoftInput(e.View, ShowFlags.Forced);
+            //inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
 		}
 
-		public void ReloadData()
+
+        public void ReloadData()
 		{
 			if (Root == null)
 			{
@@ -75,5 +88,9 @@ namespace MonoDroid.Dialog
 				}
 			}
 		}
+
+
+
+
 	}
 }

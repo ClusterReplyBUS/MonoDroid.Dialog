@@ -95,8 +95,16 @@ namespace MonoDroid.Dialog
 
         protected override void OnResume()
         {
-            Finish();
-            base.OnResume();
+            try{
+               Finish(); 
+            }
+            catch{
+              Finish();  
+            }
+            finally{
+                base.OnResume();
+
+            }
         }
         public override bool OnKeyDown(Android.Views.Keycode keyCode, Android.Views.KeyEvent e)
         {

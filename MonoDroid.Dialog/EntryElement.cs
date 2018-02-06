@@ -106,6 +106,7 @@ namespace MonoDroid.Dialog
 				_entry.AddTextChangedListener(this);
 				_label.Text = (_label != null) ? Caption : string.Empty;
 
+
 			}
 
 			/*this.Click += () =>
@@ -198,15 +199,16 @@ namespace MonoDroid.Dialog
 
 		void _entry_FocusChange(object sender, View.FocusChangeEventArgs e)
 		{
-			var view = sender as Android.Views.View;
-			if (!e.HasFocus)
-			{
-				var inputMethodManager = view.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
-				inputMethodManager.HideSoftInputFromWindow(view.WindowToken, 0);
-			}
+            if (((int)Android.OS.Build.VERSION.SdkInt)==19) // Versione 4.4 (KitKat)
+            {
+                var view = sender as Android.Views.View;
+                if (!e.HasFocus)
+                {
+                    var inputMethodManager = view.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+                    inputMethodManager.HideSoftInputFromWindow(view.WindowToken, 0);
+                }   
+            }	
 		}
-
-	
 	}
 }
 
