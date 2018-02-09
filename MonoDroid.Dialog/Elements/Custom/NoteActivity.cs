@@ -11,11 +11,12 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 
 namespace MonoDroid.Dialog
 {
-	[Activity(Label = "NoteActivity")]
+    [Activity(Label = "NoteActivity",WindowSoftInputMode = SoftInput.StateVisible)]
 
 	public class NoteActivity : Activity
 	{
@@ -64,7 +65,18 @@ namespace MonoDroid.Dialog
 			{
 			_multiline.Text = TextNote;
 			}
+   //         else
+   //         {
+   //             _multiline.RequestFocus();
+
+
+   //         }
 			SetContentView(_multiline);
+            //if (_multiline.HasFocus)
+            //{
+            //    var inputMethodManager = Window.Context.GetSystemService(Context.InputMethodService) as InputMethodManager;
+            //    inputMethodManager.ShowSoftInput(_multiline, ShowFlags.Forced);
+            //}
 			// Create your application here
 		}
 
