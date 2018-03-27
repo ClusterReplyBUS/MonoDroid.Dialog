@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 using Android.Graphics;
 using Android.Media;
@@ -37,6 +38,7 @@ public static class BitmapHelpers
 		catch (IOException e)
 		{
 			System.Console.WriteLine(e.Message + e.StackTrace);
+            return null;
 		}
 
 		int orientation = 0;

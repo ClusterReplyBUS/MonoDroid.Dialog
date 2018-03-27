@@ -113,24 +113,22 @@
 
     <Compile Include="Colors.cs" />
     <Compile Include="Elements\Custom\SignatureElement %28old%29.cs" />
-    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Elements\Custom\ScanCodeElement.cs" />
     <Compile Include="Elements\Custom\ScanCodeActivity.cs" />
     <Compile Include="CustomOverlay.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\" />
     <Folder Include="Elements\Custom\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\signature.axml" />
-    <AndroidResource Include="Resources\layout\Photo.axml" />
-    <AndroidResource Include="Resources\layout\Menu.xml" />
-    <AndroidResource Include="Resources\layout\custom_scanner.axml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="packages.config" />
+    <None Include="Resources\layout\signature.axml" />
+    <None Include="Resources\layout\Photo.axml" />
+    <None Include="Resources\layout\custom_scanner.axml" />
+    <None Include="Resources\layout\Menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="signature-pad">

@@ -111,43 +111,41 @@ namespace MonoDroid.Dialog
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
-			inflater.Inflate(Resource.Layout.Menu, menu);
+            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
 			return true;
 		}
 
 		public override bool OnPrepareOptionsMenu(IMenu menu)
 		{
-			var btnDone = menu.FindItem(Resource.Id.action_done);
+            var btnDone = menu.FindItem(MonoDroid.Dialog.Resource.Id.action_done);
+            if (btnDone==null)
+                btnDone = menu.FindItem(BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName));
 			btnDone.SetTitle(SaveButton);
 			return true;
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			switch (item.ItemId)
-			{
-				case Resource.Id.action_done:
-					if (!_signature.IsBlank)
-					{
-						var img=_signature.GetImage();
-						
-						Bitmap.Config conf = Bitmap.Config.Argb8888; // see other conf types
-						Bitmap bmp = Bitmap.CreateBitmap(img.Width, img.Height, conf); // this creates a MUTABLE bitmap
-						bmp.EraseColor(Color.White);
-						Canvas canvas = new Canvas(bmp);
-						canvas.DrawBitmap(img, 0, 0, null);
-						//SignatureImage.EraseColor(Color.Green);
-						SignatureImage = bmp;
-						OnSignatureSaved(SignatureImage);
-					}
-					Finish();
-					break;
+            if (item.ItemId == MonoDroid.Dialog.Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
+            {
+                if (!_signature.IsBlank)
+                {
+                    var img = _signature.GetImage();
 
-				case Android.Resource.Id.Home: //Tasto Back con Freccia laterale a sinistra
-
+                    Bitmap.Config conf = Bitmap.Config.Argb8888; // see other conf types
+                    Bitmap bmp = Bitmap.CreateBitmap(img.Width, img.Height, conf); // this creates a MUTABLE bitmap
+                    bmp.EraseColor(Color.White);
+                    Canvas canvas = new Canvas(bmp);
+                    canvas.DrawBitmap(img, 0, 0, null);
+                    //SignatureImage.EraseColor(Color.Green);
+                    SignatureImage = bmp;
+                    OnSignatureSaved(SignatureImage);
+                }
+                Finish();
+            }
+            else if(item.ItemId==  Android.Resource.Id.Home) //Tasto Back con Freccia laterale a sinistra
 					Finish();
-					break;
-			}
+			
 			return base.OnOptionsItemSelected(item);
 		}
 

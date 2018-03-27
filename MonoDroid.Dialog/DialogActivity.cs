@@ -50,5 +50,7 @@ namespace MonoDroid.Dialog
 			this.Dialog.ReloadData();
 			
 		}
+
+
 	}	
 }

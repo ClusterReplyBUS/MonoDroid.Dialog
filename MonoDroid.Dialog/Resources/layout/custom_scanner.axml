@@ -35,13 +35,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:layout_weight="0.5" />
-<!-- <View
-       android:id="@+id/SplitLine_hor1"
-       android:layout_width="match_parent"
-       android:layout_height= "2dp"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-       android:background="#FF0000" />-->
     <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"

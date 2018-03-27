@@ -13,7 +13,9 @@ using Android.Media;
 using Android.OS;
 using Android.Provider;
 using Android.Runtime;
+using Android.Support.V4;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using Java.IO;
@@ -65,6 +67,7 @@ namespace MonoDroid.Dialog
         }
 
         protected File _file;
+        protected File _fileMajorAndroid;
         protected File _dir;
         protected Bitmap _image;
 
@@ -147,11 +150,30 @@ namespace MonoDroid.Dialog
                    {
                        Intent intent = new Intent(MediaStore.ActionImageCapture);
 
-                       _file = new File(_dir, String.Format("dialogPhoto_{0}.jpg", Guid.NewGuid()));
+                        //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
+                       if (((int)Android.OS.Build.VERSION.SdkInt) >= 24)
+                       {
+                           Uri photoURI = FileProvider.GetUriForFile(ApplicationContext,
+                                                                     "it.reply.cluster.cnhi.lead_capture.cert.fileprovider",
+                                                                                  createImageFile());
+                            intent.PutExtra(MediaStore.ExtraOutput,photoURI);
 
-                       intent.PutExtra(MediaStore.ExtraOutput, Uri.FromFile(_file));
+                       }
+                       else
+                       {
+                            _file = new File(_dir, String.Format("dialogPhoto_{0}.jpg", Guid.NewGuid()));
+                           intent.PutExtra(MediaStore.ExtraOutput, _file);
+
+                       }
+
+                       // Uri apkUri = FileProvider.GetUriForFile(ApplicationContext, ApplicationContext.ApplicationContext.PackageName, _file);
+
+                       //ApplicationContext.GrantUriPermission(ApplicationContext.ApplicationContext.PackageName, apkUri, ActivityFlags.GrantWriteUriPermission);
+
+
 
                        StartActivityForResult(intent, (int)RequestType.TakePhoto);
+                       //  ApplicationContext.RevokeUriPermission(apkUri,ActivityFlags.GrantWriteUriPermission);
                    }
                };
                 takePhotoBtn.SetWidth(width);
@@ -197,6 +219,24 @@ namespace MonoDroid.Dialog
             }
         }
 
+        private File createImageFile()
+        {
+            // Create an image file name
+            String imageFileName = String.Format("dialogPhoto_{0}", Guid.NewGuid());
+            File storageDir = new File(Environment.GetExternalStoragePublicDirectory(
+                Environment.DirectoryPictures), "MonoDroid.Dialog");
+            File image = File.CreateTempFile(
+                    imageFileName,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+
+            // Save a file: path for use with ACTION_VIEW intents
+            var mpathImage = "file:" + image.AbsolutePath;
+            _fileMajorAndroid = image;
+            return image;
+        }
+
         private bool IsThereAnAppToTakePictures()
         {
             Intent intent = new Intent(MediaStore.ActionImageCapture);
@@ -221,12 +261,20 @@ namespace MonoDroid.Dialog
             //var imageView = FindViewById<ImageView>(BaseContext.Resources.GetIdentifier("selectedImage", "id", BaseContext.PackageName));
             int height = Resources.DisplayMetrics.HeightPixels;
             int width = imageView.Height;
-
+            File newFile = null;
+            if(_fileMajorAndroid!=null)
+            {
+                newFile = _fileMajorAndroid;
+            }
+            if(_file!=null)
+            {
+                newFile = _file;
+            }
             // Make it available in the gallery
             if (requestCode == (int)RequestType.TakePhoto)
             {
                 Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
-                Uri picturePath = Uri.FromFile(_file);
+                Uri picturePath = Uri.FromFile(newFile);
                 mediaScanIntent.SetData(picturePath);
                 SendBroadcast(mediaScanIntent);
 
@@ -234,7 +282,7 @@ namespace MonoDroid.Dialog
                 // Loading the full sized image will consume to much memory 
                 // and cause the application to crash.
 
-                _image = _file.Path.LoadAndResizeBitmap(width, height);
+                _image = newFile.Path.LoadAndResizeBitmap(width, height);
                 if (_image != null)
                 {
                     imageView.SetImageBitmap(_image);
@@ -255,7 +303,9 @@ namespace MonoDroid.Dialog
         {
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             MenuInflater inflater = MenuInflater;
-            inflater.Inflate(Resource.Layout.Menu, menu);
+            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+
+    
             var cle = menu.Add(Menu.None, 200, 0, DeleteButtonLabel);
             cle.SetShowAsActionFlags(ShowAsAction.WithText | ShowAsAction.Always);
 
@@ -271,22 +321,20 @@ namespace MonoDroid.Dialog
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch (item.ItemId)
+            if (item.ItemId == MonoDroid.Dialog.Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
             {
-                case Resource.Id.action_done:
-                    OnSave(_image);
-                    Finish();
-                    break;
-
-                case Android.Resource.Id.Home: //Tasto Back con Freccia laterale a sinistra
-                    Finish();
-                    break;
-
-                case 200:
-                    _image = null;
-                    OnSave(_image);
-                    Finish();
-                    break;
+                OnSave(_image);
+                Finish();
+            }
+            else if (item.ItemId == Android.Resource.Id.Home) //Tasto Back con Freccia laterale a sinistra
+            {
+                Finish();
+            }
+            else if (item.ItemId == 200) //Tasto Back con Freccia laterale a sinistra
+            {
+                _image = null;
+                OnSave(_image);
+                Finish();
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -312,6 +360,7 @@ namespace MonoDroid.Dialog
                 return true;
             return false;
         }
+
 
         private bool WriteExternalStoragePermission()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -56,19 +57,24 @@ namespace MonoDroid.Dialog
             _scanner = new MobileBarcodeScanner();
             _scanner.UseCustomOverlay = true;
 
-          
+
             _scanner.AutoFocus();
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Context.LayoutInflaterService);
-            var layout = inflater.Inflate(Resource.Layout.custom_scanner,null);
-
-            Button flash = ((Button)layout.FindViewById(Resource.Id.buttonZxingFlash));
-            flash.Click+= (sender, e) => {
-                
+            Console.WriteLine("INFLATER : " + inflater);
+            var layout = inflater.Inflate(MonoDroid.Dialog.Resource.Layout.custom_scanner, null);
+            Console.WriteLine("LAYOUT : " + layout);
+            var flash = ((Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingFlash));
+            if (flash == null)
+            {
+                flash = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingFlash", "id", BaseContext.PackageName));
+            }
+            flash.Click += (sender, e) =>
+            {
                 _scanner.ToggleTorch();
                 if (_scanner.IsTorchOn)
                 {
-                    flash.SetText("Flash Off",TextView.BufferType.Normal);
+                    flash.SetText("Flash Off", TextView.BufferType.Normal);
                 }
                 else
                 {
@@ -76,17 +82,28 @@ namespace MonoDroid.Dialog
                 }
             };
 
-            var cancel = layout.FindViewById(Resource.Id.buttonZxingCancel);
-            cancel.Click += (sender, e) => {
-
+            var cancel = (Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingCancel);
+            if (cancel == null)
+            {
+                cancel = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingCancel", "id", BaseContext.PackageName));
+            }
+            cancel.Click += (sender, e) =>
+            {
                 _scanner.Cancel();
             };
-         
+
             _scanner.CustomOverlay = layout;
-            var result = await _scanner.Scan();
+            MobileBarcodeScanningOptions option = new MobileBarcodeScanningOptions();
+            option.TryHarder = true;
+            option.TryInverted = true;
+            //option.PossibleFormats = new List<ZXing.BarcodeFormat>()
+            //{
+            //   // ZXing.BarcodeFormat.
+            //};
+            var result = await _scanner.Scan(option);
             if (result != null)
             {
-                
+
                 OnScannerSaved(result.Text);
                 _instance = null;
                 Finish();
@@ -95,17 +112,21 @@ namespace MonoDroid.Dialog
 
         protected override void OnResume()
         {
-            try{
-               Finish(); 
+            try
+            {
+                Finish();
             }
-            catch{
-              Finish();  
+            catch
+            {
+                Finish();
             }
-            finally{
+            finally
+            {
                 base.OnResume();
 
             }
         }
+
         public override bool OnKeyDown(Android.Views.Keycode keyCode, Android.Views.KeyEvent e)
         {
             if (e.KeyCode == Android.Views.Keycode.Back || e.KeyCode == Android.Views.Keycode.Home)
@@ -122,8 +143,8 @@ namespace MonoDroid.Dialog
 
         }
 
-     
-      
+
+
         private int ConvertPixelsToDp(float pixelValue)
         {
             var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
