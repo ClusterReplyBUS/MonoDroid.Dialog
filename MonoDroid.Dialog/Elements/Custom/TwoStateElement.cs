@@ -70,6 +70,7 @@ namespace MonoDroid.Dialog
 			{
 				Caption += "*";
 			}
+
 			var view = base.GetView(context, convertView, parent);
 			_toggleButton.SetHighlightColor(Android.Graphics.Color.ParseColor(Colors.PrimaryColor));
 			_toggleButton.TextOn = choices[0].Text;

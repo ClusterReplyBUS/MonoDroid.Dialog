@@ -329,7 +329,10 @@ namespace MonoDroid.Dialog
 				{
 					_caption.Text = Caption;
 
-					_value.Text = radioValue;
+                    if (this.IsMissing)
+                        _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                    _value.Text = radioValue;
 					if (!string.IsNullOrEmpty(radioValue))
 					{ 
 						_value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));

@@ -15,11 +15,12 @@ namespace MonoDroid.Dialog
 		private Context _context { get; set; }
 		private string _saveButton { get; set; }
 
-		public SelectableMultilineEntryElement(string caption, string value, string saveLabel)
+		public SelectableMultilineEntryElement(string caption,bool isMandatory, string value, string saveLabel)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_note)
 		{
 			_saveButton = saveLabel;
 			Value = value;
+            IsMandatory = isMandatory;
 		}
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
@@ -28,8 +29,19 @@ namespace MonoDroid.Dialog
 			var view = DroidResources.LoadNoteElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
 			if (view != null)
 			{
-				_caption.Text = Caption;
-				if (string.IsNullOrEmpty(Value))
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                _caption.Text = Caption;
+                if (IsMandatory && !_caption.Text.EndsWith("*"))
+                {
+                    _caption.Text = _caption.Text + "*";
+                }
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor("#db0000"));
+
+                if (string.IsNullOrEmpty(Value))
 				{
 					_value.Text = string.Empty;
 				}

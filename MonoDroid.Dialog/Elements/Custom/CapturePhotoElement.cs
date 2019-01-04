@@ -82,7 +82,10 @@ namespace MonoDroid.Dialog
 				if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					this.Caption += "*";
 
-				_caption.Text = Caption;
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                _caption.Text = Caption;
 				if (Value != null && _imageBtn != null)
 				{
 					int currentBitmapWidth = Value.Width;

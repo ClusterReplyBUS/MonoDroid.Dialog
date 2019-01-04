@@ -70,6 +70,10 @@ namespace MonoDroid.Dialog
             if (view != null)
             {
                 _caption.Text = Caption;
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
                 _toggleButton = toggleButtonView as ToggleButton;
                 _toggleButton.SetOnCheckedChangeListener(null);
                 _toggleButton.Checked = Value;

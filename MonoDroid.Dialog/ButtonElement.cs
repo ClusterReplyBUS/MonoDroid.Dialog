@@ -1,6 +1,7 @@
 using System;
 
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -19,7 +20,11 @@ namespace MonoDroid.Dialog
 			Button button;
 			var view = DroidResources.LoadButtonLayout (context, convertView, parent, LayoutId, out button);
 			if (view != null) {
-				button.Text = Caption;
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                button.Text = Caption;
 				if (Click != null)
 				{
 					button.Click += delegate { Click(); };

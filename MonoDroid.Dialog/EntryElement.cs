@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.App;
 using Android.Views.InputMethods;
 using System.Collections.Generic;
+using Android.Graphics;
 
 namespace MonoDroid.Dialog
 {
@@ -106,10 +107,13 @@ namespace MonoDroid.Dialog
 				_entry.AddTextChangedListener(this);
 				_label.Text = (_label != null) ? Caption : string.Empty;
 
+                if (this.IsMissing)
+                    _label.SetTextColor(Color.ParseColor(Colors.MissingRed));
 
-			}
 
-			/*this.Click += () =>
+            }
+
+            /*this.Click += () =>
 			{
 				if (_entry != null)
 				{
@@ -127,23 +131,23 @@ namespace MonoDroid.Dialog
 				}
 			};*/
 
-			//if (((int)Android.OS.Build.VERSION.SdkInt)==21 ||( (int)Android.OS.Build.VERSION.SdkInt)== 22)
-			//{
-			//	for (int i = 0; i < ((ViewGroup)view).ChildCount; i++)
-			//	{
-			//		var item = ((ViewGroup)view).GetChildAt(i);
+            //if (((int)Android.OS.Build.VERSION.SdkInt)==21 ||( (int)Android.OS.Build.VERSION.SdkInt)== 22)
+            //{
+            //	for (int i = 0; i < ((ViewGroup)view).ChildCount; i++)
+            //	{
+            //		var item = ((ViewGroup)view).GetChildAt(i);
 
-			//		item.Click += delegate
-			//		{
-			//			item.RequestFocus();
-			//			changeStatusItem(item);
-			//		};
+            //		item.Click += delegate
+            //		{
+            //			item.RequestFocus();
+            //			changeStatusItem(item);
+            //		};
 
-			//	}
-			//}
-			//else
+            //	}
+            //}
+            //else
 
-			if (((int)Android.OS.Build.VERSION.SdkInt) < 21 || ((int)Android.OS.Build.VERSION.SdkInt) > 22)
+            if (((int)Android.OS.Build.VERSION.SdkInt) < 21 || ((int)Android.OS.Build.VERSION.SdkInt) > 22)
 			{
 				_entry.FocusChange += _entry_FocusChange;
 			}

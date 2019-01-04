@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
@@ -47,7 +48,11 @@ namespace MonoDroid.Dialog
 			var cell = DroidResources.LoadGridElementLayout(context, convertView, parent, LayoutId, out _caption, out _value);
 			if (cell != null)
 			{
-				if (IsMandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor("#db0000"));
+
+                if (IsMandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					Caption += "*";
 				_caption.Text = Caption;
 				if (this.Click == null)

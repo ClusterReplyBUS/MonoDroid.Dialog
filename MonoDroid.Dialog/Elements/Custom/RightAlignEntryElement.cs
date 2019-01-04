@@ -25,7 +25,10 @@ namespace MonoDroid.Dialog
 				_label.Text += "*";
 			}
 
-			if (!string.IsNullOrWhiteSpace(Value))
+            if (this.IsMissing)
+                _label.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+            if (!string.IsNullOrWhiteSpace(Value))
 			{
 				_entry.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
 			}

@@ -62,7 +62,11 @@ namespace MonoDroid.Dialog
 
 			if (view != null)
 			{
-				if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					this.Caption += "*";
 
 				_caption.Text = Caption;

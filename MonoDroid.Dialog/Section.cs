@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Orientation = Android.Widget.Orientation;
@@ -366,7 +367,10 @@ namespace MonoDroid.Dialog
 
 			view.Text = this.Caption;
 
-			return view;
+            if (this.IsMissing)
+                view.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+            return view;
 		}
 
         /// Enumerator to get all the elements in the Section.

@@ -150,18 +150,18 @@ namespace MonoDroid.Dialog
                    {
                        Intent intent = new Intent(MediaStore.ActionImageCapture);
 
-                        //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
+                       //https://inthecheesefactory.com/blog/how-to-share-access-to-file-with-fileprovider-on-android-nougat/en
                        if (((int)Android.OS.Build.VERSION.SdkInt) >= 24)
                        {
                            Uri photoURI = FileProvider.GetUriForFile(ApplicationContext,
                                                                      "it.reply.cluster.cnhi.lead_capture.cert.fileprovider",
                                                                                   createImageFile());
-                            intent.PutExtra(MediaStore.ExtraOutput,photoURI);
+                           intent.PutExtra(MediaStore.ExtraOutput, photoURI);
 
                        }
                        else
                        {
-                            _file = new File(_dir, String.Format("dialogPhoto_{0}.jpg", Guid.NewGuid()));
+                           _file = new File(_dir, String.Format("dialogPhoto_{0}.jpg", Guid.NewGuid()));
                            intent.PutExtra(MediaStore.ExtraOutput, _file);
 
                        }
@@ -193,14 +193,7 @@ namespace MonoDroid.Dialog
                 }
                 AddContentView(layout, new ViewGroup.LayoutParams(width, height));
 
-                string[] permissions = new string[] { Manifest.Permission.Camera, Manifest.Permission.WriteExternalStorage };
-                foreach (var permission in permissions)
-                {
-                    if (Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, permission) != (int)Permission.Granted)
-                    {
-                        ActivityCompat.RequestPermissions(this, permissions, 1001);
-                    }
-                }
+
                 //if (Android.Support.V4.Content.ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != (int)Permission.Granted)
                 //{
                 //    // Permission has never been accepted

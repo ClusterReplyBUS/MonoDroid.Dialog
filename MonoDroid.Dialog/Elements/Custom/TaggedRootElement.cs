@@ -55,7 +55,7 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-			if (this.IsMandatory && this.Caption != null && !this.Caption.EndsWith("*", StringComparison.InvariantCulture))
+            if (this.IsMandatory && this.Caption != null && !this.Caption.EndsWith("*", StringComparison.InvariantCulture))
 			{
 				this.Caption += "*";
 			}

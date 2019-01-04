@@ -49,7 +49,10 @@ namespace MonoDroid.Dialog
 
 			caption.Text = NormalCaption;
 
-			caption.SetTextColor(Color.Yellow);
+            if (this.IsMissing)
+                caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+            caption.SetTextColor(Color.Yellow);
 			caption.SetTypeface(tf,TypefaceStyle.Bold);
 			caption.TextAlignment = Alignment;
 			return base.GetView(context, convertView, parent);

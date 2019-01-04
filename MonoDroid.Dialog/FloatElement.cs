@@ -80,6 +80,10 @@ namespace MonoDroid.Dialog
                         label.Text = Caption;
                     else
                         label.Visibility = ViewStates.Gone;
+
+                    if (this.IsMissing)
+                        label.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
                 }
             }
             else

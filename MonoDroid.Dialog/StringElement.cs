@@ -7,7 +7,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Android.Runtime;
-
+using Android.Graphics;
 
 namespace MonoDroid.Dialog
 {
@@ -67,7 +67,11 @@ namespace MonoDroid.Dialog
             if (view != null)
             {
                 _caption.Text = Caption;
-				_caption.TextSize = FontSize;
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+                _caption.TextSize = FontSize;
                 _text.Text = Value;
 				_text.TextSize = FontSize;
 				if (Click != null)

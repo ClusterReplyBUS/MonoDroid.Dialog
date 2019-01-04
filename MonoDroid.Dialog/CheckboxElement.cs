@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -89,6 +90,10 @@ namespace MonoDroid.Dialog
             View view = DroidResources.LoadBooleanElementLayout(context, convertView, parent, LayoutId, out _caption, out _subCaption, out checkboxView);
             if (view != null)
             {
+
+                if (this.IsMissing)
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
                 _caption.Text = Caption;
                 _checkbox = checkboxView as CheckBox;
 				_checkbox.SetOnCheckedChangeListener(null);

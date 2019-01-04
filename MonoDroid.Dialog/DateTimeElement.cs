@@ -53,13 +53,16 @@ namespace MonoDroid.Dialog
                 if (!string.IsNullOrWhiteSpace(value.Text))
                 {
                     value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));
-
                 }
+
                 if (this.IsMandatory && Caption != null && !Caption.EndsWith("*", StringComparison.InvariantCulture))
                 {
                     this.Caption += "*";
                     label.Text = Caption;
                 }
+
+                if (this.IsMissing)
+                    label.SetTextColor(Color.ParseColor(Colors.MissingRed));
             }
             return view;
         }

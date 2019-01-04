@@ -7,7 +7,7 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using SignaturePad;
+using Xamarin.Controls;
 
 namespace MonoDroid.Dialog
 {

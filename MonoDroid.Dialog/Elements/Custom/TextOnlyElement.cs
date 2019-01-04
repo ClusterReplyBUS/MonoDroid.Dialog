@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -20,8 +21,12 @@ namespace MonoDroid.Dialog
 			if (view != null)
 			{
 				captionView.Text = Caption;
-			}
-			return view;
+
+                if (this.IsMissing)
+                    captionView.SetTextColor(Color.ParseColor(Colors.MissingRed));
+
+            }
+            return view;
 		}
 
 		//public override nfloat GetHeight(UITableView tableView, NSIndexPath indexPath)

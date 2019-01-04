@@ -11,8 +11,7 @@
     <RootNamespace>MonoDroid.Dialog</RootNamespace>
     <AssemblyName>MonoDroid.Dialog</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,23 +40,108 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="SignaturePad">
-      <HintPath>..\..\..\TFS_GIT\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Controls.SignaturePad.1.4.0\lib\MonoAndroid\SignaturePad.dll</HintPath>
-    </Reference>
     <Reference Include="FastAndroidCamera">
       <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\FastAndroidCamera.2.0.0\lib\MonoAndroid403\FastAndroidCamera.dll</HintPath>
     </Reference>
-    <Reference Include="ZXing.Net.Mobile.Core">
-      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\ZXing.Net.Mobile.Core.dll</HintPath>
+    <Reference Include="Xamarin.Android.Support.Annotations">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Annotations.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.portable">
-      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\zxing.portable.dll</HintPath>
+    <Reference Include="Java.Interop" />
+    <Reference Include="Xamarin.Android.Arch.Core.Common">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Common.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Core.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ZXingNetMobile">
-      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.3.2\lib\MonoAndroid403\ZXingNetMobile.dll</HintPath>
+    <Reference Include="Xamarin.Android.Arch.Core.Runtime">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Runtime.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Lifecycle.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.LiveData.Core">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.Core.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.LiveData">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Lifecycle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.ViewModel">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.ViewModel.1.1.1\lib\monoandroid90\Xamarin.Android.Arch.Lifecycle.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Collections">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Collections.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.CursorAdapter">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CursorAdapter.28.0.0\lib\monoandroid90\Xamarin.Android.Support.CursorAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.DocumentFile">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DocumentFile.28.0.0\lib\monoandroid90\Xamarin.Android.Support.DocumentFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Interpolator">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Interpolator.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Interpolator.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.LocalBroadcastManager">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.LocalBroadcastManager.28.0.0\lib\monoandroid90\Xamarin.Android.Support.LocalBroadcastManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Print">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Print.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Print.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.VersionedParcelable">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.VersionedParcelable.28.0.0\lib\monoandroid90\Xamarin.Android.Support.VersionedParcelable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Compat">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Compat.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.AsyncLayoutInflater">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.AsyncLayoutInflater.28.0.0\lib\monoandroid90\Xamarin.Android.Support.AsyncLayoutInflater.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.CustomView">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CustomView.28.0.0\lib\monoandroid90\Xamarin.Android.Support.CustomView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.CoordinaterLayout">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CoordinaterLayout.28.0.0\lib\monoandroid90\Xamarin.Android.Support.CoordinaterLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.DrawerLayout">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DrawerLayout.28.0.0\lib\monoandroid90\Xamarin.Android.Support.DrawerLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Loader">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Loader.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.Utils">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.Utils.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Core.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Media.Compat">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Media.Compat.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Media.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.SlidingPaneLayout">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SlidingPaneLayout.28.0.0\lib\monoandroid90\Xamarin.Android.Support.SlidingPaneLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.SwipeRefreshLayout">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SwipeRefreshLayout.28.0.0\lib\monoandroid90\Xamarin.Android.Support.SwipeRefreshLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.ViewPager">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.ViewPager.28.0.0\lib\monoandroid90\Xamarin.Android.Support.ViewPager.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.UI">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.UI.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Fragment">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Fragment.28.0.0\lib\monoandroid90\Xamarin.Android.Support.Fragment.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.v4.28.0.0\lib\monoandroid90\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="SignaturePad">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Controls.SignaturePad.3.0.0\lib\MonoAndroid\SignaturePad.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXing.Net.Mobile.Core">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.4.1\lib\MonoAndroid71\ZXing.Net.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.portable">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.4.1\lib\MonoAndroid71\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="ZXingNetMobile">
+      <HintPath>..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\ZXing.Net.Mobile.2.4.1\lib\MonoAndroid71\ZXingNetMobile.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -137,4 +221,33 @@
     </XamarinComponentReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Annotations.28.0.0\build\monoandroid90\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Annotations.28.0.0\build\monoandroid90\Xamarin.Android.Support.Annotations.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Common.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Common.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Core.Common.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Runtime.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Core.Runtime.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Core.Runtime.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Core.Runtime.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.Core.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.Core.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.Core.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.Core.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.LiveData.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.LiveData.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.Runtime.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.ViewModel.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.ViewModel.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Arch.Lifecycle.ViewModel.1.1.1\build\monoandroid90\Xamarin.Android.Arch.Lifecycle.ViewModel.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Collections.28.0.0\build\monoandroid90\Xamarin.Android.Support.Collections.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Collections.28.0.0\build\monoandroid90\Xamarin.Android.Support.Collections.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CursorAdapter.28.0.0\build\monoandroid90\Xamarin.Android.Support.CursorAdapter.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CursorAdapter.28.0.0\build\monoandroid90\Xamarin.Android.Support.CursorAdapter.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DocumentFile.28.0.0\build\monoandroid90\Xamarin.Android.Support.DocumentFile.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DocumentFile.28.0.0\build\monoandroid90\Xamarin.Android.Support.DocumentFile.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Interpolator.28.0.0\build\monoandroid90\Xamarin.Android.Support.Interpolator.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Interpolator.28.0.0\build\monoandroid90\Xamarin.Android.Support.Interpolator.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.LocalBroadcastManager.28.0.0\build\monoandroid90\Xamarin.Android.Support.LocalBroadcastManager.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.LocalBroadcastManager.28.0.0\build\monoandroid90\Xamarin.Android.Support.LocalBroadcastManager.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Print.28.0.0\build\monoandroid90\Xamarin.Android.Support.Print.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Print.28.0.0\build\monoandroid90\Xamarin.Android.Support.Print.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.VersionedParcelable.28.0.0\build\monoandroid90\Xamarin.Android.Support.VersionedParcelable.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.VersionedParcelable.28.0.0\build\monoandroid90\Xamarin.Android.Support.VersionedParcelable.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Compat.28.0.0\build\monoandroid90\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Compat.28.0.0\build\monoandroid90\Xamarin.Android.Support.Compat.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.AsyncLayoutInflater.28.0.0\build\monoandroid90\Xamarin.Android.Support.AsyncLayoutInflater.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.AsyncLayoutInflater.28.0.0\build\monoandroid90\Xamarin.Android.Support.AsyncLayoutInflater.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CustomView.28.0.0\build\monoandroid90\Xamarin.Android.Support.CustomView.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CustomView.28.0.0\build\monoandroid90\Xamarin.Android.Support.CustomView.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CoordinaterLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.CoordinaterLayout.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.CoordinaterLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.CoordinaterLayout.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DrawerLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.DrawerLayout.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.DrawerLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.DrawerLayout.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Loader.28.0.0\build\monoandroid90\Xamarin.Android.Support.Loader.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Loader.28.0.0\build\monoandroid90\Xamarin.Android.Support.Loader.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.Utils.28.0.0\build\monoandroid90\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.Utils.28.0.0\build\monoandroid90\Xamarin.Android.Support.Core.Utils.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Media.Compat.28.0.0\build\monoandroid90\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Media.Compat.28.0.0\build\monoandroid90\Xamarin.Android.Support.Media.Compat.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SlidingPaneLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.SlidingPaneLayout.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SlidingPaneLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.SlidingPaneLayout.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SwipeRefreshLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.SwipeRefreshLayout.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.SwipeRefreshLayout.28.0.0\build\monoandroid90\Xamarin.Android.Support.SwipeRefreshLayout.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.ViewPager.28.0.0\build\monoandroid90\Xamarin.Android.Support.ViewPager.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.ViewPager.28.0.0\build\monoandroid90\Xamarin.Android.Support.ViewPager.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.UI.28.0.0\build\monoandroid90\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Core.UI.28.0.0\build\monoandroid90\Xamarin.Android.Support.Core.UI.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Fragment.28.0.0\build\monoandroid90\Xamarin.Android.Support.Fragment.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.Fragment.28.0.0\build\monoandroid90\Xamarin.Android.Support.Fragment.targets')" />
+  <Import Project="..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.v4.28.0.0\build\monoandroid90\Xamarin.Android.Support.v4.targets" Condition="Exists('..\..\..\TFS_Git\CNHI_LeadCapture\Reply.CNHI.LeadCapture.Mobile\packages\Xamarin.Android.Support.v4.28.0.0\build\monoandroid90\Xamarin.Android.Support.v4.targets')" />
 </Project>
