@@ -50,7 +50,7 @@ namespace MonoDroid.Dialog
 			{
 
                 if (this.IsMissing)
-                    _caption.SetTextColor(Color.ParseColor("#db0000"));
+                    _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
 
                 if (IsMandatory && !string.IsNullOrWhiteSpace(Caption) && !Caption.EndsWith("*", StringComparison.InvariantCulture))
 					Caption += "*";
