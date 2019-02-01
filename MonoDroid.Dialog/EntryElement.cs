@@ -109,8 +109,7 @@ namespace MonoDroid.Dialog
 
                 if (this.IsMissing)
                     _label.SetTextColor(Color.ParseColor(Colors.MissingRed));
-
-
+                _label.Invalidate();
             }
 
             /*this.Click += () =>

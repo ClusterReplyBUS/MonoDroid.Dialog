@@ -111,9 +111,10 @@ namespace MonoDroid.Dialog
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
-            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+            //inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+            inflater.Inflate(2130903115, menu);
 			return true;
-		}
+        }
 
 		public override bool OnPrepareOptionsMenu(IMenu menu)
 		{
