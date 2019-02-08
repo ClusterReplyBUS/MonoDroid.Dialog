@@ -247,7 +247,7 @@ namespace MonoDroid.Dialog
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             MenuInflater inflater = MenuInflater;
             //var LeadCapture = Reply.CNHI.LeadCapture.Mobile;
-            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+            inflater.Inflate(Resource.Layout.Menu, menu);
             return true;
         }
 
@@ -258,7 +258,7 @@ namespace MonoDroid.Dialog
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == MonoDroid.Dialog.Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
+            if (item.ItemId == Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
             {
                 CheckGridForSave();
                 OnSave(Source);

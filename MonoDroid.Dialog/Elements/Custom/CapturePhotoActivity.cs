@@ -315,7 +315,7 @@ namespace MonoDroid.Dialog
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == MonoDroid.Dialog.Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
+            if (item.ItemId == Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
             {
                 OnSave(_image);
                 Finish();

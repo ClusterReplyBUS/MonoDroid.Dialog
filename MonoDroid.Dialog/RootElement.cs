@@ -370,8 +370,10 @@ namespace MonoDroid.Dialog
 				if (cell != null)
 				{
 					_caption.Text = Caption;
+                    if (this.IsMissing)
+                        _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
 
-					if (_showValue != "0")
+                    if (_showValue != "0")
 					{
 						_value.Text = _showValue;
 					}

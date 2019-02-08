@@ -7,7 +7,6 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Xamarin.Controls;
 
 namespace MonoDroid.Dialog
 {
@@ -53,7 +52,7 @@ namespace MonoDroid.Dialog
 
 		public string Disclaimer;
 		public string SaveButton;
-		private SignaturePadView _signature;
+		private Xamarin.Controls.SignaturePadView _signature { get; set; }
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -68,8 +67,7 @@ namespace MonoDroid.Dialog
 			int height = (size.Y)-(int)(heightStatusBar*1.1);
 
 
-
-			_signature = new SignaturePadView(this)
+            _signature = new Xamarin.Controls.SignaturePadView(this)
 			{
 				SignatureLineColor = Color.Black,
 				StrokeColor = Color.Black,
@@ -111,8 +109,8 @@ namespace MonoDroid.Dialog
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
-            //inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
-            inflater.Inflate(2130903115, menu);
+            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+            //inflater.Inflate(2130903115, menu);
 			return true;
         }
 

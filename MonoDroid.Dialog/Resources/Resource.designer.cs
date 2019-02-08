@@ -29,6 +29,7 @@ namespace MonoDroid.Dialog
             global::ZXing.Mobile.Resource.Id.contentFrame = global::MonoDroid.Dialog.Resource.Id.contentFrame;
             global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::MonoDroid.Dialog.Resource.Layout.zxingscanneractivitylayout;
             global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::MonoDroid.Dialog.Resource.Layout.zxingscannerfragmentlayout;
+            //global::Xamarin.Controls.Resource.Layout.signature_pad_layout = global::MonoDroid.Dialog.Resource.Layout.signature_pad_layout;
         }
 
         public partial class Animation
@@ -4091,8 +4092,8 @@ namespace MonoDroid.Dialog
             // aapt resource value: 0x7f030046
             public const int grid_layout = 2130903110;
 
-            // aapt resource value: 0x7f030047
-            public const int ListViewLayout = 2130903111;
+            //// aapt resource value: 0x7f030047
+            //public const int ListViewLayout = 2130903111;
 
             // aapt resource value: 0x7f030048
             public const int Menu = 2130903112;

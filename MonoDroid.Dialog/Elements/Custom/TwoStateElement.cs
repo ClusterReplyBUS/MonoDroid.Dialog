@@ -14,7 +14,7 @@ namespace MonoDroid.Dialog
 		TwoStateChoice val;
 		List<TwoStateChoice> choices;
 
-		public virtual TwoStateChoice Value
+		public new TwoStateChoice Value
 		{
 			get
 			{
@@ -31,7 +31,7 @@ namespace MonoDroid.Dialog
 			}
 		}
 
-		public event EventHandler ValueChanged;
+		public new event EventHandler ValueChanged;
 
 		public TwoStateElement(string caption, TwoStateChoice firstChoice, TwoStateChoice secondChoice, bool firstIsDefault) : base(caption, firstIsDefault)
 		{

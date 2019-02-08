@@ -5,7 +5,7 @@ namespace MonoDroid.Dialog
 {
     public class MultilineElement : EntryElement
     {
-        public int Lines { get; set; }
+        //public int Lines { get; set; }
 		public int MaxLength {get;set;}
 
         public MultilineElement(string caption, string value)

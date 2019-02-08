@@ -93,13 +93,13 @@ namespace MonoDroid.Dialog
 		{
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			MenuInflater inflater = MenuInflater;
-            inflater.Inflate(MonoDroid.Dialog.Resource.Layout.Menu, menu);
+            inflater.Inflate(Resource.Layout.Menu, menu);
 			return true;
 		}
 
 		public override bool OnPrepareOptionsMenu(IMenu menu)
 		{
-            var btnDone = menu.FindItem(MonoDroid.Dialog.Resource.Id.action_done);
+            var btnDone = menu.FindItem(Resource.Id.action_done);
             if (btnDone == null)
                 btnDone = menu.FindItem(BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName));
 			btnDone.SetTitle(SaveButton);
@@ -108,7 +108,7 @@ namespace MonoDroid.Dialog
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == MonoDroid.Dialog.Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
+            if (item.ItemId == Resource.Id.action_done || item.ItemId == BaseContext.Resources.GetIdentifier("action_done", "id", BaseContext.PackageName))
             {
                 TextNote = _multiline.Text;
                 OnNoteSaved();

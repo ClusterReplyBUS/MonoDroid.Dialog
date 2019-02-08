@@ -62,31 +62,43 @@ namespace MonoDroid.Dialog
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Context.LayoutInflaterService);
             Console.WriteLine("INFLATER : " + inflater);
-            var layout = inflater.Inflate(MonoDroid.Dialog.Resource.Layout.custom_scanner, null);
+            //var layout = inflater.Inflate(MonoDroid.Dialog.Resource.Layout.custom_scanner, null);
+            
+           var layout = inflater.Inflate(2130903071, null);
             Console.WriteLine("LAYOUT : " + layout);
-            var flash = ((Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingFlash));
+            var flash = ((Button)layout.FindViewById(Resource.Id.buttonZxingFlash));
             if (flash == null)
             {
                 flash = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingFlash", "id", BaseContext.PackageName));
             }
-            flash.Click += (sender, e) =>
+            if (flash == null)
             {
-                _scanner.ToggleTorch();
-                if (_scanner.IsTorchOn)
+                flash = ((Button)layout.FindViewById(2131361962));
+            }
+            if (flash != null)
+                flash.Click += (sender, e) =>
                 {
-                    flash.SetText("Flash Off", TextView.BufferType.Normal);
-                }
-                else
-                {
-                    flash.SetText("Flash On", TextView.BufferType.Normal);
-                }
-            };
+                    _scanner.ToggleTorch();
+                    if (_scanner.IsTorchOn)
+                    {
+                        flash.SetText("Flash Off", TextView.BufferType.Normal);
+                    }
+                    else
+                    {
+                        flash.SetText("Flash On", TextView.BufferType.Normal);
+                    }
+                };
 
             var cancel = (Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingCancel);
             if (cancel == null)
             {
                 cancel = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingCancel", "id", BaseContext.PackageName));
             }
+            if (cancel == null)
+            {
+                cancel = ((Button)layout.FindViewById(2131361961));
+            }
+            if (cancel != null)
             cancel.Click += (sender, e) =>
             {
                 _scanner.Cancel();

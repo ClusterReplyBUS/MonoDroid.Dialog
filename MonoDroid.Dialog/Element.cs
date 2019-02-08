@@ -54,11 +54,7 @@ namespace MonoDroid.Dialog
 		/// An Object that contains data about the element. The default is null.
 		/// </summary>
 		public Object Tag { get; set; }
-
-		public void Dispose()
-		{
-			Dispose(true);
-		}
+        
 
 		//protected virtual void Dispose(bool disposing) { }
 
