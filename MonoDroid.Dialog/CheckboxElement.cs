@@ -90,7 +90,6 @@ namespace MonoDroid.Dialog
             View view = DroidResources.LoadBooleanElementLayout(context, convertView, parent, LayoutId, out _caption, out _subCaption, out checkboxView);
             if (view != null)
             {
-
                 if (this.IsMissing)
                     _caption.SetTextColor(Color.ParseColor(Colors.MissingRed));
 
@@ -113,9 +112,9 @@ namespace MonoDroid.Dialog
         //    this.Value = isChecked;
         //}
 
-		public void OnChildSelected()
+		public void OnChildSelected(bool value)
 		{
-			this.Value = !this.Value;
+            this.Value = value;//!this.Value;
 			if (OnSelected != null)
 			{
 				OnSelected(this, null);
@@ -123,5 +122,11 @@ namespace MonoDroid.Dialog
 		}
 
 		public event EventHandler<EventArgs> OnSelected;
+
+        public override string ToString()
+        {
+            return this.Caption;
+        }
     }
+
 }

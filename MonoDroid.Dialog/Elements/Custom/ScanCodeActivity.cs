@@ -38,7 +38,9 @@ namespace MonoDroid.Dialog
 
         public event EventHandler<ScannerEventArgs> ScannerSaved;
         public string TitleActivity { get; set; }
-
+        public string CancelLabel { get; set; }
+        public string FlashOnLabel { get; set; }
+        public string FlashOffLabel { get; set; }
         private void OnScannerSaved(string res)
         {
             if (ScannerSaved != null)
@@ -73,6 +75,7 @@ namespace MonoDroid.Dialog
             }
             if (flash == null)
             {
+<<<<<<< Updated upstream
                 flash = ((Button)layout.FindViewById(2131361962));
             }
             if (flash != null)
@@ -88,8 +91,21 @@ namespace MonoDroid.Dialog
                         flash.SetText("Flash On", TextView.BufferType.Normal);
                     }
                 };
+=======
+                _scanner.ToggleTorch();
+                if (_scanner.IsTorchOn)
+                {
+                    flash.SetText(FlashOffLabel, TextView.BufferType.Normal);
+                }
+                else
+                {
+                    flash.SetText(FlashOnLabel, TextView.BufferType.Normal);
+                }
+            };
+>>>>>>> Stashed changes
 
             var cancel = (Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingCancel);
+            cancel.Text = CancelLabel;
             if (cancel == null)
             {
                 cancel = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingCancel", "id", BaseContext.PackageName));
@@ -151,7 +167,7 @@ namespace MonoDroid.Dialog
         public override void OnAttachedToWindow()
         {
             base.OnAttachedToWindow();
-            Window.SetTitle("Scanner");
+            //Window.SetTitle("Scanner");
 
         }
 

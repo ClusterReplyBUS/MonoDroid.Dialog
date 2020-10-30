@@ -35,6 +35,7 @@ namespace MonoDroid.Dialog
 			dialog_grid,
 			dialog_note,
 			dialog_date,
+    
 
         }
 
@@ -271,7 +272,9 @@ namespace MonoDroid.Dialog
             }
             return layout;
         }
-		public static View LoadPhotoElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out ImageButton value)
+
+
+        public static View LoadPhotoElementLayout(Context context, View convertView, ViewGroup parent, int layoutId, out TextView label, out ImageButton value)
 		{
 			View layout = convertView ?? LoadLayout(context, parent, layoutId);
 			if (layout != null)

@@ -7,6 +7,7 @@ using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using Android.Database;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Media;
@@ -19,6 +20,7 @@ using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using Java.IO;
+using Reply.CNHI.LeadCapture.Mobile;
 using static Android.Support.V4.Widget.DrawerLayout;
 using Environment = Android.OS.Environment;
 using Uri = Android.Net.Uri;
@@ -84,7 +86,7 @@ namespace MonoDroid.Dialog
             base.OnCreate(savedInstanceState);
 
             ActionBar actionBar = ActionBar;
-            actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#C3231E"))); // set your desired color
+            actionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor(DevicePath.PrimaryColor))); // set your desired color
             Display display = WindowManager.DefaultDisplay;
             Point size = new Point();
             display.GetSize(size);
@@ -292,6 +294,9 @@ namespace MonoDroid.Dialog
             // Dispose of the Java side bitmap.
             GC.Collect();
         }
+
+      
+
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             ActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -362,6 +367,7 @@ namespace MonoDroid.Dialog
                 return true;
             return false;
         }
+
 
     }
 

@@ -5,7 +5,7 @@ using Android.Graphics;
 
 namespace MonoDroid.Dialog
 {
-	public class TaggedRootElement<ElementType> : RootElement, IDialogInterfaceOnClickListener
+	public class TaggedRootElement<ElementType> : RootElement //, IDialogInterfaceOnClickListener
 		where ElementType : ITaggedNodeElement
 	{
 		private string _backButtonLabel;
@@ -55,6 +55,7 @@ namespace MonoDroid.Dialog
 
 		public override Android.Views.View GetView(Android.Content.Context context, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
+            
             if (this.IsMandatory && this.Caption != null && !this.Caption.EndsWith("*", StringComparison.InvariantCulture))
 			{
 				this.Caption += "*";
@@ -67,6 +68,7 @@ namespace MonoDroid.Dialog
 
 
 			var view = base.GetView(context, convertView, parent);
+          
 			return view;
 		}
 
@@ -81,7 +83,7 @@ namespace MonoDroid.Dialog
 			else
 			{
 				var e = GetSelectedCheckBoxElement(which);
-				e.OnChildSelected();
+				e.OnChildSelected(e.Value);
 				_showValue = SelectedChildren.Count.ToString();
 			}
 			this._value.SetBackgroundColor(Color.ParseColor("#FAFAD2"));

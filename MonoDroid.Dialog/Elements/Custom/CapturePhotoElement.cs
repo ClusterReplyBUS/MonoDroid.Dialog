@@ -15,7 +15,7 @@ namespace MonoDroid.Dialog
 		private string _title { get; set; }
 		public Bitmap Value { get; set;}
 		//public bool IsMandatory { get; set; }
-
+        public int CompressionQuality { get; set; }
 		public string Base64Value
 		{
 			get
@@ -25,7 +25,7 @@ namespace MonoDroid.Dialog
 				{
 					using (var mem = new MemoryStream())
 					{
-						image.Compress(Bitmap.CompressFormat.Jpeg, 20, mem);
+						image.Compress(Bitmap.CompressFormat.Jpeg, this.CompressionQuality, mem);
 						byte[] byteArray = mem.ToArray();
 						return Convert.ToBase64String(byteArray);
 					}
@@ -54,7 +54,7 @@ namespace MonoDroid.Dialog
 		protected bool _isReadonly = false;
 		protected string _deleteButton = "";
 
-		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,string deletebutton,bool isReadonly)
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,string deletebutton,string cancelButton,bool isReadonly,int compressionQuality)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this.Base64Value = base64value;
@@ -65,9 +65,11 @@ namespace MonoDroid.Dialog
 				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
 			if (!string.IsNullOrWhiteSpace(deletebutton))
 				this._deleteButton = deletebutton;
+   
 			this._isReadonly = isReadonly;
+            this.CompressionQuality = compressionQuality;
 		}
-		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,null,false)
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,null,null,false,50)
 		{
 		}
 

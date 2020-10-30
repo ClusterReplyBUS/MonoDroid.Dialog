@@ -58,7 +58,8 @@ namespace MonoDroid.Dialog
 			}
 		}
 
-		public Element ElementAtIndex (int position)
+
+        public Element ElementAtIndex (int position)
 		{
 			int sectionIndex = 0;
 			foreach (var s in Root.Sections) {

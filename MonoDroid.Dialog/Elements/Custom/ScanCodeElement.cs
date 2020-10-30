@@ -12,9 +12,17 @@ namespace MonoDroid.Dialog
 
 
         public string ScannerResult { get; set; }
-        public ScanCodeElement(string caption) : base(caption, null)
-        {
+        public string cancelLabel { get; set; }
+        public string flashLabel { get; set; }
+        public string flashOnLabel { get; set; }
+        public string flashOffLabel { get; set; }
 
+        public ScanCodeElement(string caption,string cancelLabel,string flashLabel,string flashOnLabel,string flashOffLabel) : base(caption, null)
+        {
+            this.cancelLabel = cancelLabel;
+            this.flashLabel = flashLabel;
+            this.flashOnLabel = flashOnLabel;
+            this.flashOffLabel = flashOffLabel;
         }
 
 
@@ -32,6 +40,9 @@ namespace MonoDroid.Dialog
             {
                 ScanCodeActivity.Instance.ScannerSaved -= OnScannerSaved;
                 ScanCodeActivity.Instance.ScannerSaved += OnScannerSaved;
+                ScanCodeActivity.Instance.FlashOffLabel = flashOffLabel;
+                ScanCodeActivity.Instance.FlashOnLabel = flashOnLabel;
+                ScanCodeActivity.Instance.CancelLabel = cancelLabel;
                 ((Activity)context).StartActivity(typeof(ScanCodeActivity));
             };
 
