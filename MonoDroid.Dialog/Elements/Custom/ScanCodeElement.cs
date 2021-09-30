@@ -38,11 +38,11 @@ namespace MonoDroid.Dialog
 
             this.Click += () =>
             {
-                ScanCodeActivity.Instance.ScannerSaved -= OnScannerSaved;
-                ScanCodeActivity.Instance.ScannerSaved += OnScannerSaved;
                 ScanCodeActivity.Instance.FlashOffLabel = flashOffLabel;
                 ScanCodeActivity.Instance.FlashOnLabel = flashOnLabel;
-                ScanCodeActivity.Instance.CancelLabel = cancelLabel;
+                ScanCodeActivity.Instance.CancelLabel = cancelLabel; 
+                ScanCodeActivity.Instance.ScannerSaved -= OnScannerSaved;
+                ScanCodeActivity.Instance.ScannerSaved += OnScannerSaved;
                 ((Activity)context).StartActivity(typeof(ScanCodeActivity));
             };
 

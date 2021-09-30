@@ -47,7 +47,7 @@ namespace MonoDroid.Dialog
 		public Bitmap Value { get; set; }
 
 		public SignatureElement(string caption, string disclaimer, string saveButtonLabel)
-			: base(caption, 2130903103 /*(int)DroidResources.ElementLayout.dialog_photo*/)
+			: base(caption, /*2130903103*/(int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this._disclaimer = disclaimer;
 			this._savebutton = saveButtonLabel;
