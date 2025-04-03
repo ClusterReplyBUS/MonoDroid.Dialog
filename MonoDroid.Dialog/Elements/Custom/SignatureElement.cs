@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Android.App;
 using Android.Content;
@@ -47,13 +47,14 @@ namespace MonoDroid.Dialog
         public Bitmap Value { get; set; }
 
         public SignatureElement(string caption, string disclaimer, string saveButtonLabel)
-            : base(caption, /*2130903103*/ Resource.Layout.dialog_photo)
+            //: base(caption, /*2130903103*/ Resource.Layout.dialog_photo)
+            :base(caption,/*2130903103*/(int)DroidResources.ElementLayout.dialog_photo)
         {
             this._disclaimer = disclaimer;
             this._savebutton = saveButtonLabel;
             Caption = caption;
         }
-
+        
         private Context _context;
         public override View GetView(Context context, View convertView, ViewGroup parent)
         {

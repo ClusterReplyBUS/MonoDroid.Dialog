@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using ZXing.Mobile;
 using static Android.Support.V4.Widget.DrawerLayout;
+using static MonoDroid.Dialog.Resource;
 
 namespace MonoDroid.Dialog
 {
@@ -56,17 +57,11 @@ namespace MonoDroid.Dialog
         {
             base.OnCreate(savedInstanceState);
 
-            _scanner = new MobileBarcodeScanner();
-            _scanner.UseCustomOverlay = true;
-
-
-            _scanner.AutoFocus();
-
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(Context.LayoutInflaterService);
             Console.WriteLine("INFLATER : " + inflater);
-            //var layout = inflater.Inflate(MonoDroid.Dialog.Resource.Layout.custom_scanner, null);
-            
-           var layout = inflater.Inflate(2130903071, null);
+            var layout = inflater.Inflate(Layout.custom_scanner, null);
+
+            //var layout = inflater.Inflate(2130903071, null);
             Console.WriteLine("LAYOUT : " + layout);
             var flash = ((Button)layout.FindViewById(Resource.Id.buttonZxingFlash));
             if (flash == null)
@@ -77,6 +72,12 @@ namespace MonoDroid.Dialog
             {
                 flash = ((Button)layout.FindViewById(2131361962));
             }
+
+            var _scanner = new MobileBarcodeScanner();
+            _scanner.UseCustomOverlay = true;
+
+            _scanner.AutoFocus();
+
             if (flash != null)
                 flash.Click += (sender, e) =>
                 {
@@ -92,7 +93,6 @@ namespace MonoDroid.Dialog
                 };
 
             var cancel = (Button)layout.FindViewById(MonoDroid.Dialog.Resource.Id.buttonZxingCancel);
-            cancel.Text = CancelLabel;
             if (cancel == null)
             {
                 cancel = (Button)layout.FindViewById(BaseContext.Resources.GetIdentifier("buttonZxingCancel", "id", BaseContext.PackageName));
@@ -107,7 +107,11 @@ namespace MonoDroid.Dialog
                 _scanner.Cancel();
             };
 
+            cancel.Text = CancelLabel;
+
+
             _scanner.CustomOverlay = layout;
+
             MobileBarcodeScanningOptions option = new MobileBarcodeScanningOptions();
             option.TryHarder = true;
             option.TryInverted = true;
@@ -118,10 +122,10 @@ namespace MonoDroid.Dialog
             var result = await _scanner.Scan(option);
             if (result != null)
             {
-
                 OnScannerSaved(result.Text);
-                _instance = null;
-                Finish();
+                _scanner.Cancel();
+                //Finish();
+                //_instance = null;
             }
         }
 
@@ -155,7 +159,6 @@ namespace MonoDroid.Dialog
         {
             base.OnAttachedToWindow();
             //Window.SetTitle("Scanner");
-
         }
 
 
