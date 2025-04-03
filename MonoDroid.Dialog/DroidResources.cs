@@ -279,8 +279,10 @@ namespace MonoDroid.Dialog
 			View layout = convertView ?? LoadLayout(context, parent, layoutId);
 			if (layout != null)
 			{
-				label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
-				value = layout.FindViewById<ImageButton>(context.Resources.GetIdentifier("dialog_ImageBtn", "id", context.PackageName));
+                //label = layout.FindViewById<TextView>(context.Resources.GetIdentifier("dialog_LabelField", "id", context.PackageName));
+                label = layout.FindViewById<TextView>(Resource.Id.dialog_LabelField);
+				//value = layout.FindViewById<ImageButton>(context.Resources.GetIdentifier("dialog_ImageBtn", "id", context.PackageName));
+				value = layout.FindViewById<ImageButton>(Resource.Id.dialog_ImageBtn);
 			}
 			else
 			{
