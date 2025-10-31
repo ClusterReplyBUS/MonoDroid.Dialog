@@ -17,13 +17,13 @@ namespace MonoDroid.Dialog
         public string flashOnLabel { get; set; }
         public string flashOffLabel { get; set; }
 
-        public ScanCodeElement(string caption,string cancelLabel,string flashLabel,string flashOnLabel,string flashOffLabel) : base(caption, null)
-        {
-            this.cancelLabel = cancelLabel;
-            this.flashLabel = flashLabel;
-            this.flashOnLabel = flashOnLabel;
-            this.flashOffLabel = flashOffLabel;
-        }
+		public ScanCodeElement(string caption, string cancelLabel = null, string flashLabel = null, string flashOnLabel = null, string flashOffLabel = null) : base(caption, null)
+		{
+			this.cancelLabel = cancelLabel;
+			this.flashLabel = flashLabel;
+			this.flashOnLabel = flashOnLabel;
+			this.flashOffLabel = flashOffLabel;
+		}
 
 
         public override void Selected()

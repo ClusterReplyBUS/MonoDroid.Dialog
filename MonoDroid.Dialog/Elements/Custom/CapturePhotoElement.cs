@@ -51,25 +51,28 @@ namespace MonoDroid.Dialog
 		protected string _selectorDoneLabel = "Done";
 		protected string _selectorTakePhotoLabel = "Take photo";
 		protected string _selectorPickImageLabel = "Pick image";
-		protected bool _isReadonly = false;
-		protected string _deleteButton = "";
+	protected bool _isReadonly = false;
+	protected string _deleteButton = "";
+	protected string _cancelButton = "";
 
-		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel,string deletebutton,string cancelButton,bool isReadonly,int compressionQuality)
+	public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel, string deletebutton, bool isReadonly = false, string cancelButton = null, int compressionQuality = 50)
 			: base(caption, (int)DroidResources.ElementLayout.dialog_photo)
 		{
 			this.Base64Value = base64value;
 			this._showSelector = showSelector;
 			if (!string.IsNullOrWhiteSpace(selectorPickImageLabel))
 				this._selectorPickImageLabel = selectorPickImageLabel;
-			if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
-				this._selectorTakePhotoLabel = selectorTakePhotoLabel;
-			if (!string.IsNullOrWhiteSpace(deletebutton))
-				this._deleteButton = deletebutton;
+		if (!string.IsNullOrWhiteSpace(selectorTakePhotoLabel))
+			this._selectorTakePhotoLabel = selectorTakePhotoLabel;
+		if (!string.IsNullOrWhiteSpace(deletebutton))
+			this._deleteButton = deletebutton;
+		if (!string.IsNullOrWhiteSpace(cancelButton))
+			this._cancelButton = cancelButton;
    
-			this._isReadonly = isReadonly;
+		this._isReadonly = isReadonly;
             this.CompressionQuality = compressionQuality;
 		}
-		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null,null,null,false,50)
+		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null, null, false, null, 50)
 		{
 		}
 
