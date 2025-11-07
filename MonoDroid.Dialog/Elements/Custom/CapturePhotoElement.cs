@@ -72,6 +72,13 @@ namespace MonoDroid.Dialog
 		this._isReadonly = isReadonly;
             this.CompressionQuality = compressionQuality;
 		}
+
+		// Constructor with old parameter order for backward compatibility
+		public CapturePhotoElement(string caption, string base64value, bool showSelector, string selectorTakePhotoLabel, string selectorPickImageLabel, string deletebutton, string cancelButton, bool isReadonly, float compressionQualityFloat)
+			: this(caption, base64value, showSelector, selectorTakePhotoLabel, selectorPickImageLabel, deletebutton, isReadonly, cancelButton, (int)(compressionQualityFloat * 100))
+		{
+		}
+
 		public CapturePhotoElement(string caption, string base64value) : this(caption, base64value, false, null, null, null, false, null, 50)
 		{
 		}
